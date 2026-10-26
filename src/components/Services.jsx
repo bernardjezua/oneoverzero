@@ -16,11 +16,16 @@ export default function Services() {
         <SectionHead
           eyebrow="What We Offer"
           title="Everything you need to build, run and secure your tech"
-          sub="Websites, apps, infrastructure, security and ongoing support, delivered by one team that stays with you long after launch."
+          sub="We offer innovative solutions for your business needs, delivered by one team."
         />
         <div className="offer-grid">
           {SERVICES.map((s, i) => (
-            <Reveal key={s.id} delay={(i % 2) * 90} className="glass offer-card lift" onMouseMove={spotlight}>
+            <Reveal
+              key={s.id}
+              delay={(i % 2) * 90}
+              className="glass offer-card lift"
+              onMouseMove={spotlight}
+            >
               <span className="ico">
                 <Icon name={s.icon} size={24} />
               </span>
@@ -31,5 +36,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  )
+  );
 }

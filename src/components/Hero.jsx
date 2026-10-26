@@ -55,7 +55,7 @@ export default function Hero() {
           Founded in 2017, One Over Zero provides software development and
           system integration services built around open-source technologies and
           enterprise solutions, helping organizations achieve operational
-          efficiency. We offer innovative solutions for your business needs.
+          efficiency.
         </p>
         <div className="cta-row">
           <a className="btn btn-primary" href="#services">

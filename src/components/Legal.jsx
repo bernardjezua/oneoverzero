@@ -4,11 +4,27 @@ import { readConsent } from '../hooks.js'
 
 function Modal({ open, onClose, title, children }) {
   const ref = useRef(null)
+  const bodyRef = useRef(null)
+  const hideTimer = useRef(0)
   const titleId = useId()
+
+  // The scrollbar is only visible while it's in use: it appears on open and on scroll, then fades after 3 seconds of inactivity.
+  const showScrollbar = () => {
+    const b = bodyRef.current
+    if (!b) return
+    b.classList.add('is-scrolling')
+    clearTimeout(hideTimer.current)
+    hideTimer.current = setTimeout(() => b.classList.remove('is-scrolling'), 3000)
+  }
+
   useEffect(() => {
     const d = ref.current
-    if (open && !d.open) d.showModal()
+    if (open && !d.open) {
+      d.showModal()
+      showScrollbar()
+    }
     if (!open && d.open) d.close()
+    return () => clearTimeout(hideTimer.current)
   }, [open])
   return (
     <dialog
@@ -24,7 +40,9 @@ function Modal({ open, onClose, title, children }) {
           <Icon name="close" />
         </button>
       </div>
-      <div className="modal-body">{children}</div>
+      <div className="modal-body" ref={bodyRef} onScroll={showScrollbar} onPointerMove={showScrollbar} onTouchStart={showScrollbar}>
+        {children}
+      </div>
     </dialog>
   )
 }
@@ -36,101 +54,50 @@ export function PrivacyDialog({ open, onClose }) {
     <Modal open={open} onClose={onClose} title="Privacy Policy">
       <p className="note">Last updated: October 26, 2026</p>
       <p>
-        One Over Zero Innovations (&ldquo;One Over Zero&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your privacy. This policy explains what
-        personal information we collect through this website, how we use it, and the choices you have. We handle personal information in line with
-        the Philippine Data Privacy Act of 2012 (Republic Act No. 10173) and its implementing rules.
-      </p>
-
-      <h4>Who we are</h4>
-      <p>
-        One Over Zero Innovations, 4th Floor PhilCox Building, Salcedo, Legazpi Village, Makati, Metro Manila, Philippines. For anything related to
-        this policy, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        One Over Zero Innovations (&ldquo;we&rdquo;) respects your privacy. This policy explains what we collect through this website and how we
+        handle it, in line with the Philippine Data Privacy Act of 2012 (RA 10173).
       </p>
 
       <h4>What we collect</h4>
-      <p>When you send us an inquiry through the contact form, we collect the details you provide:</p>
-      <ul>
-        <li>your name, company and email address;</li>
-        <li>the service you are interested in and a description of what you need;</li>
-        <li>when you would like to start, and how you heard about us.</li>
-      </ul>
       <p>
-        If you email us directly, we also receive your email address and the contents of your message. We do not ask for sensitive personal
-        information through this website, so please do not include any in your message.
+        Only what you send us through the contact form or by email: your name, company, email address, project details, preferred start date and
+        how you heard about us. Please don&rsquo;t include sensitive personal information.
       </p>
 
       <h4>How we use it</h4>
-      <p>We use your information only to:</p>
-      <ul>
-        <li>reply to your inquiry and prepare proposals or quotations;</li>
-        <li>manage our business relationship with you if we work together;</li>
-        <li>keep records we need for legal, accounting and security purposes.</li>
-      </ul>
-      <p>We do not sell your personal information, and we do not use it for automated decision-making.</p>
-
-      <h4>Legal basis</h4>
       <p>
-        We process your information because you asked us to get in touch (your consent and your request to enter into a contract), and because we
-        have a legitimate interest in running and securing our business. Where we rely on consent, such as for optional cookies, you can withdraw it
-        at any time.
+        To reply to your inquiry, prepare proposals, manage our relationship if we work together, and keep records the law requires. We never
+        sell your information.
       </p>
 
-      <h4>Sharing your information</h4>
+      <h4>Sharing</h4>
       <p>
-        We share personal information only with service providers who help us operate our business (for example, email and hosting providers) and
-        who are required to protect it, and with authorities when the law requires us to. We do not share it for other companies&rsquo; marketing.
+        Only with service providers who help us run our business (such as email and hosting) and who must protect it, or with authorities when
+        the law requires.
       </p>
 
-      <h4>Cookies and similar technologies</h4>
+      <h4>Cookies and third parties</h4>
       <p>
-        This site stores one small item in your browser to remember your cookie choice. This is strictly necessary and is not used to track you.
-        Optional analytics and marketing cookies are used only if you accept them, and you can change your choice at any time using Cookie Settings
-        in the footer.
+        We store one item in your browser to remember your cookie choice. Optional analytics and marketing cookies are used only if you accept
+        them; change this anytime in Cookie Settings. The site also loads Google Fonts and a Google Map, which may receive your IP address and set
+        their own cookies.
       </p>
 
-      <h4>Third-party services</h4>
+      <h4>Retention and security</h4>
       <p>
-        This site loads fonts from Google Fonts and shows our office location using an embedded Google Map. When these load, Google may receive
-        technical information such as your IP address and browser details, and may set its own cookies. Their handling of that information is
-        covered by Google&rsquo;s own privacy policy.
-      </p>
-
-      <h4>How long we keep it</h4>
-      <p>
-        We keep inquiry details only as long as needed to respond to you and for legitimate record-keeping, then delete or anonymize them. If we
-        work together, we keep project records for as long as our contract and the law require.
-      </p>
-
-      <h4>Security</h4>
-      <p>
-        We use reasonable organizational, physical and technical measures to protect your information against loss, misuse and unauthorized access.
-        No method of transmission or storage is completely secure, so we cannot guarantee absolute security.
+        We keep inquiry details only as long as needed, then delete or anonymize them, and use reasonable measures to protect them.
       </p>
 
       <h4>Your rights</h4>
-      <p>Under the Data Privacy Act you have the right to:</p>
-      <ul>
-        <li>be informed about how your data is processed, and to access it;</li>
-        <li>object to processing, or withdraw your consent;</li>
-        <li>correct inaccurate or outdated data;</li>
-        <li>ask us to suspend, block or delete your data;</li>
-        <li>receive a copy of your data in a commonly used format;</li>
-        <li>claim compensation for damages from inaccurate, unlawfully obtained or misused data;</li>
-        <li>lodge a complaint with the National Privacy Commission (privacy.gov.ph).</li>
-      </ul>
       <p>
-        To exercise any of these rights, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. We will respond as soon as we reasonably can.
+        You may access, correct, object to, or ask us to delete your data, withdraw consent, and complain to the National Privacy Commission
+        (privacy.gov.ph). To make a request, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
 
-      <h4>Changes to this policy</h4>
+      <h4>Changes and contact</h4>
       <p>
-        We may update this policy from time to time. The &ldquo;Last updated&rdquo; date above shows when it last changed, and we encourage you to
-        review it periodically.
-      </p>
-
-      <h4>Contact us</h4>
-      <p>
-        Questions or concerns about your privacy? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        We may update this policy; the date above shows the latest version. Questions? Email{' '}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
     </Modal>
   )
@@ -158,7 +125,7 @@ function CookiePrefs({ onClose, onSave }) {
   }
   return (
     <>
-      <p>Choose which optional cookies we may use. You can change this at any time.</p>
+      <p className="cookie-intro">Choose which optional cookies we may use. You can change this at any time.</p>
       <div className="cookie-list">
         {CATS.map((c) => (
           <label className="toggle" key={c.id}>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import TrackRecord from './components/TrackRecord.jsx'
@@ -15,6 +15,19 @@ export default function App() {
   const [privacyOpen, setPrivacyOpen] = useState(false)
   const [cookiesOpen, setCookiesOpen] = useState(false)
   const [consent, setConsent] = useState(() => readConsent())
+
+  // Discourage saving images: block the right-click menu and dragging on pictures. This only deters casual copying.
+  useEffect(() => {
+    const block = (e) => {
+      if (e.target instanceof HTMLImageElement) e.preventDefault()
+    }
+    document.addEventListener('contextmenu', block)
+    document.addEventListener('dragstart', block)
+    return () => {
+      document.removeEventListener('contextmenu', block)
+      document.removeEventListener('dragstart', block)
+    }
+  }, [])
 
   const choose = (c) => {
     saveConsent(c)

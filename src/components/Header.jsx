@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Icon from './Icon.jsx'
 import Logo from './Logo.jsx'
 import { useActiveSection } from '../hooks.js'
@@ -10,16 +10,31 @@ export default function Header() {
   const activeId = useActiveSection(SECTION_IDS)
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastY = useRef(0)
 
+  // Hides while scrolling down and returns as soon as the page is scrolled up (or back near the top).
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    lastY.current = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 12)
+      const delta = y - lastY.current
+      if (y < 80) setHidden(false)
+      else if (delta > 6) setHidden(true)
+      else if (delta < -6) setHidden(false)
+      if (Math.abs(delta) > 6) lastY.current = y
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // An open menu keeps the header on screen
+  const away = hidden && !open
+
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''}`}>
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''} ${away ? 'away' : ''}`}>
       <div className="wrap header-inner">
         <Logo />
         <nav className={`nav ${open ? 'open' : ''}`} aria-label="Primary">
