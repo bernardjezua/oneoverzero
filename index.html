@@ -9,7 +9,7 @@
       content="Founded in 2017, One Over Zero Innovations provides development and system integration services built around open-source technologies and enterprise solutions."
     />
     <meta name="theme-color" content="#0a0630" />
-    <!-- Link preview (thumbnail). Social sites need an absolute URL: change it if the site moves to a custom domain. -->
+    <!-- Link preview (thumbnail). __SITE_URL__ is replaced at build time with the Vercel address (see vite.config.js). -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="One Over Zero Innovations" />
     <meta property="og:title" content="One Over Zero Innovations | Defining Infinite Possibilities" />
@@ -17,15 +17,16 @@
       property="og:description"
       content="Software development and system integration services built around open-source technologies and enterprise solutions."
     />
-    <meta property="og:url" content="https://bernardjezua.github.io/oneoverzero/" />
-    <meta property="og:image" content="https://bernardjezua.github.io/oneoverzero/og-image.png" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
+    <meta property="og:image:secure_url" content="__SITE_URL__/og-image.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="One Over Zero Innovations logo on a purple background" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="One Over Zero Innovations | Defining Infinite Possibilities" />
-    <meta name="twitter:image" content="https://bernardjezua.github.io/oneoverzero/og-image.png" />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
