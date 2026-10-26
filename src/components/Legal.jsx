@@ -142,18 +142,22 @@ const CATS = [
 ]
 
 export function CookieDialog({ open, onClose, onSave }) {
+  return (
+    <Modal open={open} onClose={onClose} title="Cookie Settings">
+      {/* Mounted only while open, so the toggles reload the saved choice every time and never go stale */}
+      {open && <CookiePrefs onClose={onClose} onSave={onSave} />}
+    </Modal>
+  )
+}
+
+function CookiePrefs({ onClose, onSave }) {
   const [prefs, setPrefs] = useState(() => readConsent() || { analytics: false, marketing: false })
-  // Reload the saved choice each time the dialog opens, so toggles left unsaved or choices made in the banner never go stale.
-  useEffect(() => {
-    if (open) setPrefs(readConsent() || { analytics: false, marketing: false })
-  }, [open])
   const save = (p) => {
-    setPrefs(p)
     onSave(p)
     onClose()
   }
   return (
-    <Modal open={open} onClose={onClose} title="Cookie Settings">
+    <>
       <p>Choose which optional cookies we may use. You can change this at any time.</p>
       <div className="cookie-list">
         {CATS.map((c) => (
@@ -182,7 +186,7 @@ export function CookieDialog({ open, onClose, onSave }) {
           Accept all
         </button>
       </div>
-    </Modal>
+    </>
   )
 }
 
