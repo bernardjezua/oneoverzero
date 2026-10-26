@@ -25,6 +25,12 @@ const P = {
   left: 'M15 6l-6 6 6 6',
   right: 'M9 6l6 6-6 6',
   play: 'M7 4l13 8-13 8z',
+  link: 'M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1',
+  game: 'M6 8h12a4 4 0 014 4v2a3 3 0 01-5.2 2L15 14H9l-1.8 2A3 3 0 012 14v-2a4 4 0 014-4zM8 10v4M6 12h4M16 11h.01M18 13h.01',
+  container: 'M3 8h18v10H3zM8 8v10M13 8v10M18 8v10M3 5h6v3',
+  layout: 'M3 4h18v16H3zM3 9h18M9 9v11',
+  wrench: 'M14.7 6.3a4 4 0 005 5L20 17l-3 3-5.7-5.7L5 20.6 3.4 19l6.3-6.3L4 7l3-3 5.7 2.3a4 4 0 002 0zM14.7 6.3',
+  headset: 'M4 14v-2a8 8 0 0116 0v2M4 14h3v5H4zM17 14h3v5h-3zM20 19a4 3 0 01-4 2h-2',
 }
 
 export default function Icon({ name, size = 20 }) {

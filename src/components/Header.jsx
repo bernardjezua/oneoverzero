@@ -1,0 +1,41 @@
+import { useEffect, useState } from 'react'
+import Icon from './Icon.jsx'
+import Logo from './Logo.jsx'
+import { useActiveSection } from '../hooks.js'
+import { NAV_LINKS } from '../data.js'
+
+const SECTION_IDS = NAV_LINKS.map((l) => l.href.slice(1))
+
+export default function Header() {
+  const activeId = useActiveSection(SECTION_IDS)
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <header className={`header ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''}`}>
+      <div className="wrap header-inner">
+        <Logo />
+        <nav className={`nav ${open ? 'open' : ''}`} aria-label="Primary">
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className={activeId === l.href.slice(1) ? 'active' : ''} onClick={() => setOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+          <a className="btn btn-glow nav-cta" href="#contact" onClick={() => setOpen(false)}>
+            Schedule a Consultation
+          </a>
+        </nav>
+        <button className="icon-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label="Toggle menu">
+          <Icon name={open ? 'close' : 'menu'} />
+        </button>
+      </div>
+    </header>
+  )
+}

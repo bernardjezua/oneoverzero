@@ -1,8 +1,18 @@
 export function LogoMark({ size = 36 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true">
-      <path d="M52 48V2Q52 48 98 48Z" fill="var(--accent)" />
-      <path d="M48 52H2Q48 52 48 98Z" fill="var(--mark-dark)" />
+      <defs>
+        <linearGradient id="mark-cyan" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#b7f4ee" />
+          <stop offset="1" stopColor="#3fb5ae" />
+        </linearGradient>
+        <linearGradient id="mark-white" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#c9c4ee" />
+          <stop offset="1" stopColor="#ffffff" />
+        </linearGradient>
+      </defs>
+      <path d="M50 50V2Q50 50 98 50Z" fill="url(#mark-cyan)" />
+      <path d="M50 50H2Q50 50 50 98Z" fill="url(#mark-white)" />
     </svg>
   )
 }
@@ -16,7 +26,7 @@ export default function Logo() {
         <small aria-label="INNOVATIONS">
           {'INNOVATIONS'.split('').map((ch, i) => (
             <span key={i} aria-hidden="true">
-              {ch}
+              {ch === ' ' ? ' ' : ch}
             </span>
           ))}
         </small>

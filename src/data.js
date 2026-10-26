@@ -3,145 +3,273 @@
 
 export const NAV_LINKS = [
   { label: 'Services', href: '#services' },
-  { label: 'Our Work', href: '#work' },
-  { label: 'Client Reviews', href: '#reviews' },
+  { label: 'Products', href: '#work' },
+  { label: 'Reviews', href: '#reviews' },
   { label: 'Contact', href: '#contact' },
 ]
 
-// PLACEHOLDER: set src to a real logo file (use `${import.meta.env.BASE_URL}logos/acme.svg` so it works under /oneoverzero/) to replace each placeholder glyph
-export const CLIENT_LOGOS = Array.from({ length: 12 }, (_, i) => ({ name: `Client ${i + 1}`, src: null }))
+const logo = (file) => `${import.meta.env.BASE_URL}logos/${file}`
+export const CLIENT_LOGOS = [
+  { name: 'Ayala Enterprise Circle', src: logo('ayala-enterprise-circle.png') },
+  { name: 'Manila Doctors Hospital', src: logo('manila-doctors-hospital.png') },
+  { name: 'DICT', src: logo('dict.png') },
+  { name: 'UP Fighting Maroons', src: logo('fighting-maroons.png') },
+  { name: '30th SEA Games 2019', src: logo('sea-games-2019.png') },
+  { name: 'Municipality of Catarman', src: logo('catarman.png') },
+  { name: 'Meralco', src: logo('meralco.png') },
+  { name: 'Asia Select', src: logo('asia-select.png') },
+  { name: 'Pacific Union Insurance', src: logo('pacific-union.png') },
+  { name: 'Artkipelago', src: logo('artkipelago.png') },
+  { name: 'Philippine Basketball Association', src: logo('pba.png') },
+  { name: 'Inter-Ed', src: logo('inter-ed.png') },
+  { name: 'Asia Peopleworks', src: logo('asia-peopleworks.png') },
+  { name: 'Bughaw Digital', src: logo('bughaw-digital.png') },
+  { name: 'Beebeelee', src: logo('beebeelee.png') },
+  { name: '4th Wall', src: logo('4th-wall.png') },
+  { name: 'myanteroom', src: logo('myanteroom.png') },
+  { name: 'TNT Katropa', src: logo('tnt-katropa.png') },
+  { name: 'Bacoor City Strikers', src: logo('bacoor-strikers.png') },
+  { name: 'ZMG Ward Howell', src: logo('zmg-ward-howell.png') },
+  { name: 'Outbound Asia', src: logo('outbound-asia.png') },
+  { name: '11th Asian Age Group Championships', src: logo('new-clark-city.png') },
+  { name: 'Live Philippines', src: logo('live-philippines.png') },
+  { name: 'Vertere', src: logo('vertere.png') },
+  { name: 'Vibal Group', src: logo('vibal.png') },
+  { name: 'Phirst Park Homes', src: logo('phirst-park-homes.png') },
+  { name: 'Phirst Editions', src: logo('phirst-editions.png') },
+  { name: 'Phirst Centrale', src: logo('phirst-centrale.png') },
+  { name: 'Phirst Sights', src: logo('phirst-sights.png') },
+  { name: 'Shoot360 Philippines', src: logo('shoot360.png') },
+  { name: 'A7 Recruitment', src: logo('a7-recruitment.png') },
+  { name: 'Philcox Philippines', src: logo('philcox.png') },
+]
+
 
 export const STATS = [
-  { value: 50, suffix: '+', label: 'Enterprise Clients & Tech Partners' },
+  { value: 30, suffix: '+', label: 'Direct Clients Across Industries' },
   { value: 90, suffix: '%', label: 'Client Retention' },
-  { value: 10, suffix: '+', label: 'Custom Enterprise Platforms Launched' },
-  { value: 24, suffix: '/7', label: 'Managed Infrastructure & Security Operations' },
+  { value: 10, suffix: '', label: 'Years of Experience' },
+  { value: 24, suffix: '/7', label: 'System Maintenance and Support' },
 ]
 
 export const SERVICES = [
   {
-    id: 'dev',
-    title: 'Software Development',
-    icon: 'code',
-    summary:
-      'Custom websites, mobile apps and games, built around how your business works.',
+    id: "web",
+    title: "Software Development",
+    icon: "code",
+    summary: "Websites, web apps, mobile apps and online stores.",
     items: [
-      { name: 'Website Application', desc: 'Responsive web platforms, portals and internal tools with clean interfaces, secure back ends and integrations into your existing systems.' },
-      { name: 'Mobile Application', desc: 'iOS and Android apps for customers and field teams, designed for speed, reliability and a smooth day-to-day experience.' },
-      { name: 'Game Development', desc: 'Interactive 2D, 3D and AR experiences for marketing, training and entertainment, built to run well on phones and the web.' },
+      {
+        name: "Website Application",
+        desc: "Responsive web platforms, portals and internal tools, including e-government services for local government units.",
+      },
+      {
+        name: "Mobile Application",
+        desc: "iOS and Android apps for customers and field teams, built for speed and reliability.",
+      },
+      {
+        name: "e-Commerce",
+        desc: "Online stores, booking systems and point-of-sale tools that connect to your operations.",
+      },
+      {
+        name: "Analytics and Digital Marketing",
+        desc: "Google and Facebook ads, SEO/SEM, social media campaigns and sentiment analytics.",
+      },
     ],
   },
   {
-    id: 'cmd',
-    title: 'Command Center',
-    icon: 'radar',
-    summary:
-      'Round-the-clock monitoring and managed services for your systems.',
+    id: "dc",
+    title: "Data Center Fit-out",
+    icon: "server",
+    summary: "Design and full build-out of data centers.",
     items: [
-      { name: 'Monitoring', desc: 'Continuous visibility into servers, networks, applications and sites, with dashboards and alerts that point to the real problem.' },
-      { name: 'Managed Services', desc: 'We run day-to-day operations for you: patching, incident response, backups and routine maintenance, so your team can focus on the business.' },
+      {
+        name: "Data Center Design and Fit-out",
+        desc: "Layout, power and cooling planning through to full build-out of new or upgraded facilities.",
+      },
+      {
+        name: "Aisle containment",
+        desc: "Hot and cold aisle enclosures that improve airflow and cut cooling costs.",
+      },
+      {
+        name: "Structured cabling",
+        desc: "Neatly routed, labeled and tested copper and fiber cabling.",
+      },
+      {
+        name: "CCTV and door access control",
+        desc: "Camera coverage plus NFC, biometric and facial recognition entry with audit trails.",
+      },
     ],
   },
   {
-    id: 'sec',
-    title: 'Security',
-    icon: 'shield',
-    summary:
-      'Vulnerability assessments, penetration testing and SIEM through Splunk or Elastic.',
+    id: "chain",
+    title: "Blockchain",
+    icon: "link",
+    summary: "Blockchain solutions and NFT concept design.",
     items: [
-      { name: 'Vulnerability Assessment', desc: 'Systematic scanning of systems, applications and networks to uncover known weaknesses, ranked by severity with remediation guidance.' },
-      { name: 'Penetration Testing', desc: 'Controlled, real-world attack simulations by our security engineers to prove what is exploitable and how far an intruder could get.' },
-      { name: 'SIEM via Splunk or Elastic', desc: 'Centralized log collection and correlation that turns raw events into threat detection, investigation and compliance reporting.', sub: ['Splunk', 'Elastic'] },
+      {
+        name: "NFT Concept Design",
+        desc: "Character, environment and 3D model concept art for NFT collections.",
+      },
     ],
   },
   {
-    id: 'dc',
-    title: 'Data Center',
-    icon: 'server',
-    summary:
-      'Data center design and fit-out, structured cabling, aisle containment, CCTV and access control.',
+    id: "infra",
+    title: "Infrastructure and Networking",
+    icon: "plug",
+    summary: "Servers, SDN and network setup.",
     items: [
-      { name: 'CCTV setup', desc: 'Camera planning, installation and recording for full coverage of racks, entrances and critical areas.' },
-      { name: 'Door access control', desc: 'Role-based entry with audit trails, so you know who accessed which space and when.' },
-      { name: 'NFC/Biometrics', desc: 'Card, fingerprint and similar credentials for fast, secure authentication at doors and cabinets.' },
-      { name: 'Facial Recognition', desc: 'Hands-free identity verification for high-security zones, integrated with your access control.' },
-      { name: 'Data Center Design and Fit out', desc: 'Layout, power and cooling planning through to full build-out of new or upgraded facilities.' },
-      { name: 'Aisle containment', desc: 'Hot and cold aisle enclosures that improve airflow, cut cooling costs and keep equipment within safe temperatures.' },
-      { name: 'Structured cabling', desc: 'Neatly routed, labeled and tested copper and fiber cabling that scales and is easy to troubleshoot.' },
+      {
+        name: "Server fulfillment",
+        desc: "Dell, HP and Lenovo servers sourced and delivered for your workload.",
+      },
+      {
+        name: "Server configuration",
+        desc: "Firmware, storage and OS installation, with diagnostics, before go-live.",
+      },
+      {
+        name: "Software Defined Networking",
+        desc: "Centrally managed, programmable networks that are faster to change.",
+      },
+      {
+        name: "Network setup and assessment",
+        desc: "Configuration of switching, routing and wireless, plus health checks with clear recommendations.",
+      },
     ],
   },
   {
-    id: 'mkt',
-    title: 'Analytics and Digital Marketing',
-    icon: 'chart',
-    summary:
-      'Google and Facebook ads, SEO/SEM, social media campaigns and sentiment analytics.',
+    id: "game",
+    title: "Custom Game Development",
+    icon: "game",
+    summary: "2D/3D games, AR games and interactive 3D spaces.",
     items: [
-      { name: 'Google/FB Ads, SEO/SEM', desc: 'Search and social advertising plus search optimization to bring qualified traffic to your site, with reporting tied to results.' },
-      { name: 'Sentiments Analytics (Social Media)', desc: 'Analysis of public conversations about your brand and products to reveal trends, concerns and opportunities.' },
-      { name: 'Social Media Campaigns', desc: 'Planned content and campaigns across major platforms that build awareness and keep your audience engaged.' },
+      {
+        name: "2D/3D Games",
+        desc: "Casual mobile and web games built to run well on phones and browsers.",
+      },
+      {
+        name: "AR Games",
+        desc: "Web-based augmented reality games such as Coin Catch and Number Touch.",
+      },
+      {
+        name: "Avatar 3D Lounge",
+        desc: "A shared 3D space where people meet and explore virtual exhibitions.",
+      },
     ],
   },
   {
-    id: 'chat',
-    title: 'Chatbox',
-    icon: 'bot',
-    summary:
-      'Live agent chat and AI-powered chatbots for customer service.',
+    id: "cloud",
+    title: "Cloud Implementation",
+    icon: "cloud",
+    summary: "Private cloud on VMware and OpenStack, plus big data.",
     items: [
-      { name: 'Agent based customer service', desc: 'Live chat for your support team with routing, conversation history and handover, so customers reach a real person when they need one.' },
-      { name: 'Chatbot with artificial intelligence', desc: 'An AI assistant trained on your content that answers questions, guides users and passes complex cases to your agents.' },
+      {
+        name: "VMware",
+        desc: "Virtualized environments for consolidating servers and simplifying management.",
+      },
+      {
+        name: "OpenStack",
+        desc: "Vanilla, HP Helion and Red Hat OpenStack private clouds.",
+      },
+      {
+        name: "Big Data",
+        desc: "Hadoop on Cloudera, Hortonworks, MapR or GreenPlum.",
+      },
     ],
   },
   {
-    id: 'net',
-    title: 'Networking',
-    icon: 'plug',
-    summary:
-      'Software-defined networking, network setup and configuration, and assessments.',
+    id: "container",
+    title: "Container Solutions",
+    icon: "container",
+    summary: "Containerized apps that deploy and scale consistently.",
     items: [
-      { name: 'Software Defined Networking', desc: 'Centrally managed, programmable networks that make changes faster and traffic policies easier to enforce.' },
-      { name: 'Network Configuration and setup', desc: 'Switching, routing, wireless and firewall deployment, configured to best practice and documented for your team.' },
-      { name: 'Network assessment', desc: 'A health check of your current network covering performance, security and capacity, with a clear list of recommendations.' },
+      {
+        name: "Containerization",
+        desc: "Packaging applications into containers for consistent, portable deployments.",
+      },
     ],
   },
   {
-    id: 'infra',
-    title: 'Infrastructure',
-    icon: 'cube',
-    summary:
-      'Server supply from Dell, HP and Lenovo, plus configuration, OS installation and diagnostics.',
+    id: "cs",
+    title: "Customer Service",
+    icon: "headset",
+    summary: "Live chat and AI chatbots, available around the clock.",
     items: [
-      { name: 'Server fulfillment', desc: 'Sourcing and delivery of enterprise servers sized for your workload.', sub: ['Dell', 'HP', 'Lenovo'] },
-      { name: 'Server configuration', desc: 'Firmware, storage, RAID and network settings prepared to your specifications before go-live.' },
-      { name: 'OS installation', desc: 'Operating system deployment and hardening so machines are ready for production use.' },
-      { name: 'Diagnostic', desc: 'Hardware and system troubleshooting to find the root cause of faults and restore stable operation.' },
+      {
+        name: "Agent based customer service",
+        desc: "Live chat with routing, history and handover to a real person.",
+      },
+      {
+        name: "Conversational AI / Chatbots",
+        desc: "An AI assistant trained on your content that answers questions and escalates complex cases.",
+      },
     ],
   },
   {
-    id: 'cloud',
-    title: 'Cloud Solution',
-    icon: 'cloud',
-    summary:
-      'Private cloud on VMware and OpenStack, including Red Hat and HP Helion.',
+    id: "sec",
+    title: "Cybersecurity",
+    icon: "shield",
+    summary: "Assessments, penetration testing, SIEM and monitoring.",
     items: [
-      { name: 'VMWare', desc: 'Virtualized environments for consolidating servers, improving availability and simplifying management.' },
-      { name: 'Vanilla OpenStack', desc: 'Open-source private cloud built on upstream OpenStack for maximum flexibility and no vendor lock-in.' },
-      { name: 'HP Helion OpenStack', desc: 'A supported, enterprise-ready OpenStack distribution from HP for production private clouds.' },
-      { name: 'Red Hat OpenStack', desc: 'A commercially supported OpenStack platform from Red Hat, backed by a mature ecosystem and long-term support.' },
+      {
+        name: "Vulnerability Assessment",
+        desc: "Systematic scanning for known weaknesses, ranked by severity.",
+      },
+      {
+        name: "Penetration Testing",
+        desc: "Controlled attack simulations to prove what is exploitable.",
+      },
+      {
+        name: "SIEM via Splunk or Elastic",
+        desc: "Log collection and correlation for threat detection and compliance.",
+      },
+      {
+        name: "Command Center",
+        desc: "Monitoring and managed services for your systems.",
+      },
     ],
   },
   {
-    id: 'bigdata',
-    title: 'Big Data Solution',
-    icon: 'target',
-    summary:
-      'Hadoop platforms on Cloudera, Hortonworks, MapR and GreenPlum.',
+    id: "cms",
+    title: "Content Management Systems",
+    icon: "layout",
+    summary: "Easy-to-update websites on WordPress or a custom CMS.",
     items: [
-      { name: 'Hadoop', desc: 'Distributed storage and processing for very large datasets, deployed on the distribution that suits your needs.', sub: ['Cloudera', 'Hortonworks', 'MapR', 'GreenPlum'] },
+      {
+        name: "CMS website development",
+        desc: "Websites built on WordPress or a custom CMS, designed around how your team publishes.",
+      },
+      {
+        name: "Custom CMS",
+        desc: "Tailor-made admin panels with roles, approvals and content workflows.",
+      },
+      {
+        name: "Migration and training",
+        desc: "Moving existing content to a new CMS, with hands-on training for your editors.",
+      },
     ],
   },
-]
+  {
+    id: "maint",
+    title: "Maintenance and Support",
+    icon: "wrench",
+    summary: "Updates, backups and support to keep everything running.",
+    items: [
+      {
+        name: "Application maintenance",
+        desc: "Bug fixes, security patches, updates and small enhancements for your sites and apps.",
+      },
+      {
+        name: "Infrastructure support",
+        desc: "Routine checks, backups and troubleshooting for servers, networks and cloud environments.",
+      },
+      {
+        name: "Support agreements",
+        desc: "Service-level agreements with defined response times and dedicated contacts.",
+      },
+    ],
+  },
+];
 
 export const PRODUCTS = [
   {
@@ -186,42 +314,62 @@ export const PRODUCTS = [
   }
 ]
 
-// PLACEHOLDER: add app screenshots to public/projects/ and set src (use `${import.meta.env.BASE_URL}projects/hris.png` so it works under /oneoverzero/)
 export const PROJECTS = [
   {
     name: '10 Hours: HRIS',
     type: 'web',
-    src: null,
+    src: `${import.meta.env.BASE_URL}projects/hris.jpg`,
     desc: 'Human resource information system for managing time, leave and payroll.',
     tags: ['Timesheet', 'Time in/out', 'Leave approvals', 'Payroll'],
   },
   {
-    name: '10 Hours: Sales Forecast Tool',
+    name: 'Customized POS',
     type: 'web',
-    src: null,
-    desc: 'Tracks projects from onboarding to payment so the sales pipeline stays visible.',
-    tags: ['Project status', 'Project history', 'Payment status'],
+    src: `${import.meta.env.BASE_URL}projects/pos.jpg`,
+    desc: 'A point-of-sale web app for food and beverage, with menu, order list and reports.',
+    tags: ['Web app', 'POS', 'Orders'],
+  },
+  {
+    name: 'Booking System',
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/booking.jpg`,
+    desc: 'Mobile booking platform connecting customers, agencies and service workers.',
+    tags: ['Mobile', 'Booking', 'Payments'],
   },
   {
     name: 'Avatar 3D Lounge',
     type: 'web',
-    src: null,
-    desc: 'A shared 3D space where people meet and interact as avatars.',
-    tags: ['3D', 'Avatars'],
-  },
-  {
-    name: 'AR Games: Coin Catch',
-    type: 'mobile',
-    src: null,
-    desc: 'An augmented reality mobile game about catching coins in the real world.',
-    tags: ['AR', 'Mobile game'],
+    src: `${import.meta.env.BASE_URL}projects/avatar-lounge.jpg`,
+    desc: 'A shared 3D space where people meet and explore virtual exhibitions as avatars.',
+    tags: ['3D', 'Avatars', 'Virtual events'],
   },
   {
     name: 'AR Games: Number Touch',
-    type: 'mobile',
-    src: null,
-    desc: 'An augmented reality number game that rewards quick, accurate taps.',
-    tags: ['AR', 'Mobile game'],
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/number-touch.jpg`,
+    desc: 'A web-based AR game that tracks your movements and rewards quick, accurate touches.',
+    tags: ['AR', 'Web game'],
+  },
+  {
+    name: 'AR Games: Coin Catch',
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/coin-catch.jpg`,
+    desc: 'A web-based AR game about catching coins in the air with your hands.',
+    tags: ['AR', 'Web game'],
+  },
+  {
+    name: '2D/3D Games',
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/game-candy.jpg`,
+    desc: 'Casual mobile and web games, from bubble shooters to puzzle and platformers.',
+    tags: ['2D', '3D', 'Mobile games'],
+  },
+  {
+    name: 'NFT Concept Design',
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/nft-kaiju.jpg`,
+    desc: 'Character and environment concept art for NFT collections, created by Dave Yap.',
+    tags: ['NFT', 'Concept art', '3D models'],
   },
 ]
 
