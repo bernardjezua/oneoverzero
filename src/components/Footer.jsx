@@ -3,7 +3,7 @@ import Logo from './Logo.jsx'
 import { NAV_LINKS, SOCIAL } from '../data.js'
 
 // Three groups across: the logo, the page links (two columns of three) and the contact links. A slim bar underneath holds the legal links.
-export default function Footer({ onPrivacy, onCookies }) {
+export default function Footer({ onCookies }) {
   return (
     <footer className="footer">
       <div className="wrap footer-grid">
@@ -46,9 +46,12 @@ export default function Footer({ onPrivacy, onCookies }) {
       <div className="wrap footer-bottom">
         <small>&copy; {new Date().getFullYear()} One Over Zero Innovations. All rights reserved.</small>
         <div className="footer-legal">
-          <button className="textbtn" onClick={onPrivacy}>
-            Privacy Policy
-          </button>
+          <a className="textbtn" href="/privacy-policy">
+            Privacy
+          </a>
+          <a className="textbtn" href="/cookie-policy">
+            Cookie Policy
+          </a>
           <button className="textbtn" onClick={onCookies}>
             Cookie Settings
           </button>

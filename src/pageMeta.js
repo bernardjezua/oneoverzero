@@ -81,6 +81,20 @@ export const PAGES = [
     share: 'Answers to common questions about getting started, timelines, pricing and support.',
   },
   {
+    path: '/privacy-policy',
+    name: 'Privacy Policy',
+    title: `Privacy Policy | ${SITE_NAME}`,
+    description:
+      'How One Over Zero Innovations collects, uses and protects your personal information under the Data Privacy Act of 2012 (RA 10173) of the Philippines.',
+  },
+  {
+    path: '/cookie-policy',
+    name: 'Cookie Policy',
+    title: `Cookie Policy | ${SITE_NAME}`,
+    description:
+      'Which cookies the One Over Zero Innovations website uses, why, and how you can accept, reject or change your cookie choices at any time.',
+  },
+  {
     path: '/404',
     name: 'Page not found',
     title: `Page not found | ${SITE_NAME}`,

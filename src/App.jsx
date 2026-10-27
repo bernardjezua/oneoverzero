@@ -9,7 +9,8 @@ import Reviews from './components/Reviews.jsx'
 import Contact from './components/Contact.jsx'
 import CtaBand from './components/CtaBand.jsx'
 import Footer from './components/Footer.jsx'
-import { CookieBanner, CookieDialog, PrivacyDialog } from './components/Legal.jsx'
+import { CookieBanner, CookieDialog } from './components/Legal.jsx'
+import { CookiePolicyPage, PrivacyPage } from './pages/LegalPages.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
@@ -19,7 +20,6 @@ import { ROUTES, currentRoute } from './routes.js'
 export default function App() {
   const route = currentRoute()
   const progress = useScrollProgress()
-  const [privacyOpen, setPrivacyOpen] = useState(false)
   const [cookiesOpen, setCookiesOpen] = useState(false)
   const [consent, setConsent] = useState(() => readConsent())
 
@@ -62,7 +62,7 @@ export default function App() {
             <HowWeWork />
             <Work />
             <Reviews />
-            <Contact onPrivacy={() => setPrivacyOpen(true)} />
+            <Contact />
           </>
         )}
         {route === '/services' && (
@@ -77,20 +77,20 @@ export default function App() {
         )}
         {route === '/about-us' && <AboutPage />}
         {route === '/faq' && <FaqPage />}
-        {route === '/contact' && <Contact page onPrivacy={() => setPrivacyOpen(true)} />}
+        {route === '/contact' && <Contact page />}
+        {route === '/privacy-policy' && <PrivacyPage />}
+        {route === '/cookie-policy' && <CookiePolicyPage onCookies={() => setCookiesOpen(true)} />}
         {!ROUTES.includes(route) && <NotFoundPage />}
       </main>
-      <Footer onPrivacy={() => setPrivacyOpen(true)} onCookies={() => setCookiesOpen(true)} />
+      <Footer onCookies={() => setCookiesOpen(true)} />
       {bannerShown && (
         <CookieBanner
           leaving={!!consent}
           onAccept={() => choose({ analytics: true, marketing: true })}
           onReject={() => choose({ analytics: false, marketing: false })}
           onCustomize={() => setCookiesOpen(true)}
-          onPrivacy={() => setPrivacyOpen(true)}
         />
       )}
-      <PrivacyDialog open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       <CookieDialog open={cookiesOpen} onClose={() => setCookiesOpen(false)} onSave={choose} />
     </>
   )

@@ -40,7 +40,7 @@ function Field({ label, children }) {
 }
 
 // `page` is true on the standalone /contact page: same content as the landing page section, but with the page's h1 and room for the header.
-export default function Contact({ onPrivacy, page = false }) {
+export default function Contact({ page = false }) {
   const Heading = page ? 'h1' : 'h2'
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [errors, setErrors] = useState({})
@@ -228,9 +228,9 @@ export default function Contact({ onPrivacy, page = false }) {
               </Field>
               <p className="fine">
                 We&rsquo;ll use these details only to respond to your inquiry. See our{' '}
-                <button type="button" className="textbtn" onClick={onPrivacy}>
+                <a className="textbtn" href="/privacy-policy">
                   privacy policy
-                </button>
+                </a>
                 .
               </p>
               {status === 'error' && (

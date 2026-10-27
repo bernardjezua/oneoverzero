@@ -50,62 +50,6 @@ function Modal({ open, onClose, title, children }) {
   )
 }
 
-const CONTACT_EMAIL = 'support@oneoverzero.com.ph'
-
-export function PrivacyDialog({ open, onClose }) {
-  return (
-    <Modal open={open} onClose={onClose} title="Privacy Policy">
-      <p className="note">Last updated: October 26, 2026</p>
-      <p>
-        One Over Zero Innovations (&ldquo;we&rdquo;) respects your privacy. This policy explains what we collect through this website and how we
-        handle it, in line with the Philippine Data Privacy Act of 2012 (RA 10173).
-      </p>
-
-      <h4>What we collect</h4>
-      <p>
-        Only what you send us through the contact form or by email: your name, company, email address, project details, preferred start date and
-        how you heard about us. Please don&rsquo;t include sensitive personal information.
-      </p>
-
-      <h4>How we use it</h4>
-      <p>
-        To reply to your inquiry, prepare proposals, manage our relationship if we work together, and keep records the law requires. We never
-        sell your information.
-      </p>
-
-      <h4>Sharing</h4>
-      <p>
-        Only with service providers who help us run our business (such as email and hosting) and who must protect it, or with authorities when
-        the law requires.
-      </p>
-
-      <h4>Cookies and third parties</h4>
-      <p>
-        We store one item in your browser to remember your cookie choice. Optional analytics and marketing cookies are used only if you accept
-        them; change this anytime in Cookie Settings. The site also loads Google Fonts and a Google Map, which may receive your IP address and set
-        their own cookies.
-      </p>
-
-      <h4>Retention and security</h4>
-      <p>
-        We keep inquiry details only as long as needed, then delete or anonymize them, and use reasonable measures to protect them.
-      </p>
-
-      <h4>Your rights</h4>
-      <p>
-        You may access, correct, object to, or ask us to delete your data, withdraw consent, and complain to the National Privacy Commission
-        (privacy.gov.ph). To make a request, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
-      </p>
-
-      <h4>Changes and contact</h4>
-      <p>
-        We may update this policy; the date above shows the latest version. Questions? Email{' '}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
-      </p>
-    </Modal>
-  )
-}
-
 const CATS = [
   { id: 'analytics', name: 'Analytics', text: 'Helps us understand how the site is used so we can improve it.' },
   { id: 'marketing', name: 'Marketing', text: 'Measures the effectiveness of our advertising campaigns.' },
@@ -160,14 +104,15 @@ function CookiePrefs({ onClose, onSave }) {
   )
 }
 
-export function CookieBanner({ leaving = false, onAccept, onReject, onCustomize, onPrivacy }) {
+export function CookieBanner({ leaving = false, onAccept, onReject, onCustomize }) {
   return (
     <div className={`banner glass ${leaving ? 'leaving' : ''}`} role="region" aria-label="Cookie consent" aria-hidden={leaving || undefined}>
       <p>
-        We use cookies to run this site and, with your consent, to understand how it&rsquo;s used.{' '}
-        <button className="textbtn" onClick={onPrivacy}>
-          Privacy Policy
-        </button>
+        We use cookies to run this site and, with your consent, to understand how it&rsquo;s used. See our{' '}
+        <a className="textbtn" href="/privacy-policy">
+          privacy policy
+        </a>
+        .
       </p>
       <div className="banner-actions">
         <button className="btn btn-primary" onClick={onAccept}>
