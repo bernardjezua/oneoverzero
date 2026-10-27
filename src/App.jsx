@@ -45,7 +45,8 @@ export default function App() {
     <>
       <div className="progress" style={{ '--p': progress }} aria-hidden="true" />
       <Header route={route} />
-      <main>
+      {/* The standalone pages share one section spacing (see "inner" in index.css); the landing page keeps its own */}
+      <main className={route !== '/' && ROUTES.includes(route) ? 'inner' : undefined}>
         {route === '/' && (
           <>
             <Hero />

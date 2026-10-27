@@ -2868,7 +2868,6 @@ img {
   position: relative;
   width: 14px;
   height: 14px;
-  transition: transform 0.35s ease;
 }
 .faq-icon::before,
 .faq-icon::after {
@@ -2881,17 +2880,14 @@ img {
   margin-top: -1px;
   border-radius: 2px;
   background: var(--accent);
-  transition: transform 0.35s ease, opacity 0.35s ease;
 }
+/* "+" becomes "-" without any turning: the vertical bar simply shrinks into its middle (and grows back when it closes) */
 .faq-icon::after {
-  transform: rotate(90deg);
-}
-.faq-item.open .faq-icon {
-  transform: rotate(180deg);
+  transform: rotate(90deg) scaleX(1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .faq-item.open .faq-icon::after {
-  transform: rotate(0deg);
-  opacity: 0;
+  transform: rotate(90deg) scaleX(0);
 }
 /* The answer slides open by animating its row from 0fr to 1fr, so it works for any text length */
 .faq-panel {
@@ -3420,4 +3416,235 @@ img {
 .notfound .btn {
   padding: 9px 18px;
   font-size: 0.82rem;
+}
+
+/* Contact form (landing page and /contact): see-through, but with a soft blur behind it so the moving lines don't clash with the fields */
+.form-card {
+  background: rgba(18, 10, 72, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.65);
+}
+.form-card input,
+.form-card select,
+.form-card textarea {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+
+/* ===== Contact form: validation, sending state and the "thanks" animation ===== */
+/* A field that isn't filled in properly gets a red outline (no text underneath, so the form never grows) */
+.form-card [aria-invalid="true"],
+.form-card [aria-invalid="true"]:hover,
+.form-card [aria-invalid="true"]:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.28);
+}
+/* Hidden from view, still read out by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.form-error {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 138, 138, 0.5);
+  border-radius: 12px;
+  background: rgba(255, 138, 138, 0.1);
+  color: #ffb3b3;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+/* Send button while the message is on its way */
+.btn-send .spinner {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 2px solid rgba(10, 6, 48, 0.25);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: form-spin 0.7s linear infinite;
+}
+.btn-send:disabled {
+  cursor: progress;
+  opacity: 0.85;
+  transform: none;
+}
+@keyframes form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Confirmation: a ring draws itself, the tick follows, then a soft pulse rolls outward and the words rise in */
+.form-card .sent {
+  min-height: 380px;
+  align-content: center;
+  padding: 40px 12px;
+  gap: 10px;
+  outline: none;
+}
+.sent-mark {
+  width: 96px;
+  height: 96px;
+  overflow: visible;
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: sent-pop 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.sent-ring {
+  stroke-width: 2.5;
+  stroke-dasharray: 214;
+  stroke-dashoffset: 214;
+  transform: rotate(-90deg);
+  transform-origin: 40px 40px;
+  animation: sent-draw 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+.sent-tick {
+  stroke-width: 4;
+  stroke-dasharray: 52;
+  stroke-dashoffset: 52;
+  animation: sent-draw 0.45s ease-out 0.75s forwards;
+}
+.sent-pulse {
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-origin: 40px 40px;
+  animation: sent-pulse 1.6s ease-out 1.05s infinite;
+}
+.sent h3 {
+  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.4rem);
+  animation: sent-rise 0.6s ease-out 0.8s both;
+}
+.sent p {
+  max-width: 34ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  animation: sent-rise 0.6s ease-out 1s both;
+}
+@keyframes sent-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sent-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes sent-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+@keyframes sent-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (min-width: 1001px) {
+  .form-card .sent {
+    flex: 1;
+  }
+}
+
+/* Keeps a short phrase, like a range of days, on one line */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Standalone pages: a shorter banner, and less empty space between its intro text and the first section */
+.page-hero {
+  padding-top: clamp(96px, 11vw, 124px);
+  padding-bottom: clamp(24px, 3.5vw, 36px);
+}
+.page-hero + .section {
+  padding-top: clamp(36px, 5vw, 56px);
+}
+.contact-page {
+  padding-top: clamp(96px, 11vw, 124px);
+}
+
+/* ===== Standalone pages: one even gap between every section =====
+   Only pages whose <main> has the "inner" class (About, Services, Products, FAQ, Contact). The landing page is untouched.
+   Each section contributes half of the gap on each side, so any two neighbours end up exactly --page-gap apart. */
+:root {
+  --page-gap: clamp(64px, 8vw, 96px);
+}
+main.inner .section {
+  padding-block: calc(var(--page-gap) / 2);
+}
+main.inner .page-hero {
+  padding-bottom: calc(var(--page-gap) / 2);
+}
+main.inner .page-hero + .section {
+  padding-top: calc(var(--page-gap) / 2);
+}
+/* The contact page has no banner, so its top spacing clears the fixed header like the banners do */
+main.inner .contact-page {
+  padding-top: clamp(96px, 11vw, 124px);
+}
+/* Blocks stacked inside one section (cards, closing call-to-action, scrolling logos) use the same gap */
+main.inner .cta-band {
+  margin-top: var(--page-gap);
+}
+main.inner .about-story .logo-rows {
+  margin-top: var(--page-gap);
+}
+/* The footer takes the other half of the gap under the last section */
+main.inner ~ .footer {
+  padding-top: calc(var(--page-gap) / 2);
+}
+
+/* The closing call-to-action sits at the bottom of this section on some pages (About), exactly where the planet floats,
+   so the planet is left out there to keep the text clear. The landing page keeps it. */
+.process:has(.cta-band) .space-planet {
+  display: none;
+}
+/* Contact form: the Send Message button is as wide and as tall as the fields above it, on every screen size */
+.form-card form .btn-send {
+  width: 100%;
+  justify-self: stretch;
+  align-self: stretch;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 0.9rem;
+}
+@media (max-width: 720px) {
+  .form-card form .btn-send {
+    height: 46px;
+    font-size: 0.88rem;
+  }
 }

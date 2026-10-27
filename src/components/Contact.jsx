@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Icon from './Icon.jsx'
 import HeroCanvas from './HeroCanvas.jsx'
 import Reveal from './Reveal.jsx'
 import { SERVICES } from '../data.js'
+import { submitInquiry } from '../submitInquiry.js'
+import { validateField, validateInquiry } from '../validateInquiry.js'
 
 const TIMEFRAMES = ['As soon as possible', 'Within 1 month', '1 to 3 months', '3 to 6 months', 'Just exploring']
 const SOURCES = ['Google search', 'Social media', 'Referral', 'Event or conference', 'Existing client', 'Other']
@@ -13,15 +15,104 @@ const MAP_QUERY = 'PhilCox Building, 172 Salcedo Street, Legazpi Village, Makati
 
 const DIRECTIONS_URL = `https://www.google.com/maps/dir//${encodeURIComponent(MAP_QUERY).replace(/%20/g, '+')}`
 
+// How each field is named when a screen reader is told what needs fixing
+const FIELD_NAMES = {
+  name: 'Your Name',
+  company: 'Company',
+  email: 'Email Address',
+  service: 'What are you looking for',
+  message: 'Tell us about what you need',
+  timeframe: 'When are you looking to start',
+  source: 'Where did you hear about us',
+}
+
+// One form field: the label and its control. A field that needs fixing gets a red outline (see aria-invalid in index.css).
+function Field({ label, children }) {
+  return (
+    <label>
+      <span>
+        {label}
+        <i aria-hidden="true">*</i>
+      </span>
+      {children}
+    </label>
+  )
+}
+
 // `page` is true on the standalone /contact page: same content as the landing page section, but with the page's h1 and room for the header.
 export default function Contact({ onPrivacy, page = false }) {
   const Heading = page ? 'h1' : 'h2'
-  const [sent, setSent] = useState(false)
-  // PLACEHOLDER: no backend yet. Wire this to your form endpoint before launch.
-  const onSubmit = (e) => {
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [errors, setErrors] = useState({})
+  const sentRef = useRef(null)
+  const sending = status === 'sending'
+
+  // A control that needs fixing is marked invalid: that is what draws the red outline, and screen readers announce it too
+  const aria = (name) => ({ 'aria-invalid': errors[name] ? 'true' : undefined })
+  // One hidden announcement for screen readers listing what to fix (it takes no space on screen)
+  const toFix = Object.keys(errors).map((name) => FIELD_NAMES[name])
+  const announcement = toFix.length ? `Please check these fields: ${toFix.join(', ')}.` : ''
+
+  const readForm = (form) => Object.fromEntries([...new FormData(form).entries()].map(([k, v]) => [k, String(v)]))
+
+  const onSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    if (sending) return
+    const form = e.currentTarget
+    const data = readForm(form)
+
+    // Check everything first: show every problem at once and jump to the first field that needs fixing
+    const found = validateInquiry(data)
+    setErrors(found)
+    const first = Object.keys(found)[0]
+    if (first) {
+      form.elements[first]?.focus()
+      return
+    }
+
+    setStatus('sending')
+    try {
+      await submitInquiry({
+        name: data.name.trim(),
+        company: data.company.trim(),
+        email: data.email.trim(),
+        service: SERVICES.find((s) => s.id === data.service)?.title ?? 'Something else',
+        message: data.message.trim(),
+        timeframe: data.timeframe,
+        source: data.source,
+        page: window.location.pathname,
+      })
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
+
+  // Fix-as-you-go: an error disappears as soon as the field becomes valid
+  const onChange = (e) => {
+    const { name, value } = e.target
+    if (errors[name] && !validateField(name, value)) {
+      setErrors((prev) => {
+        const next = { ...prev }
+        delete next[name]
+        return next
+      })
+    }
+  }
+
+  // Leaving a field with something invalid in it flags it right away (an untouched empty field waits for the submit)
+  const onBlur = (e) => {
+    const { name, value } = e.target
+    const message = value.trim() ? validateField(name, value) : ''
+    if (message && !errors[name]) setErrors((prev) => ({ ...prev, [name]: message }))
+  }
+
+  // After sending, move focus to the confirmation so screen readers read it, and bring it into view on small screens
+  useEffect(() => {
+    if (status !== 'sent') return
+    sentRef.current?.focus({ preventScroll: true })
+    sentRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+  }, [status])
   return (
     <section className={`section contact ${page ? 'contact-page' : ''}`} id="contact">
       <HeroCanvas />
@@ -71,38 +162,36 @@ export default function Contact({ onPrivacy, page = false }) {
           </div>
         </Reveal>
         <Reveal delay={100} className="glass form-card">
-          {sent ? (
-            <div className="sent" role="status">
-              <Icon name="check" size={40} />
+          {status === 'sent' ? (
+            <div className="sent" role="status" tabIndex={-1} ref={sentRef}>
+              <svg className="sent-mark" viewBox="0 0 80 80" aria-hidden="true">
+                <circle className="sent-pulse" cx="40" cy="40" r="34" />
+                <circle className="sent-ring" cx="40" cy="40" r="34" />
+                <path className="sent-tick" d="M26 41l10 10 19-22" />
+              </svg>
               <h3>Thanks, we&rsquo;ll be in touch.</h3>
+              <p>
+                We&rsquo;ll reach out to you shortly, within <span className="nowrap">3-5 business days</span>.
+              </p>
             </div>
           ) : (
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} onChange={onChange} onBlur={onBlur} noValidate>
+              <p className="sr-only" role="alert">
+                {announcement}
+              </p>
               <div className="two">
-                <label>
-                  <span>
-                    Your Name<i aria-hidden="true">*</i>
-                  </span>
-                  <input name="name" required autoComplete="name" />
-                </label>
-                <label>
-                  <span>
-                    Company<i aria-hidden="true">*</i>
-                  </span>
-                  <input name="company" required autoComplete="organization" />
-                </label>
+                <Field label="Your Name">
+                  <input name="name" required autoComplete="name" {...aria('name')} />
+                </Field>
+                <Field label="Company">
+                  <input name="company" required autoComplete="organization" {...aria('company')} />
+                </Field>
               </div>
-              <label>
-                <span>
-                  Email Address<i aria-hidden="true">*</i>
-                </span>
-                <input name="email" type="email" required autoComplete="email" />
-              </label>
-              <label>
-                <span>
-                  What are you looking for?<i aria-hidden="true">*</i>
-                </span>
-                <select name="service" required defaultValue="">
+              <Field label="Email Address">
+                <input name="email" type="email" required autoComplete="email" {...aria('email')} />
+              </Field>
+              <Field label="What are you looking for?">
+                <select name="service" required defaultValue="" {...aria('service')}>
                   <option value="" disabled>
                     Select a service
                   </option>
@@ -113,18 +202,12 @@ export default function Contact({ onPrivacy, page = false }) {
                   ))}
                   <option value="other">Something else</option>
                 </select>
-              </label>
-              <label>
-                <span>
-                  Tell us about what you need<i aria-hidden="true">*</i>
-                </span>
-                <textarea name="message" rows={5} required />
-              </label>
-              <label>
-                <span>
-                  When are you looking to start?<i aria-hidden="true">*</i>
-                </span>
-                <select name="timeframe" required defaultValue="">
+              </Field>
+              <Field label="Tell us about what you need">
+                <textarea name="message" rows={5} required {...aria('message')} />
+              </Field>
+              <Field label="When are you looking to start?">
+                <select name="timeframe" required defaultValue="" {...aria('timeframe')}>
                   <option value="" disabled>
                     Select a timeframe
                   </option>
@@ -132,12 +215,9 @@ export default function Contact({ onPrivacy, page = false }) {
                     <option key={t}>{t}</option>
                   ))}
                 </select>
-              </label>
-              <label>
-                <span>
-                  Where did you hear about us?<i aria-hidden="true">*</i>
-                </span>
-                <select name="source" required defaultValue="">
+              </Field>
+              <Field label="Where did you hear about us?">
+                <select name="source" required defaultValue="" {...aria('source')}>
                   <option value="" disabled>
                     Select a source
                   </option>
@@ -145,7 +225,7 @@ export default function Contact({ onPrivacy, page = false }) {
                     <option key={t}>{t}</option>
                   ))}
                 </select>
-              </label>
+              </Field>
               <p className="fine">
                 We&rsquo;ll use these details only to respond to your inquiry. See our{' '}
                 <button type="button" className="textbtn" onClick={onPrivacy}>
@@ -153,8 +233,20 @@ export default function Contact({ onPrivacy, page = false }) {
                 </button>
                 .
               </p>
-              <button className="btn btn-primary btn-send" type="submit">
-                Send Message
+              {status === 'error' && (
+                <p className="form-error" role="alert">
+                  We couldn&rsquo;t send your message. Please try again, or email us at support@oneoverzero.com.ph.
+                </p>
+              )}
+              <button className="btn btn-primary btn-send" type="submit" disabled={sending} aria-busy={sending}>
+                {sending ? (
+                  <>
+                    <span className="spinner" aria-hidden="true" />
+                    Sending&hellip;
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           )}
