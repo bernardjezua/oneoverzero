@@ -3671,3 +3671,21 @@ main.inner ~ .footer {
     text-align: left;
   }
 }
+/* Popups: no focus ring around the popup box or its scrolling text when it is opened or clicked.
+   The buttons inside still show their ring for keyboard users. */
+.modal:focus,
+.modal:focus-visible,
+.modal-body:focus,
+.modal-body:focus-visible {
+  outline: none;
+}
+/* Cookie switches: clicking one no longer draws the cyan border and glow that the form fields get.
+   Keyboard users still see a ring when they tab to a switch. */
+.toggle input:focus {
+  border-color: var(--glass-b);
+  box-shadow: none;
+}
+.toggle input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

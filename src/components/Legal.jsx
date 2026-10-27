@@ -21,6 +21,8 @@ function Modal({ open, onClose, title, children }) {
     const d = ref.current
     if (open && !d.open) {
       d.showModal()
+      // Start with focus on the popup itself instead of the Close button, so no button lights up with a ring when it opens
+      d.focus({ preventScroll: true })
       showScrollbar()
     }
     if (!open && d.open) d.close()
@@ -30,6 +32,7 @@ function Modal({ open, onClose, title, children }) {
     <dialog
       ref={ref}
       className="modal glass"
+      tabIndex={-1}
       aria-labelledby={titleId}
       onClose={onClose}
       onClick={(e) => e.target === ref.current && onClose()}
