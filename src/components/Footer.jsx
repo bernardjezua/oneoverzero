@@ -22,8 +22,25 @@ export default function Footer({ onCookies }) {
           </ul>
         </nav>
 
+        <nav className="footer-contact footer-legal-col" aria-label="Legal">
+          <h4>Legal</h4>
+          <ul>
+            <li>
+              <a href="/privacy-policy">Privacy</a>
+            </li>
+            <li>
+              <a href="/cookie-policy">Cookie Policy</a>
+            </li>
+            <li>
+              <button type="button" className="footer-link-btn" onClick={onCookies}>
+                Cookie Settings
+              </button>
+            </li>
+          </ul>
+        </nav>
+
         <div className="footer-contact">
-          <h4>Contact</h4>
+          <h4>Contact Us</h4>
           <ul>
             <li>
               <a href="mailto:support@oneoverzero.com.ph">
@@ -43,19 +60,9 @@ export default function Footer({ onCookies }) {
         </div>
       </div>
 
+      {/* The year is read from the visitor's clock each time the page loads, so it never needs updating by hand */}
       <div className="wrap footer-bottom">
         <small>&copy; {new Date().getFullYear()} One Over Zero Innovations. All rights reserved.</small>
-        <div className="footer-legal">
-          <a className="textbtn" href="/privacy-policy">
-            Privacy
-          </a>
-          <a className="textbtn" href="/cookie-policy">
-            Cookie Policy
-          </a>
-          <button className="textbtn" onClick={onCookies}>
-            Cookie Settings
-          </button>
-        </div>
       </div>
     </footer>
   )
