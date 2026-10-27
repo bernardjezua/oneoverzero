@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import TrackRecord from './components/TrackRecord.jsx'
@@ -36,9 +36,16 @@ export default function App() {
     }
   }, [])
 
+  // The banner stays on screen for a moment after a choice so it can fade out instead of vanishing
+  const [bannerShown, setBannerShown] = useState(!consent)
+  const leaveTimer = useRef(0)
+  useEffect(() => () => clearTimeout(leaveTimer.current), [])
+
   const choose = (c) => {
     saveConsent(c)
     setConsent(c)
+    clearTimeout(leaveTimer.current)
+    leaveTimer.current = setTimeout(() => setBannerShown(false), 320)
   }
 
   return (
@@ -74,8 +81,9 @@ export default function App() {
         {!ROUTES.includes(route) && <NotFoundPage />}
       </main>
       <Footer onPrivacy={() => setPrivacyOpen(true)} onCookies={() => setCookiesOpen(true)} />
-      {!consent && (
+      {bannerShown && (
         <CookieBanner
+          leaving={!!consent}
           onAccept={() => choose({ analytics: true, marketing: true })}
           onReject={() => choose({ analytics: false, marketing: false })}
           onCustomize={() => setCookiesOpen(true)}

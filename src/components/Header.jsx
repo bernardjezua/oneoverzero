@@ -50,7 +50,9 @@ export default function Header({ route = '/' }) {
           </a>
         </nav>
         <button className="icon-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label="Toggle menu">
-          <Icon name={open ? 'close' : 'menu'} />
+          <span key={open ? 'close' : 'menu'} className="menu-icon">
+            <Icon name={open ? 'close' : 'menu'} />
+          </span>
         </button>
       </div>
     </header>

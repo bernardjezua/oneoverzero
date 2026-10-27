@@ -160,9 +160,9 @@ function CookiePrefs({ onClose, onSave }) {
   )
 }
 
-export function CookieBanner({ onAccept, onReject, onCustomize, onPrivacy }) {
+export function CookieBanner({ leaving = false, onAccept, onReject, onCustomize, onPrivacy }) {
   return (
-    <div className="banner glass" role="region" aria-label="Cookie consent">
+    <div className={`banner glass ${leaving ? 'leaving' : ''}`} role="region" aria-label="Cookie consent" aria-hidden={leaving || undefined}>
       <p>
         We use cookies to run this site and, with your consent, to understand how it&rsquo;s used.{' '}
         <button className="textbtn" onClick={onPrivacy}>

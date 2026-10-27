@@ -137,8 +137,10 @@ textarea {
   color: var(--muted);
   transition: color 0.2s;
 }
-.nav a:not(.btn):hover {
-  color: var(--text);
+@media (hover: hover) {
+  .nav a:not(.btn):hover {
+    color: var(--text);
+  }
 }
 .icon-btn.menu-btn {
   display: none;
@@ -154,8 +156,10 @@ textarea {
   cursor: pointer;
   transition: border-color 0.2s;
 }
-.icon-btn:hover {
-  border-color: var(--accent);
+@media (hover: hover) {
+  .icon-btn:hover {
+    border-color: var(--accent);
+  }
 }
 
 /* Buttons */
@@ -172,24 +176,32 @@ textarea {
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.3s, background 0.2s;
 }
-.btn:hover {
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-2px);
+  }
 }
 .btn-primary,
 .btn-glow {
   background: var(--accent);
   color: var(--on-accent);
 }
-.btn-primary:hover,
 .btn-glow {
   box-shadow: 0 0 16px -6px rgba(var(--accent-rgb), 0.35);
+}
+@media (hover: hover) {
+  .btn-primary:hover {
+    box-shadow: 0 0 16px -6px rgba(var(--accent-rgb), 0.35);
+  }
 }
 .btn-glow {
   padding: 10px 20px;
   font-size: 0.85rem;
 }
-.btn-glow:hover {
-  box-shadow: 0 0 20px -4px rgba(var(--accent-rgb), 0.45);
+@media (hover: hover) {
+  .btn-glow:hover {
+    box-shadow: 0 0 20px -4px rgba(var(--accent-rgb), 0.45);
+  }
 }
 .btn-glass {
   background: var(--glass);
@@ -197,8 +209,10 @@ textarea {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
-.btn-glass:hover {
-  border-color: var(--accent);
+@media (hover: hover) {
+  .btn-glass:hover {
+    border-color: var(--accent);
+  }
 }
 
 /* Hero */
@@ -309,10 +323,12 @@ textarea {
 .lift {
   transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
-.lift:hover {
-  transform: translateY(-5px);
-  border-color: rgba(var(--accent-rgb), 0.55);
-  box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+@media (hover: hover) {
+  .lift:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+  }
 }
 
 /* Reveal */
@@ -399,12 +415,14 @@ textarea {
   object-fit: contain;
   display: block;
 }
-.logo-chip:hover {
-  filter: none;
-  opacity: 1;
-  color: var(--accent);
-  border-color: var(--accent);
-  box-shadow: 0 0 24px -6px rgba(var(--accent-rgb), 0.6);
+@media (hover: hover) {
+  .logo-chip:hover {
+    filter: none;
+    opacity: 1;
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 24px -6px rgba(var(--accent-rgb), 0.6);
+  }
 }
 
 /* Stats */
@@ -450,8 +468,10 @@ textarea {
   font-size: 0.88rem;
   transition: all 0.2s;
 }
-.tabs button:hover {
-  border-color: var(--accent);
+@media (hover: hover) {
+  .tabs button:hover {
+    border-color: var(--accent);
+  }
 }
 .tabs button.on {
   background: var(--accent);
@@ -600,10 +620,12 @@ textarea {
   margin-inline: auto;
   border-radius: 22px;
 }
-.shot:hover .shot-frame {
-  transform: translateY(-6px);
-  border-color: rgba(var(--accent-rgb), 0.6);
-  box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+@media (hover: hover) {
+  .shot:hover .shot-frame {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.6);
+    box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+  }
 }
 .shot-frame img {
   width: 100%;
@@ -785,10 +807,12 @@ form .btn {
   flex: none;
   color: var(--accent);
 }
-.footer-contact a:hover,
-.footer-links a:hover,
-.footer-bottom .textbtn:hover {
-  color: var(--accent);
+@media (hover: hover) {
+  .footer-contact a:hover,
+  .footer-links a:hover,
+  .footer-bottom .textbtn:hover {
+    color: var(--accent);
+  }
 }
 .footer-contact h4,
 .footer-links h4 {
@@ -909,8 +933,10 @@ form .btn {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.textbtn:hover {
-  color: var(--text);
+@media (hover: hover) {
+  .textbtn:hover {
+    color: var(--text);
+  }
 }
 .fine {
   font-size: 0.8rem;
@@ -1257,22 +1283,34 @@ form .btn {
   transform: scaleX(0);
   transition: transform 0.3s;
 }
-.nav a.active,
-.nav a:not(.btn):hover {
+.nav a.active {
   color: var(--text);
 }
-.nav a.active::after,
-.nav a:not(.btn):hover::after {
+@media (hover: hover) {
+  .nav a:not(.btn):hover {
+    color: var(--text);
+  }
+}
+.nav a.active::after {
   transform: scaleX(1);
+}
+@media (hover: hover) {
+  .nav a:not(.btn):hover::after {
+    transform: scaleX(1);
+  }
 }
 /* Mobile menu: no underline animation, the link text just turns cyan */
 @media (max-width: 860px) {
   .nav a:not(.btn)::after {
     display: none;
   }
-  .nav a.active,
-  .nav a:not(.btn):hover {
+  .nav a.active {
     color: var(--accent);
+  }
+  @media (hover: hover) {
+    .nav a:not(.btn):hover {
+        color: var(--accent);
+      }
   }
 }
 .btn-primary,
@@ -1318,13 +1356,17 @@ form .btn {
 .ico {
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-.stat:hover {
-  transform: translateY(-4px);
-  border-color: rgba(var(--accent-rgb), 0.5);
+@media (hover: hover) {
+  .stat:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--accent-rgb), 0.5);
+  }
 }
-.card:hover .ico {
-  transform: scale(1.1) rotate(-6deg);
-  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.5);
+@media (hover: hover) {
+  .card:hover .ico {
+    transform: scale(1.1) rotate(-6deg);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.5);
+  }
 }
 .contact::before {
   content: "";
@@ -1492,8 +1534,10 @@ html {
   flex: none;
   margin-top: 2px;
 }
-.contact-list a:hover {
-  color: var(--accent);
+@media (hover: hover) {
+  .contact-list a:hover {
+    color: var(--accent);
+  }
 }
 .map {
   width: 100%;
@@ -1638,13 +1682,17 @@ html {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
-.svc:hover {
-  transform: translateY(-6px);
-  border-color: rgba(var(--accent-rgb), 0.55);
-  box-shadow: var(--shadow), 0 0 40px -12px rgba(var(--accent-rgb), 0.5);
+@media (hover: hover) {
+  .svc:hover {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    box-shadow: var(--shadow), 0 0 40px -12px rgba(var(--accent-rgb), 0.5);
+  }
 }
-.svc:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .svc:hover::before {
+    opacity: 1;
+  }
 }
 .svc-1 { grid-column: span 5; }
 .svc-2 { grid-column: span 4; }
@@ -1677,8 +1725,10 @@ html {
   box-shadow: 0 0 24px -4px rgba(var(--accent-rgb), 0.7);
   transition: transform 0.35s;
 }
-.svc:hover .svc-ico {
-  transform: rotate(-8deg) scale(1.08);
+@media (hover: hover) {
+  .svc:hover .svc-ico {
+    transform: rotate(-8deg) scale(1.08);
+  }
 }
 .svc-num {
   font-family: var(--display);
@@ -1973,8 +2023,10 @@ li {
   z-index: 2;
   animation: cue-blink 1.4s ease-in-out infinite;
 }
-.scroll-cue:hover {
-  color: #fff;
+@media (hover: hover) {
+  .scroll-cue:hover {
+    color: #fff;
+  }
 }
 .scroll-cue .mouse {
   position: relative;
@@ -2301,8 +2353,10 @@ form select {
 form select:invalid {
   color: var(--muted);
 }
-form select:hover {
-  border-color: rgba(var(--accent-rgb), 0.6);
+@media (hover: hover) {
+  form select:hover {
+    border-color: rgba(var(--accent-rgb), 0.6);
+  }
 }
 form select option {
   color: var(--text);
@@ -2324,8 +2378,10 @@ form select option[disabled] {
   cursor: pointer;
   transition: filter 0.4s ease;
 }
-.hero-visual .mark:hover {
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+@media (hover: hover) {
+  .hero-visual .mark:hover {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.2));
+  }
 }
 
 /* Products: distinct background */
@@ -2636,9 +2692,11 @@ img {
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-.modal-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--accent-rgb), 0.7);
-  background-clip: padding-box;
+@media (hover: hover) {
+  .modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-rgb), 0.7);
+    background-clip: padding-box;
+  }
 }
 .cookie-intro {
   padding-top: 12px;
@@ -2669,9 +2727,11 @@ img {
   background: rgba(var(--accent-rgb), 0.4);
   background-clip: padding-box;
 }
-.modal-body.is-scrolling::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--accent-rgb), 0.7);
-  background-clip: padding-box;
+@media (hover: hover) {
+  .modal-body.is-scrolling::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-rgb), 0.7);
+    background-clip: padding-box;
+  }
 }
 @supports not selector(::-webkit-scrollbar) {
   .modal-body {
@@ -2858,9 +2918,13 @@ img {
   border-radius: inherit;
   transition: color 0.2s;
 }
-.faq-q button:hover,
 .faq-item.open .faq-q button {
   color: var(--accent);
+}
+@media (hover: hover) {
+  .faq-q button:hover {
+    color: var(--accent);
+  }
 }
 /* "+" turns into "-": the vertical bar swings flat while the whole icon makes a half turn */
 .faq-icon {
@@ -3441,10 +3505,15 @@ img {
 /* ===== Contact form: validation, sending state and the "thanks" animation ===== */
 /* A field that isn't filled in properly gets a red outline (no text underneath, so the form never grows) */
 .form-card [aria-invalid="true"],
-.form-card [aria-invalid="true"]:hover,
 .form-card [aria-invalid="true"]:focus {
   border-color: #ff6b6b;
   box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.28);
+}
+@media (hover: hover) {
+  .form-card [aria-invalid="true"]:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.28);
+  }
 }
 /* Hidden from view, still read out by screen readers */
 .sr-only {
@@ -3688,4 +3757,66 @@ main.inner ~ .footer {
 .toggle input:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+/* ===== Buttons on touch screens =====
+   Hover effects now apply only to devices that really hover (see the @media (hover: hover) blocks above), so a tap can no
+   longer leave a button stuck in its lifted, glowing "hovered" look. A tap gets a short press instead, and everything that
+   changes (including outline and text color) fades. */
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s ease, border-color 0.25s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.icon-btn {
+  transition: border-color 0.25s ease, background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* Cookie banner: slides up and fades in, then fades back out after a choice */
+.banner {
+  animation: banner-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
+}
+.banner.leaving {
+  animation: banner-out 0.3s ease forwards;
+  pointer-events: none;
+}
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes banner-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Hamburger icon: the menu and close icons swap with a quick turn and fade */
+.menu-icon {
+  display: grid;
+  place-items: center;
+  animation: icon-swap 0.28s ease both;
+}
+@keyframes icon-swap {
+  from {
+    opacity: 0;
+    transform: rotate(-70deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
 }
