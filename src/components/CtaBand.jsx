@@ -8,7 +8,7 @@ export default function CtaBand() {
       <Reveal className="glass cta-card">
         <div>
           <h2>
-            Let&rsquo;s build something <span className="grad">together</span>
+            Let&rsquo;s build something <span className="grad">together.</span>
           </h2>
           <p>Tell us about your project and we will get back to you shortly.</p>
         </div>

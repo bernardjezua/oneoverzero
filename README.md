@@ -1,16 +1,274 @@
-# React + Vite
+# One Over Zero Innovations: Company Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Makati, Philippines, founded in 2017. It presents the company's services, products, clients and process, and has a contact form for project inquiries.
 
-Currently, two official plugins are available:
+It is a React 19 + Vite 8 site with a single stylesheet, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Contents
 
-## React Compiler
+- [Pages](#pages)
+- [Tech stack](#tech-stack)
+- [Getting started](#getting-started)
+- [Scripts](#scripts)
+- [Project structure](#project-structure)
+- [How the pages are built](#how-the-pages-are-built)
+- [Editing content](#editing-content)
+- [Styling](#styling)
+- [Animations and interactions](#animations-and-interactions)
+- [Contact form](#contact-form)
+- [Privacy, cookies and consent](#privacy-cookies-and-consent)
+- [SEO and link previews](#seo-and-link-previews)
+- [Environment variables](#environment-variables)
+- [Deployment](#deployment)
+- [Launch checklist](#launch-checklist)
+- [Troubleshooting](#troubleshooting)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pages
 
-## Expanding the ESLint configuration
+| Address           | Page           | What it shows                                                                                                  |
+| ----------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
+| `/`               | Home           | Hero, track record (stats and client logos), services, how we work, products, reviews and the contact section. |
+| `/about-us`       | About          | Company story, stats, scrolling client logos, how we work and a closing call to action.                        |
+| `/services`       | Services       | Every service the company offers, as cards with details.                                                       |
+| `/products`       | Products       | Products and projects built by the team, with a show more / show less button.                                  |
+| `/contact`        | Contact        | The inquiry form, a map and the contact details.                                                               |
+| `/faq`            | FAQ            | Two-column accordion of common questions.                                                                      |
+| `/privacy-policy` | Privacy Policy | Written for the Philippine Data Privacy Act of 2012 (RA 10173).                                                |
+| `/cookie-policy`  | Cookie Policy  | The cookies used, consent, and a button that opens Cookie Settings.                                            |
+| `/404`            | Not found      | Shown for any unknown address (a real 404 response on Vercel).                                                 |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The header links to Home, About, Services, Products, Contact and FAQ, plus a "Book a Consultation" button. The legal pages are linked from the footer, the cookie banner and the contact form.
+
+## Tech stack
+
+- **React 19** for the interface, **Vite 8** for development and builds, **ESLint 10** for linting.
+- **Plain CSS** in one file, `src/index.css`, themed with CSS variables. There is no CSS framework.
+- **Fonts** from Google Fonts: Orbitron (headings), Exo 2 and Montserrat (body).
+- **Hosting:** Vercel, with clean URLs and no trailing slashes.
+- No router, state library or backend. The page shown is chosen from the address in the browser (see below).
+
+## Getting started
+
+### 1. Install a patched Node.js
+
+You need **Node.js 22.23.4** or newer 22.x, **24.22.1** or newer 24.x (recommended, see `.nvmrc`), or **26.12.1** and up. These are the versions that fix the October 21, 2026 Node.js security release (including the Brotli remote code execution flaw, CVE-2026-111497). Older versions, including all of Node 20, are not patched.
+
+`package.json` lists the allowed versions under `engines` and `.npmrc` sets `engine-strict=true`, so installing refuses to run on an unpatched Node.
+
+```bash
+nvm install   # reads .nvmrc (24.22.1)
+nvm use
+node -v       # should print v24.22.1 or newer
+```
+
+When Node publishes a newer security release, raise the numbers in `package.json` (`engines`) and `.nvmrc`.
+
+### 2. Get pnpm
+
+The project uses **pnpm** (`pnpm-lock.yaml` is the lockfile). The easiest way is Corepack, which ships with Node:
+
+```bash
+corepack enable
+pnpm -v
+```
+
+If `corepack` is not available, install pnpm with `npm install -g pnpm`.
+
+### 3. Run the app
+
+```bash
+pnpm install   # once, and again whenever package.json changes
+pnpm dev       # starts the dev server
+```
+
+Vite prints the local address (usually `http://localhost:5173`). Pages hot-reload as you edit. Stop the server with `Ctrl+C`.
+
+To check the real production output:
+
+```bash
+pnpm build     # writes the site to dist/
+pnpm preview   # serves dist/ locally (usually http://localhost:4173)
+```
+
+Before committing:
+
+```bash
+pnpm lint
+pnpm build
+```
+
+> **npm works too.** Every `pnpm <script>` below can be run as `npm run <script>` (for example `npm install`, `npm run dev`). Stick to one tool per checkout so the lockfiles stay in sync.
+
+> **Working from WSL on Windows?** Keep the project inside the Linux file system (for example `~/oneoverzero`) and run pnpm from a WSL terminal. Running Node from Windows against `\\wsl.localhost\...` paths is slow and unreliable.
+
+## Scripts
+
+| Command        | What it does                                                               |
+| -------------- | -------------------------------------------------------------------------- |
+| `pnpm dev`     | Starts the development server with hot reload.                             |
+| `pnpm build`   | Builds the site into `dist/` and prints warnings about title/text lengths. |
+| `pnpm preview` | Serves the built `dist/` folder locally.                                   |
+| `pnpm lint`    | Runs ESLint over the whole project. Run it before every commit.            |
+
+## Project structure
+
+```
+oneoverzero/
+├── index.html              Template for every page (tokens are filled in at build time)
+├── vite.config.js          Vite config plus the plugin that generates one HTML file per page
+├── vercel.json             Clean URLs, no trailing slash
+├── eslint.config.js
+├── public/                 Copied as-is: favicon, og-image.png, client logos, project images
+│   ├── logos/              Client logos (PNG)
+│   └── projects/           Product / project screenshots
+├── archive/                Old assets kept for reference, not used by the site
+└── src/
+    ├── main.jsx            Entry point
+    ├── App.jsx             Chooses the page, owns cookie-consent state and the cookie banner
+    ├── routes.js           Reads the current address and lists the valid routes
+    ├── pageMeta.js         Every page's address, title, description and share text (SEO)
+    ├── seo.js              Structured data (JSON-LD) for search engines
+    ├── data.js             Services, products, projects, stats, clients, reviews, nav links, social links
+    ├── faqData.js          The FAQ questions and answers
+    ├── hooks.js            useReveal, useCountUp, useScrollProgress, readConsent, saveConsent
+    ├── validateInquiry.js  Contact form validation rules
+    ├── submitInquiry.js    Sends the contact form
+    ├── index.css           All styles
+    ├── components/         Reusable sections and widgets (Header, Footer, Hero, Services, Contact, ...)
+    └── pages/              Page-level components (AboutPage, FaqPage, LegalPages, NotFoundPage)
+```
+
+## How the pages are built
+
+This is a **multi-page static site generated from one template**, not a single-page app with a router.
+
+1. `index.html` is a template. It contains tokens such as the page title, description and share text.
+2. `src/pageMeta.js` lists every page with its own metadata.
+3. A small plugin in `vite.config.js` runs at build time and writes **one HTML file per page** (`index.html`, `about-us.html`, `services.html`, `404.html`, and so on) with that page's title, description, canonical link, social preview tags and structured data filled in.
+4. In the browser, `src/routes.js` reads `window.location.pathname` and `App.jsx` renders the matching page. Because each page is its own file, search engines and link previews see the correct metadata without running JavaScript.
+5. Vercel serves `/about-us` from `about-us.html` (`cleanUrls`) and serves `404.html` with a real 404 status for unknown addresses.
+
+In dev mode the same plugin answers every address with the template, so all pages work locally.
+
+The standalone pages get `class="inner"` on `<main>`. That class gives them one even gap between sections and between the banner and content. The landing page keeps its own spacing.
+
+### Adding a new page
+
+1. Add an entry to `PAGES` in `src/pageMeta.js` (`path`, `name`, `title`, `description`, and `share` if you want a link preview).
+2. Create the page component in `src/pages/` (use `PageHero` for the banner at the top).
+3. Add a line in `App.jsx`: `{route === '/your-page' && <YourPage />}`.
+4. Link to it from `NAV_LINKS` in `src/data.js` (header and footer) or from wherever it belongs.
+
+The route list, the generated HTML file and the sitemap entry follow automatically. Nothing else needs editing.
+
+## Editing content
+
+Most copy lives in data files, so you rarely need to touch components.
+
+| To change...                                  | Edit                                                                    |
+| --------------------------------------------- | ----------------------------------------------------------------------- |
+| Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`                                             |
+| Products and projects                         | `PRODUCTS` and `PROJECTS` in `src/data.js`; images go in `public/projects/` |
+| Stats (30+ clients, 90% retention, ...)       | `STATS` in `src/data.js`                                                |
+| Client logos                                  | Add the PNG to `public/logos/`, then add an entry to `CLIENT_LOGOS` in `src/data.js` |
+| Reviews                                       | `TESTIMONIALS` in `src/data.js`                                         |
+| How We Work steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
+| Header / footer links                         | `NAV_LINKS` in `src/data.js`                                            |
+| LinkedIn link                                 | `SOCIAL` in `src/data.js` (the footer shows it only when it is set)      |
+| FAQ                                           | `src/faqData.js`                                                        |
+| Page titles, descriptions, link previews      | `src/pageMeta.js`                                                       |
+| Privacy Policy and Cookie Policy text         | `src/pages/LegalPages.jsx` (update the `UPDATED` date when you change them) |
+| Company address and email                     | `ORG` in `src/pageMeta.js`, the contact section and the footer, and `LegalPages.jsx` |
+| Link preview image                            | Replace `public/og-image.png` (1200 x 630 works best)                    |
+
+## Styling
+
+All styles are in `src/index.css`, organised as a base layer followed by blocks added for each feature. Later blocks intentionally override earlier ones, so when a rule does not seem to apply, search for a later rule with the same selector.
+
+- **Theme:** colors are CSS variables at the top of the file (`--bg`, `--bg-2`, `--text`, `--muted`, `--accent`, `--accent-2`, ...). Change them there.
+- **Fonts:** `--display` (Orbitron) for headings, `--head` (Exo 2) and `--body` (Montserrat).
+- **Glass:** the `.glass` class gives the frosted-card look used across the site.
+- **Gradient text:** wrap words in `<span className="grad">` for the animated gradient.
+- **Responsive:** the main breakpoints are 1000px, 860px and 720px, with smaller tweaks near 400px.
+- **Hover effects** are wrapped in `@media (hover: hover)` so touch screens never get a hover state stuck after a tap. Touch devices get a short press effect (`:active`) instead.
+
+## Animations and interactions
+
+- **Constellation:** `HeroCanvas` draws drifting dots that link when close and react to the pointer. It is used in the landing hero and in every inner-page banner, and pauses when off screen.
+- **Scroll reveal:** `Reveal` and `useReveal` fade sections in as they enter the viewport.
+- **Counters:** `useCountUp` animates the stat numbers.
+- **Scroll progress bar** at the top of the page (`useScrollProgress`).
+- **Header** hides while scrolling down and returns when scrolling up. An open mobile menu keeps it on screen.
+- **Client logos** scroll in two endless rows, opposite directions. Reviews loop continuously.
+- **How We Work** has a space scene (stars, planet, rocket, comet).
+- **Cookie banner** slides up and fades in, then fades out after a choice. The hamburger icon turns as it swaps.
+- Animations do **not** depend on `prefers-reduced-motion`.
+
+## Contact form
+
+Validation is in `src/validateInquiry.js`: required fields are checked, invalid fields get a red outline, and there is no error text under the fields. The send button shows a loading state, then an animated thank-you message with "within 3-5 business days". Delivery is in `src/submitInquiry.js`.
+
+**The form does not deliver anywhere until you set `VITE_FORM_ENDPOINT`** (see [Environment variables](#environment-variables)). Until then it only pretends to send, so the page can be designed and tested. Set it before launch or inquiries will be lost.
+
+Any service that accepts a JSON `POST` works, for example Formspree. The form sends: name, company, email, project details, preferred start date and how the visitor heard about us.
+
+## Privacy, cookies and consent
+
+- The cookie banner appears on the first visit with **Accept all**, **Reject optional** and **Customize**. Customize opens a settings popup with Analytics and Marketing switches.
+- The choice is stored in the browser (`localStorage`, key `ooz-cookie-consent`) and can be changed at any time from **Cookie Settings** in the footer or from the Cookie Policy page.
+- Functional cookies are always allowed. Analytics and marketing are optional.
+- **No analytics or marketing scripts are loaded by this code yet.** The policies describe Google Analytics and Google Search Console as the services that will be used. When you add them, load them only after `readConsent()` shows the matching category is on.
+- The Privacy Policy and Cookie Policy are written for RA 10173 and the National Privacy Commission. They are working drafts: have a lawyer or your data protection officer review them before launch.
+- Images cannot be dragged or saved through the right-click menu. This only deters casual copying.
+
+## SEO and link previews
+
+- Every page gets its own `<title>`, description, canonical link, Open Graph and Twitter tags, and breadcrumbs.
+- The home page also gets Organization structured data (name, address, email, founding year, LinkedIn).
+- The build prints a warning if a title (aim for 60 characters or fewer), description (70 to 160) or share text (20 to 200) is outside the recommended length.
+- **Indexing is switched off for now.** `NOINDEX` in `src/pageMeta.js` is `true`, which adds `<meta name="robots" content="noindex">` to every page and skips `sitemap.xml` and `robots.txt`.
+- Set `NOINDEX = false` at launch. The build then removes the tag and generates `sitemap.xml` and `robots.txt` automatically.
+- Link previews need an absolute image address. The build works it out from `SITE_URL`, then Vercel's production URL, then the deployment URL.
+
+## Environment variables
+
+Set these in Vercel under **Settings > Environment Variables**, then redeploy. Locally, put them in a `.env.local` file (it is not committed).
+
+| Variable               | Needed        | What it does                                                                                   |
+| ---------------------- | ------------- | ---------------------------------------------------------------------------------------------- |
+| `VITE_FORM_ENDPOINT`   | Before launch | Address of the form service that receives contact form messages.                              |
+| `SITE_URL`             | At launch     | The public address with no trailing slash (for example your custom domain). Used for canonical links, link previews and the sitemap. |
+
+Vercel also provides `VERCEL_PROJECT_PRODUCTION_URL` and `VERCEL_URL` automatically, which the build uses as fallbacks for `SITE_URL`.
+
+## Deployment
+
+The site is deployed on Vercel from the `main` branch.
+
+- **Build command:** `pnpm build`
+- **Output directory:** `dist`
+- **`vercel.json`:** `cleanUrls: true` and `trailingSlash: false`, so `/about-us.html` redirects to `/about-us`.
+
+Pushing to `main` deploys to production. Other branches get preview deployments, which are also useful for checking link previews.
+
+## Launch checklist
+
+- [ ] Set `VITE_FORM_ENDPOINT` and send a real test inquiry.
+- [ ] Set `SITE_URL` to the final domain.
+- [ ] Set `NOINDEX = false` in `src/pageMeta.js`.
+- [ ] Confirm the LinkedIn URL in `ORG` (`src/pageMeta.js`) and `SOCIAL` (`src/data.js`). It is a temporary, unconfirmed link.
+- [ ] Shorten the home page `share` text to 200 characters or fewer (the build warns it is 241).
+- [ ] Have the Privacy Policy and Cookie Policy reviewed, and update their dates.
+- [ ] Add the analytics scripts behind the consent check, or remove Google Analytics from the policies if unused.
+- [ ] Check every page on a real phone (iPhone Safari and Android Chrome) and in dark and light device settings.
+- [ ] Check link previews on Discord, Facebook and LinkedIn after the final domain is live.
+- [ ] Run `pnpm lint` and `pnpm build` with no errors.
+
+## Troubleshooting
+
+- **A page shows the wrong title in a link preview:** previews are cached by Discord, Facebook and LinkedIn. Use their debugger tools to refresh, or wait.
+- **A new page returns 404 on Vercel:** make sure it has an entry in `PAGES` in `src/pageMeta.js`; the HTML file is generated from that list.
+- **The build warns about text length:** shorten the title, description or share text named in the warning.
+- **A hover effect does nothing on a phone:** that is intended; hover styles only apply on devices that can hover.
+- **A style change has no effect:** a later block in `src/index.css` probably overrides it. Search for the selector and edit the last match.
+- **`pnpm dev` or `build` is very slow on Windows:** move the project into the WSL file system (see Getting started).

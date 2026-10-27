@@ -3898,3 +3898,17 @@ main.inner ~ .footer {
 .footer-legal a.textbtn {
   font-size: inherit;
 }
+
+/* Inner-page banners: the constellation sits softly behind the heading */
+.page-hero .hero-canvas {
+  opacity: 0.7;
+}
+/* About: more room above and below the scrolling client logos */
+main.inner .about-story .logo-rows {
+  margin-top: calc(var(--page-gap) * 0.5);
+  margin-bottom: calc(var(--page-gap) * 0.75);
+}
+/* Closing call to action on the standalone pages: a tighter gap above it */
+main.inner .cta-band {
+  margin-top: calc(var(--page-gap) * 0.4);
+}
