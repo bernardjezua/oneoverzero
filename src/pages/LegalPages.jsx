@@ -70,7 +70,7 @@ export function PrivacyPage() {
             when you send us a message through the contact form or by email.
           </li>
           <li>
-            <b>Website information:</b> IP address, browser and device information, pages viewed and referral source, collected through
+            <b>Website information:</b> your browser and device information, pages viewed and referral source, collected through
             analytics only if you accept analytics cookies.
           </li>
           <li>

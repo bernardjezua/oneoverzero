@@ -1,3 +1,4 @@
+import Reveal from './Reveal.jsx'
 import { CLIENT_LOGOS } from '../data.js'
 
 const GLYPHS = [
@@ -43,8 +44,13 @@ export default function ClientLogos() {
   const half = Math.ceil(CLIENT_LOGOS.length / 2)
   return (
     <div className="logo-rows" aria-label="Client logos">
-      <LogoRow logos={CLIENT_LOGOS.slice(0, half)} />
-      <LogoRow logos={CLIENT_LOGOS.slice(half)} reverse />
+      {/* Each row fades up as it scrolls into view, the second a moment after the first */}
+      <Reveal>
+        <LogoRow logos={CLIENT_LOGOS.slice(0, half)} />
+      </Reveal>
+      <Reveal delay={150}>
+        <LogoRow logos={CLIENT_LOGOS.slice(half)} reverse />
+      </Reveal>
     </div>
   )
 }
