@@ -1,4 +1,5 @@
 import PageHero from '../components/PageHero.jsx'
+import Reveal from '../components/Reveal.jsx'
 
 const COMPANY = 'One Over Zero Innovations, Inc.'
 const EMAIL = 'support@oneoverzero.com.ph'
@@ -10,12 +11,12 @@ const Mail = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
 // A numbered section of a legal page: the heading, then plain paragraphs and lists
 function Section({ n, title, children }) {
   return (
-    <section className="legal-section">
+    <Reveal as="section" className="legal-section">
       <h2>
         {n}. {title}
       </h2>
       {children}
-    </section>
+    </Reveal>
   )
 }
 
@@ -27,7 +28,9 @@ function LegalShell({ eyebrow, title, intro, children }) {
       </PageHero>
       <section className="section legal-page">
         <div className="wrap legal">
-          <p className="legal-updated">Last updated: {UPDATED}</p>
+          <Reveal as="p" className="legal-updated">
+            Last updated: {UPDATED}
+          </Reveal>
           {children}
         </div>
       </section>
