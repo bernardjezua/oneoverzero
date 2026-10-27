@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About Us"
+        eyebrow="About"
         title={
           <>
             Defining infinite possibilities through <span className="grad">intelligent tech</span>

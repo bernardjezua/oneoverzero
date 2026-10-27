@@ -42,7 +42,7 @@ export const PAGES = [
   },
   {
     path: '/about-us',
-    name: 'About Us',
+    name: 'About',
     title: `About ${BRAND} | Technology Company in the Philippines`,
     description:
       'Meet One Over Zero, a Philippines-based technology company founded in 2017. We build open-source and enterprise software, and support what we deliver.',

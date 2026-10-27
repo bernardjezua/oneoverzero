@@ -8,7 +8,7 @@ export const SOCIAL = {
 // Every header link is a real page (see src/routes.js). The landing page repeats some of them as sections.
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about-us' },
+  { label: 'About', href: '/about-us' },
   { label: 'Services', href: '/services' },
   { label: 'Products', href: '/products' },
   { label: 'Contact', href: '/contact' },
