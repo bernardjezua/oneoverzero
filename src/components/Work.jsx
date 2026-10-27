@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Icon from './Icon.jsx'
+import PageHero from './PageHero.jsx'
 import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
 import { PROJECTS } from '../data.js'
@@ -33,33 +34,46 @@ function Project({ name, type, src, desc, tags }) {
 
 const PROJECTS_SHOWN = 6
 
-export default function Work() {
+const EYEBROW = 'Our Products'
+const TITLE = (
+  <>
+    Products we&rsquo;ve <span className="grad">built</span>
+  </>
+)
+const SUB = 'A sneak peek at some of the apps, games and platforms from our portfolio.'
+
+// `page` is true on the standalone /products page: every product is listed (no "Show more"), under the same banner as the About and FAQ pages.
+export default function Work({ page = false, children }) {
   const [expanded, setExpanded] = useState(false)
-  const visible = expanded ? PROJECTS : PROJECTS.slice(0, PROJECTS_SHOWN)
+  const visible = page || expanded ? PROJECTS : PROJECTS.slice(0, PROJECTS_SHOWN)
   return (
-    <section className="section work" id="work">
-      <div className="wrap">
-        <SectionHead
-          eyebrow="Our Products"
-          title="Products we&rsquo;ve built"
-          sub="A sneak peek at some of the apps, games and platforms from our portfolio."
-        />
-        <div className="project-grid">
-          {visible.map((p) => (
-            <Project key={p.name} {...p} />
-          ))}
-        </div>
-        {PROJECTS.length > PROJECTS_SHOWN && (
-          <div className="show-more">
-            <button className="btn btn-primary btn-more" onClick={() => setExpanded((e) => !e)} aria-expanded={expanded}>
-              {expanded ? 'Show less' : 'Show more'}
-              <span className="chev" aria-hidden="true">
-                <Icon name="right" size={15} />
-              </span>
-            </button>
+    <>
+      {page && (
+        <PageHero eyebrow={EYEBROW} title={TITLE}>
+          {SUB}
+        </PageHero>
+      )}
+      <section className="section work" id="work">
+        <div className="wrap">
+          {!page && <SectionHead eyebrow={EYEBROW} title={TITLE} sub={SUB} />}
+          <div className="project-grid">
+            {visible.map((p) => (
+              <Project key={p.name} {...p} />
+            ))}
           </div>
-        )}
-      </div>
-    </section>
+          {!page && PROJECTS.length > PROJECTS_SHOWN && (
+            <div className="show-more">
+              <button className="btn btn-primary btn-more" onClick={() => setExpanded((e) => !e)} aria-expanded={expanded}>
+                {expanded ? 'Show less' : 'Show more'}
+                <span className="chev" aria-hidden="true">
+                  <Icon name="right" size={15} />
+                </span>
+              </button>
+            </div>
+          )}
+        </div>
+        {children}
+      </section>
+    </>
   )
 }

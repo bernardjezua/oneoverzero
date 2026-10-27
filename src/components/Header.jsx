@@ -1,13 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon from './Icon.jsx'
 import Logo from './Logo.jsx'
-import { useActiveSection } from '../hooks.js'
 import { NAV_LINKS } from '../data.js'
 
-const SECTION_IDS = NAV_LINKS.map((l) => l.href.slice(1))
-
-export default function Header() {
-  const activeId = useActiveSection(SECTION_IDS)
+export default function Header({ route = '/' }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -36,15 +32,21 @@ export default function Header() {
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''} ${open ? 'menu-open' : ''} ${away ? 'away' : ''}`}>
       <div className="wrap header-inner">
-        <Logo />
+        <Logo href="/" />
         <nav className={`nav ${open ? 'open' : ''}`} aria-label="Primary">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className={activeId === l.href.slice(1) ? 'active' : ''} onClick={() => setOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className={route === l.href ? 'active' : ''}
+              aria-current={route === l.href ? 'page' : undefined}
+              onClick={() => setOpen(false)}
+            >
               {l.label}
             </a>
           ))}
-          <a className="btn btn-glow nav-cta" href="#contact" onClick={() => setOpen(false)}>
-            Schedule a Consultation
+          <a className="btn btn-glow nav-cta" href="/contact" onClick={() => setOpen(false)}>
+            Book a Consultation
           </a>
         </nav>
         <button className="icon-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label="Toggle menu">

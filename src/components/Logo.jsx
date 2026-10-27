@@ -17,9 +17,9 @@ export function LogoMark({ size = 36 }) {
   )
 }
 
-export default function Logo() {
+export default function Logo({ href = '#top' }) {
   return (
-    <a className="logo" href="#top" aria-label="One Over Zero, home">
+    <a className="logo" href={href} aria-label="One Over Zero, home">
       <LogoMark />
       <span className="logo-text">
         <strong>ONE OVER ZERO</strong>

@@ -1,11 +1,63 @@
-// NOTE: Items marked PLACEHOLDER are sample content for layout purposes.
-// Replace with real client names, quotes and verified metrics before launch.
+// Public profiles. An empty address is not shown in the footer.
+export const SOCIAL = {
+  linkedin: 'https://www.linkedin.com/company/one-over-zero-technologies-inc/', // temporary: confirm this is the right company page
+}
 
+// Every header link is a real page (see src/routes.js). The landing page repeats some of them as sections.
 export const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Products', href: '#work' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Services', href: '/services' },
+  { label: 'Products', href: '/products' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'FAQ', href: '/faq' },
+]
+
+export const PROCESS_STEPS = [
+  { icon: 'chat', title: 'Discuss', text: 'We listen to your goals, your challenges and your timeline, and ask the questions that shape the project.' },
+  { icon: 'plan', title: 'Plan', text: 'We scope the work and send a clear proposal with the approach, timeline and cost.' },
+  { icon: 'code', title: 'Build', text: 'Our team designs and develops your solution, sharing progress along the way so there are no surprises.' },
+  { icon: 'rocket', title: 'Launch', text: 'We test, deploy and hand everything over, with training so your team is ready on day one.' },
+  { icon: 'headset', title: 'Support', text: 'After go-live we stay on for maintenance, monitoring and improvements as your needs grow.' },
+]
+
+export const FAQS = [
+  {
+    q: 'What does One Over Zero do?',
+    a: 'We provide software development and system integration services built around open-source technologies and enterprise solutions. That covers websites and apps, content management systems, infrastructure and networking, data centers, cloud, security, and ongoing maintenance and support.',
+  },
+  {
+    q: 'How do I get started?',
+    a: 'Send us a message through the contact form or email support@oneoverzero.com.ph. Tell us what you are working on and our team will get back to you to set up a conversation.',
+  },
+  {
+    q: 'What happens after I send the contact form?',
+    a: 'We review your message and reply to arrange a discussion about your goals. From there we put together a proposal with the approach, timeline and cost, and only start building once you are happy with it.',
+  },
+  {
+    q: 'How long does a project take?',
+    a: 'It depends on the scope. A website is very different from a data center build-out. Once we understand what you need, our proposal includes a realistic timeline.',
+  },
+  {
+    q: 'How much will it cost?',
+    a: 'There is no one-size-fits-all price. We quote each project after we understand the requirements, so you know the cost before any work begins.',
+  },
+  {
+    q: 'Do you offer support and maintenance after launch?',
+    a: 'Yes. We offer maintenance and support for websites, applications and infrastructure, including updates, backups, monitoring and troubleshooting. Many clients stay with us long after launch.',
+  },
+  {
+    q: 'Can you work with our existing systems?',
+    a: 'Yes. System integration is a core part of what we do. We can build on, connect to or modernize the systems you already have.',
+  },
+  {
+    q: 'Do you work with organizations outside Makati?',
+    a: 'Our office is in Makati, Metro Manila, and we work with clients across industries. If you are elsewhere, send us a message and we will work out the best way to collaborate.',
+  },
+  {
+    q: 'Are you currently hiring developers?',
+    a: 'Our openings change from time to time, so the best way to know is to stay up to date with our LinkedIn page, where we post new opportunities and company news.',
+  },
 ]
 
 const logo = (file) => `${import.meta.env.BASE_URL}logos/${file}`
@@ -48,7 +100,7 @@ export const CLIENT_LOGOS = [
 export const STATS = [
   { value: 30, suffix: '+', label: 'Direct Clients Across Industries' },
   { value: 90, suffix: '%', label: 'Client Retention' },
-  { value: 10, suffix: '', label: 'Years of Experience' },
+  { value: 10, suffix: '+', label: 'Years of Experience' },
   { value: 24, suffix: '/7', label: 'System Maintenance and Support' },
 ]
 
@@ -57,7 +109,7 @@ export const SERVICES = [
     id: "web",
     title: "Software Development",
     icon: "code",
-    summary: "Websites, web apps, mobile apps and online stores.",
+    summary: "Websites, web apps, mobile apps and e-commerce stores.",
     items: [
       {
         name: "Website Application",
@@ -70,10 +122,6 @@ export const SERVICES = [
       {
         name: "e-Commerce",
         desc: "Online stores, booking systems and point-of-sale tools that connect to your operations.",
-      },
-      {
-        name: "Analytics and Digital Marketing",
-        desc: "Google and Facebook ads, SEO/SEM, social media campaigns and sentiment analytics.",
       },
     ],
   },
@@ -246,6 +294,26 @@ export const SERVICES = [
       {
         name: "Migration and training",
         desc: "Moving existing content to a new CMS, with hands-on training for your editors.",
+      },
+    ],
+  },
+  {
+    id: "marketing",
+    title: "Analytics and Digital Marketing",
+    icon: "chart",
+    summary: "Ads, SEO, social campaigns and sentiment analytics.",
+    items: [
+      {
+        name: "Google and Facebook Ads, SEO/SEM",
+        desc: "Paid campaigns and search optimization that bring the right visitors to your site.",
+      },
+      {
+        name: "Social Media Campaigns",
+        desc: "Planned content and campaigns that grow your audience and keep them engaged.",
+      },
+      {
+        name: "Sentiment Analytics",
+        desc: "Social media listening that shows how people feel about your brand and your campaigns.",
       },
     ],
   },

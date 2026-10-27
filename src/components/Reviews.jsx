@@ -26,7 +26,11 @@ export default function Reviews() {
       <div className="wrap" ref={wrapRef}>
         <SectionHead
           eyebrow="Reviews"
-          title="What our clients say"
+          title={
+            <>
+              What our <span className="grad">clients</span> say
+            </>
+          }
           sub="Hear from the teams and organizations we&rsquo;ve built, launched and supported technology with."
         />
       </div>

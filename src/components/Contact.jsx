@@ -4,17 +4,18 @@ import HeroCanvas from './HeroCanvas.jsx'
 import Reveal from './Reveal.jsx'
 import { SERVICES } from '../data.js'
 
-const ADDRESS = '4th Floor PhilCox Building, Salcedo, Legazpi Village, Makati, Metro Manila, Philippines'
-
 const TIMEFRAMES = ['As soon as possible', 'Within 1 month', '1 to 3 months', '3 to 6 months', 'Just exploring']
 const SOURCES = ['Google search', 'Social media', 'Referral', 'Event or conference', 'Existing client', 'Other']
 
-// The full address also matches every '4th Floor' listing nearby, so the pin uses the building name.
-const MAP_QUERY = 'PhilCox Building, Salcedo Village, Makati, Metro Manila, Philippines'
+// Building name plus street number (172 Salcedo Street): without the number Google pins the building next door.
+// The floor is left out because it also matches every '4th Floor' listing nearby.
+const MAP_QUERY = 'PhilCox Building, 172 Salcedo Street, Legazpi Village, Makati City, Metro Manila, Philippines'
 
-const DIRECTIONS_URL = `https://www.google.com/maps/dir//${encodeURIComponent(ADDRESS).replace(/%20/g, '+')}`
+const DIRECTIONS_URL = `https://www.google.com/maps/dir//${encodeURIComponent(MAP_QUERY).replace(/%20/g, '+')}`
 
-export default function Contact({ onPrivacy }) {
+// `page` is true on the standalone /contact page: same content as the landing page section, but with the page's h1 and room for the header.
+export default function Contact({ onPrivacy, page = false }) {
+  const Heading = page ? 'h1' : 'h2'
   const [sent, setSent] = useState(false)
   // PLACEHOLDER: no backend yet. Wire this to your form endpoint before launch.
   const onSubmit = (e) => {
@@ -22,13 +23,15 @@ export default function Contact({ onPrivacy }) {
     setSent(true)
   }
   return (
-    <section className="section contact" id="contact">
+    <section className={`section contact ${page ? 'contact-page' : ''}`} id="contact">
       <HeroCanvas />
       <div className="hero-glow" aria-hidden="true" />
       <div className="wrap contact-grid">
         <Reveal>
           <span className="eyebrow">Get in Touch</span>
-          <h2>Have an idea? Let&rsquo;s make it real.</h2>
+          <Heading>
+            Have an idea? Let&rsquo;s <span className="grad">make it real.</span>
+          </Heading>
           <p className="lead">
             Whether it&rsquo;s a new platform, a design review or an infrastructure upgrade, share what you&rsquo;re working on and
             our team will get back to you shortly.

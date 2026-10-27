@@ -59,10 +59,10 @@ export default function Hero() {
         </p>
         <div className="cta-row">
           <a className="btn btn-primary" href="#services">
-            Services We Offer
+            Explore Our Services
           </a>
           <a className="btn btn-glass" href="#work">
-            See Our Products
+            See What We&rsquo;ve Built
           </a>
         </div>
       </div>
