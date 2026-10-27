@@ -35,7 +35,7 @@ export const PAGES = [
   {
     path: '/',
     name: 'Home',
-    title: `Software Development & System Integration | ${BRAND}`,
+    title: `${SITE_NAME} | Defining Infinite Possibilities`,
     description:
       'One Over Zero builds software and handles system integration, cloud, security and IT support for organizations in the Philippines. Talk to our team.',
     share: 'One Over Zero Innovations is a company in the Philippines, that provides development and system integration services that revolves around open-source technologies and enterprise solutions to help organizations achieve operational efficiency. ',
