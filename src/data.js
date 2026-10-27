@@ -1,6 +1,8 @@
-// Public profiles. An empty address is not shown in the footer.
+import { ORG } from './pageMeta.js'
+
+// Public profiles. An empty address is not shown in the footer. The LinkedIn address is set in pageMeta.js.
 export const SOCIAL = {
-  linkedin: 'https://www.linkedin.com/company/one-over-zero-technologies-inc/', // temporary: confirm this is the right company page
+  linkedin: ORG.linkedin,
 }
 
 // Every header link is a real page (see src/routes.js). The landing page repeats some of them as sections.
@@ -21,44 +23,8 @@ export const PROCESS_STEPS = [
   { icon: 'headset', title: 'Support', text: 'After go-live we stay on for maintenance, monitoring and improvements as your needs grow.' },
 ]
 
-export const FAQS = [
-  {
-    q: 'What does One Over Zero do?',
-    a: 'We provide software development and system integration services built around open-source technologies and enterprise solutions. That covers websites and apps, content management systems, infrastructure and networking, data centers, cloud, security, and ongoing maintenance and support.',
-  },
-  {
-    q: 'How do I get started?',
-    a: 'Send us a message through the contact form or email support@oneoverzero.com.ph. Tell us what you are working on and our team will get back to you to set up a conversation.',
-  },
-  {
-    q: 'What happens after I send the contact form?',
-    a: 'We review your message and reply to arrange a discussion about your goals. From there we put together a proposal with the approach, timeline and cost, and only start building once you are happy with it.',
-  },
-  {
-    q: 'How long does a project take?',
-    a: 'It depends on the scope. A website is very different from a data center build-out. Once we understand what you need, our proposal includes a realistic timeline.',
-  },
-  {
-    q: 'How much will it cost?',
-    a: 'There is no one-size-fits-all price. We quote each project after we understand the requirements, so you know the cost before any work begins.',
-  },
-  {
-    q: 'Do you offer support and maintenance after launch?',
-    a: 'Yes. We offer maintenance and support for websites, applications and infrastructure, including updates, backups, monitoring and troubleshooting. Many clients stay with us long after launch.',
-  },
-  {
-    q: 'Can you work with our existing systems?',
-    a: 'Yes. System integration is a core part of what we do. We can build on, connect to or modernize the systems you already have.',
-  },
-  {
-    q: 'Do you work with organizations outside Makati?',
-    a: 'Our office is in Makati, Metro Manila, and we work with clients across industries. If you are elsewhere, send us a message and we will work out the best way to collaborate.',
-  },
-  {
-    q: 'Are you currently hiring developers?',
-    a: 'Our openings change from time to time, so the best way to know is to stay up to date with our LinkedIn page, where we post new opportunities and company news.',
-  },
-]
+// Kept in faqData.js so the build can read it too (see src/seo.js)
+export { FAQS } from './faqData.js'
 
 const logo = (file) => `${import.meta.env.BASE_URL}logos/${file}`
 export const CLIENT_LOGOS = [
