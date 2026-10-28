@@ -16,6 +16,12 @@
   flex-direction: column;
   gap: 8px;
 }
+/* The cards are solid (same tint as before, but not see-through), so the stars and shooting stars behind them never show through */
+.step {
+  background:
+    linear-gradient(var(--glass), var(--glass)),
+    #0a0630;
+}
 .step-top {
   display: flex;
   align-items: center;
