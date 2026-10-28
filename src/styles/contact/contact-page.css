@@ -1,0 +1,54 @@
+/* Standalone /contact page: the landing section's content, with room for the fixed header and an h1 that looks like the section's h2 */
+.contact-page {
+  min-height: 100svh;
+}
+.contact h1 {
+  font-size: clamp(1.45rem, 1rem + 1.7vw, 2.3rem);
+  line-height: 1.18;
+  font-weight: 700;
+}
+
+/* Mobile: a shorter map so the office card doesn't take over the screen */
+@media (max-width: 720px) {
+  .info-card .map iframe {
+    height: 190px;
+  }
+}
+
+/* About: set "Our story" apart from "How we work" with its own tone (no outline) */
+.about-story {
+  background:
+    radial-gradient(50% 70% at 0% 0%, rgba(110, 70, 230, 0.2), transparent 70%),
+    radial-gradient(40% 60% at 100% 100%, rgba(var(--accent-rgb), 0.08), transparent 70%),
+    #110a45;
+}
+
+/* Contact page: same heading and intro sizes as the other standalone pages */
+.contact-page h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 1rem + 1.7vw, 2.15rem);
+  line-height: 1.2;
+}
+.contact-page .lead {
+  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.02rem);
+  line-height: 1.65;
+}
+
+/* Section headings use the same Orbitron as the logo and the standalone page headings.
+   Orbitron runs wider than Exo 2, so the sizes match the standalone page headings. */
+.section-head h2,
+.contact h2,
+.about-grid h2,
+.cta-card h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 1rem + 1.5vw, 2rem);
+  line-height: 1.25;
+}
+@media (max-width: 720px) {
+  .cta-card h2 {
+    font-size: 1.05rem;
+  }
+}
+

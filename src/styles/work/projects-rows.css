@@ -1,0 +1,29 @@
+/* Projects: centered rows so an odd count never leaves a hole */
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+}
+.project-grid > .project {
+  flex: 0 0 calc((100% - 44px) / 3);
+}
+@media (max-width: 1000px) {
+  .project-grid > .project {
+    flex-basis: calc((100% - 22px) / 2);
+  }
+}
+@media (max-width: 620px) {
+  .project-grid > .project {
+    flex-basis: 100%;
+  }
+}
+
+.btn-send {
+  font-size: 0.82rem;
+}
+
+.header .btn {
+  font-size: 0.8rem;
+}
+

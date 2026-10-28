@@ -1,0 +1,37 @@
+/* How We Work: a short light streak runs along each step's line, left to right, one step after another, forever */
+.step-line {
+  position: relative;
+  overflow: hidden;
+  height: 2px;
+  border-radius: 2px;
+}
+.step-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 38%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-2), var(--accent));
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
+  transform: translateX(-110%);
+  animation: step-run 6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 1.1s);
+}
+.step:nth-child(1) .step-line::after { --i: 0; }
+.step:nth-child(2) .step-line::after { --i: 1; }
+.step:nth-child(3) .step-line::after { --i: 2; }
+.step:nth-child(4) .step-line::after { --i: 3; }
+.step:nth-child(5) .step-line::after { --i: 4; }
+@keyframes step-run {
+  0% {
+    transform: translateX(-110%);
+  }
+  16% {
+    transform: translateX(290%);
+  }
+  100% {
+    transform: translateX(290%);
+  }
+}

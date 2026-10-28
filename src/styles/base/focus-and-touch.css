@@ -1,0 +1,35 @@
+/* Popups: no focus ring around the popup box or its scrolling text when it is opened or clicked.
+   The buttons inside still show their ring for keyboard users. */
+.modal:focus,
+.modal:focus-visible,
+.modal-body:focus,
+.modal-body:focus-visible {
+  outline: none;
+}
+/* Cookie switches: clicking one no longer draws the cyan border and glow that the form fields get.
+   Keyboard users still see a ring when they tab to a switch. */
+.toggle input:focus {
+  border-color: var(--glass-b);
+  box-shadow: none;
+}
+.toggle input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+/* ===== Buttons on touch screens =====
+   Hover effects now apply only to devices that really hover (see the @media (hover: hover) blocks above), so a tap can no
+   longer leave a button stuck in its lifted, glowing "hovered" look. A tap gets a short press instead, and everything that
+   changes (including outline and text color) fades. */
+.btn {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s ease, border-color 0.25s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.icon-btn {
+  transition: border-color 0.25s ease, background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+

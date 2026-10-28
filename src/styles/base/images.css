@@ -1,0 +1,19 @@
+/* Images: no dragging, long-press saving or text-style selection */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+@media (max-width: 720px) {
+  .modal .cookie-list {
+    margin: 4px 0;
+  }
+  .modal .toggle {
+    padding: 10px 12px;
+  }
+  .modal .cta-row {
+    margin-top: 4px;
+  }
+}
+

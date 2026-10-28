@@ -1,0 +1,29 @@
+/* Section backgrounds, final pass: grid only in the hero; every other section is a clean, distinct tone */
+.clients {
+  background:
+    radial-gradient(60% 70% at 50% 0%, rgba(var(--accent-rgb), 0.12), transparent 70%),
+    linear-gradient(180deg, #0b0838, #0a0630);
+}
+.services {
+  background:
+    radial-gradient(45% 40% at 0% 10%, rgba(110, 70, 230, 0.2), transparent 70%),
+    radial-gradient(40% 40% at 100% 90%, rgba(var(--accent-rgb), 0.09), transparent 70%),
+    #110a45;
+}
+.reviews {
+  background:
+    radial-gradient(60% 55% at 50% 100%, rgba(var(--accent-rgb), 0.15), transparent 70%),
+    linear-gradient(180deg, #082a4d, #0a0630);
+}
+/* Contact shares the hero's look: grid lines, drifting glow and the node network */
+.contact {
+  overflow: hidden;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 56px 56px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 56px 56px, var(--bg);
+}
+.contact .contact-grid {
+  position: relative;
+  z-index: 1;
+}
+

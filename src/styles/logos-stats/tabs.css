@@ -1,0 +1,27 @@
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.tabs button {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-b);
+  background: var(--glass);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+@media (hover: hover) {
+  .tabs button:hover {
+    border-color: var(--accent);
+  }
+}
+.tabs button.on {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 14px -6px rgba(var(--accent-rgb), 0.35);
+}
+

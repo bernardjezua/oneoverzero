@@ -1,5 +1,5 @@
-import HeroCanvas from '../components/HeroCanvas.jsx'
-import Icon from '../components/Icon.jsx'
+import HeroCanvas from '../components/hero/HeroCanvas.jsx'
+import Icon from '../components/common/Icon.jsx'
 
 export default function NotFoundPage() {
   return (

@@ -1,0 +1,85 @@
+:root {
+  --bg: #0a0630;
+  --bg-2: #120847;
+  --text: #f3f4f6;
+  --muted: #a5a3c4;
+  --accent: #66ccc6;
+  --accent-2: #b7f4ee;
+  --accent-rgb: 102, 204, 198;
+  --on-accent: #0a0630;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-b: rgba(255, 255, 255, 0.12);
+  --line: rgba(183, 244, 238, 0.07);
+  --mark-dark: #ffffff;
+  --header-bg: rgba(10, 6, 48, 0.72);
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  --display: 'Orbitron', 'Exo 2', sans-serif;
+  --head: 'Exo 2', 'Montserrat', sans-serif;
+  --body: 'Montserrat', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+body {
+  margin: 0;
+  font-family: var(--body);
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--head);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+p {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.wrap {
+  width: min(1180px, 100% - 32px);
+  margin-inline: auto;
+}
+.skip {
+  position: absolute;
+  left: -999px;
+}
+.skip:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+

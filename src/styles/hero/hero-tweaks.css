@@ -1,0 +1,93 @@
+/* Tablet and mobile hero: logo centered on top, then heading and CTAs */
+@media (max-width: 1000px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .hero-visual {
+    position: relative;
+    order: -1;
+    right: auto;
+    top: auto;
+    translate: none;
+    width: clamp(200px, 38vw, 320px);
+    margin: 0 auto;
+    opacity: 1 !important;
+    z-index: 1;
+  }
+  .hero-inner {
+    margin: 0 16px;
+    width: auto;
+    text-align: center;
+  }
+  .hero-inner .lead {
+    margin-inline: auto;
+  }
+  .hero-inner .cta-row {
+    justify-content: center;
+  }
+  .hero-inner .btn {
+    padding: 9px 22px;
+  }
+}
+
+/* Mobile: comfortable side spacing across the page */
+@media (max-width: 860px) {
+  .wrap {
+    width: min(1180px, 100% - 48px);
+  }
+  .hero-inner {
+    margin: 0 24px;
+  }
+}
+
+/* Smaller floating icons around the hero logo */
+.floater {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+}
+@media (max-width: 860px) {
+  .floater {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+  }
+}
+
+/* Hero logo: gentle motion as one piece (both arrows move together): a slow float with a tiny sway.
+   It keeps moving even with "reduce motion" on, like the other animations on this site. */
+.hero-visual .core {
+  animation: logo-float 6s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+}
+@keyframes logo-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(1.5deg);
+  }
+}
+
+/* No outline around the floating icons */
+.floater {
+  border: 0;
+}
+
+/* Floating icons: fully transparent, no tile */
+.floater {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Smaller hero description */
+.hero .lead {
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+}
+

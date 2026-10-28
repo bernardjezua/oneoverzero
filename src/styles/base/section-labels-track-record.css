@@ -1,0 +1,78 @@
+/* Section labels: a small rounded tag instead of a line and text. One style for every section and page. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.1);
+  font-size: clamp(0.58rem, 0.55rem + 0.15vw, 0.66rem);
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+}
+.eyebrow::before {
+  display: none;
+}
+
+/* Contact: the left column is a flex column on desktop, so keep the tag at its own width instead of stretching across it */
+.contact-grid > :first-child > .eyebrow {
+  align-self: flex-start;
+}
+
+/* Proven track record (landing page and About): smaller logo cards and stat cards */
+.logo-rows {
+  gap: 14px;
+  margin-bottom: 44px;
+}
+.logo-slot {
+  padding-right: 14px;
+}
+.logo-chip {
+  width: 136px;
+  height: 66px;
+  padding: 10px 14px;
+  border-radius: 14px;
+}
+.stats {
+  gap: 14px;
+}
+.stat {
+  padding: 20px;
+}
+.stat-num {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+.stat p {
+  font-size: 0.84rem;
+  margin-top: 4px;
+}
+@media (max-width: 720px) {
+  .logo-rows {
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .logo-slot {
+    padding-right: 10px;
+  }
+  .logo-chip {
+    width: 106px;
+    height: 54px;
+    padding: 8px 12px;
+    border-radius: 12px;
+  }
+  .stat {
+    padding: 16px;
+  }
+  .stat-num {
+    font-size: 1.5rem;
+  }
+  .stat p {
+    font-size: 0.78rem;
+  }
+}
+/* On the About page the logos have their own spacing */
+.about-story .logo-rows {
+  margin: clamp(40px, 6vw, 64px) 0 0;
+}
+

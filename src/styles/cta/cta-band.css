@@ -1,0 +1,33 @@
+/* Closing call-to-action: compact text and button at every screen width */
+.cta-band .cta-card {
+  padding: clamp(18px, 3vw, 28px) clamp(20px, 3.4vw, 36px);
+}
+.cta-band .cta-card h2 {
+  font-size: clamp(1.05rem, 0.92rem + 0.7vw, 1.4rem);
+  line-height: 1.25;
+}
+.cta-band .cta-card p {
+  font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
+  line-height: 1.55;
+}
+.cta-band .cta-card .btn {
+  padding: 9px 18px;
+  font-size: 0.82rem;
+}
+@media (max-width: 720px) {
+  .cta-band .cta-card {
+    padding: 18px;
+    gap: 12px;
+  }
+  .cta-band .cta-card h2 {
+    font-size: 1rem;
+  }
+  .cta-band .cta-card p {
+    font-size: 0.78rem;
+  }
+  .cta-band .cta-card .btn {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+}
+

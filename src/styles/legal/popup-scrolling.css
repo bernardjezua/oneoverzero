@@ -1,0 +1,84 @@
+/* Popups: only the body scrolls. The dialog itself never gets a second scrollbar. */
+.modal {
+  overflow: hidden;
+}
+.modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+.modal-head {
+  flex: none;
+}
+.modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
+/* Popup scrollbar: slim, rounded and inset from the edges, in the site's colors */
+@supports not selector(::-webkit-scrollbar) {
+  .modal-body {
+    scrollbar-width: thin;
+  }
+}
+.modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 6px 0 14px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid transparent;
+}
+@media (hover: hover) {
+  .modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-rgb), 0.7);
+    background-clip: padding-box;
+  }
+}
+.cookie-intro {
+  padding-top: 12px;
+}
+
+/* Mobile: full-width Send Message button */
+@media (max-width: 720px) {
+  .form-card form .btn-send {
+    width: 100%;
+    justify-self: stretch;
+    align-self: stretch;
+    padding: 9px 20px;
+  }
+  /* A shorter message box on phones; longer messages still scroll inside it */
+  .form-card form textarea {
+    height: 100px;
+    min-height: 100px;
+  }
+}
+
+/* Popup scrollbar auto-hide: invisible by default, shown while .is-scrolling (set for 3s after activity) */
+.modal-body::-webkit-scrollbar-thumb {
+  background: transparent;
+  background-clip: padding-box;
+}
+.modal-body.is-scrolling::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-rgb), 0.4);
+  background-clip: padding-box;
+}
+@media (hover: hover) {
+  .modal-body.is-scrolling::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--accent-rgb), 0.7);
+    background-clip: padding-box;
+  }
+}
+@supports not selector(::-webkit-scrollbar) {
+  .modal-body {
+    scrollbar-color: transparent transparent;
+  }
+  .modal-body.is-scrolling {
+    scrollbar-color: rgba(var(--accent-rgb), 0.45) transparent;
+  }
+}
+

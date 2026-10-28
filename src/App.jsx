@@ -1,18 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
-import TrackRecord from './components/TrackRecord.jsx'
-import Services from './components/Services.jsx'
-import HowWeWork from './components/HowWeWork.jsx'
-import Work from './components/Work.jsx'
-import Reviews from './components/Reviews.jsx'
-import Contact from './components/Contact.jsx'
-import CtaBand from './components/CtaBand.jsx'
-import Footer from './components/Footer.jsx'
-import { CookieBanner, CookieDialog } from './components/Legal.jsx'
-import { CookiePolicyPage, PrivacyPage } from './pages/LegalPages.jsx'
+import Header from './components/header/Header.jsx'
+import Footer from './components/footer/Footer.jsx'
+import { CookieBanner, CookieDialog } from './components/legal/Legal.jsx'
+import HomePage from './pages/HomePage.jsx'
+import ServicesPage from './pages/ServicesPage.jsx'
+import ProductsPage from './pages/ProductsPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
+import CookiePolicyPage from './pages/CookiePolicyPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 import { readConsent, saveConsent, useScrollProgress } from './hooks.js'
 import { ROUTES, currentRoute } from './routes.js'
@@ -54,31 +51,13 @@ export default function App() {
       <Header route={route} />
       {/* The standalone pages share one section spacing (see "inner" in index.css); the landing page keeps its own */}
       <main className={route !== '/' && ROUTES.includes(route) ? 'inner' : undefined}>
-        {route === '/' && (
-          <>
-            <Hero />
-            <TrackRecord />
-            <Services />
-            <HowWeWork />
-            <Work />
-            <Reviews />
-            <Contact />
-          </>
-        )}
-        {route === '/services' && (
-          <Services page>
-            <CtaBand />
-          </Services>
-        )}
-        {route === '/products' && (
-          <Work page>
-            <CtaBand />
-          </Work>
-        )}
+        {route === '/' && <HomePage />}
+        {route === '/services' && <ServicesPage />}
+        {route === '/products' && <ProductsPage />}
         {route === '/about-us' && <AboutPage />}
         {route === '/faq' && <FaqPage />}
-        {route === '/contact' && <Contact page />}
-        {route === '/privacy-policy' && <PrivacyPage />}
+        {route === '/contact' && <ContactPage />}
+        {route === '/privacy-policy' && <PrivacyPolicyPage />}
         {route === '/cookie-policy' && <CookiePolicyPage onCookies={() => setCookiesOpen(true)} />}
         {!ROUTES.includes(route) && <NotFoundPage />}
       </main>

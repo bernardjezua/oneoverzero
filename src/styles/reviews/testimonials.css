@@ -1,0 +1,30 @@
+/* Testimonials */
+.slider {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.quote {
+  margin: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.quote blockquote {
+  margin: 0;
+  font-family: var(--head);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.55;
+}
+.quote figcaption {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.quote figcaption b {
+  color: var(--text);
+}
+

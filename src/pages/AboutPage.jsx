@@ -1,9 +1,9 @@
-import PageHero from '../components/PageHero.jsx'
-import Reveal from '../components/Reveal.jsx'
-import Stat from '../components/Stat.jsx'
-import HowWeWork from '../components/HowWeWork.jsx'
-import CtaBand from '../components/CtaBand.jsx'
-import ClientLogos from '../components/ClientLogos.jsx'
+import PageHero from '../components/common/PageHero.jsx'
+import Reveal from '../components/common/Reveal.jsx'
+import Stat from '../components/logos-stats/Stat.jsx'
+import HowWeWork from '../components/how-we-work/HowWeWork.jsx'
+import CtaBand from '../components/cta/CtaBand.jsx'
+import ClientLogos from '../components/logos-stats/ClientLogos.jsx'
 import { STATS } from '../data.js'
 
 export default function AboutPage() {

@@ -1,0 +1,16 @@
+/* Mobile menu: centered links */
+@media (max-width: 860px) {
+  .nav a:not(.btn) {
+    text-align: center;
+  }
+}
+
+/* Header slides away on scroll down and returns on scroll up.
+   No transform in the visible state: a transform would turn the header into the containing block for the fixed mobile menu. */
+.header {
+  transition: transform 0.35s ease, background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+}
+.header.away {
+  transform: translateY(-100%);
+}
+

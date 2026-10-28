@@ -1,0 +1,220 @@
+/* Contact: what happens next */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  gap: 16px;
+}
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 14px;
+  align-items: start;
+}
+.steps li::before {
+  content: counter(step);
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.14);
+}
+.steps b {
+  font-family: var(--head);
+  font-size: 1rem;
+}
+.steps span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Contact map */
+.contact-info {
+  width: 100%;
+}
+.contact-info .map {
+  position: relative;
+}
+.contact-info .map iframe {
+  height: clamp(220px, 28vw, 300px);
+}
+.contact-info .link {
+  margin-top: 0;
+  justify-self: start;
+}
+
+/* Contact form */
+form label > span {
+  color: var(--text);
+}
+form label > span i {
+  font-style: normal;
+  color: var(--accent);
+  margin-left: 3px;
+}
+form label > small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+}
+form textarea {
+  resize: none;
+  min-height: 140px;
+  overflow-y: auto;
+}
+/* Desktop: the form fills the card's height; the message box takes up the spare room and scrolls when the text is long */
+@media (min-width: 1001px) {
+  .form-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-card form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-card form label:has(textarea) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-card form label:has(textarea) textarea {
+    flex: 1;
+  }
+  .form-card form .btn {
+    align-self: flex-start;
+  }
+}
+form .fine .textbtn {
+  font-size: inherit;
+}
+
+/* Contact: info cards */
+.contact-info {
+  margin-top: 28px;
+  display: grid;
+  gap: 14px;
+  justify-items: stretch;
+}
+.info-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  row-gap: 10px;
+  align-items: start;
+  padding: 18px 20px;
+}
+.info-card .ico {
+  width: 44px;
+  height: 44px;
+}
+.info-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.info-text small {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.info-text b {
+  font-family: var(--head);
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  overflow-wrap: anywhere;
+}
+.info-text span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.info-card .link {
+  grid-column: 2;
+  margin-top: 0;
+  justify-self: start;
+  font-size: 0.9rem;
+}
+.contact-info .map {
+  margin: 0;
+}
+.info-card .map {
+  grid-column: 1 / -1;
+  margin: 6px 0 0;
+  border-radius: 12px;
+  box-shadow: none;
+}
+.info-card .map iframe {
+  height: 320px;
+}
+/* Desktop: left column matches the form's height, with the map absorbing the extra space */
+@media (min-width: 1001px) {
+  .contact-grid {
+    align-items: stretch;
+  }
+  .contact-grid > :first-child {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-grid .contact-info {
+    flex: 1;
+    grid-template-rows: auto 1fr;
+  }
+  .contact-grid .info-card:has(.map) {
+    grid-template-rows: auto auto 1fr;
+  }
+  .info-card .map {
+    position: relative;
+    min-height: 320px;
+  }
+  .info-card .map iframe {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+}
+
+/* Form dropdowns */
+form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+  background-color: var(--glass);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2366ccc6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+form select:invalid {
+  color: var(--muted);
+}
+@media (hover: hover) {
+  form select:hover {
+    border-color: rgba(var(--accent-rgb), 0.6);
+  }
+}
+form select option {
+  color: var(--text);
+}
+form select option[disabled] {
+  color: var(--muted);
+}
+
+/* Contact intro: smaller, fluid */
+.contact .lead {
+  font-size: clamp(0.88rem, 0.82rem + 0.3vw, 1rem);
+  line-height: 1.6;
+  max-width: 52ch;
+}
+

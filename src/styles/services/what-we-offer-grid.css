@@ -1,0 +1,149 @@
+/* What We Offer: static grid */
+.show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  z-index: 2;
+  animation: cue-blink 1.4s ease-in-out infinite;
+}
+@media (hover: hover) {
+  .scroll-cue:hover {
+    color: #fff;
+  }
+}
+.scroll-cue .mouse {
+  position: relative;
+  width: 16px;
+  height: 26px;
+  border: 1.5px solid currentColor;
+  border-radius: 9px;
+}
+.scroll-cue .mouse::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 2px;
+  height: 5px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: currentColor;
+  animation: cue-wheel 1.6s ease-in-out infinite;
+}
+@keyframes cue-blink {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+@keyframes cue-wheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .hero {
+    padding-bottom: 104px;
+  }
+}
+.btn-more {
+  padding: 9px 18px;
+  font-size: 0.82rem;
+  gap: 6px;
+}
+.btn-more .chev {
+  display: inline-flex;
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+}
+.btn-more[aria-expanded="true"] .chev {
+  transform: rotate(-90deg);
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 18px;
+}
+.offer-card {
+  padding: 28px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
+  row-gap: 8px;
+  align-items: start;
+  align-content: start;
+}
+.offer-card .ico {
+  grid-row: span 2;
+  width: 52px;
+  height: 52px;
+}
+/* Same type sizes as the product cards (.project-body) */
+.offer-card h3 {
+  font-size: clamp(1.02rem, 0.95rem + 0.4vw, 1.2rem);
+}
+.offer-card p {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.95rem);
+  line-height: 1.6;
+}
+@media (max-width: 1000px) {
+  .offer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .offer-grid > .offer-card:nth-child(odd):last-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 720px) {
+  .offer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 10px;
+  }
+  .offer-card {
+    padding: 14px;
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+  .offer-card .ico {
+    grid-row: auto;
+    width: 36px;
+    height: 36px;
+  }
+  /* Two narrow columns, so just a touch under the product card sizes (1.02rem / 0.86rem) */
+  .offer-card h3 {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+  .offer-card p {
+    grid-column: 1;
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+}
+

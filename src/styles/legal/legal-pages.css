@@ -1,0 +1,62 @@
+/* ===== Legal pages (Privacy Policy, Cookie Policy) ===== */
+/* A shade lighter than the banner above and the footer below, so the three bands read as separate */
+.legal-page {
+  background: #1b1263;
+}
+.legal-updated {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.legal-section {
+  padding-top: clamp(20px, 3vw, 28px);
+}
+.legal-section h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.legal-section h3 {
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.18rem);
+  margin: 18px 0 6px;
+}
+.legal-section p,
+.legal-section li {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.legal-section p + p,
+.legal-section p + ul,
+.legal-section ul + p,
+.legal-section p + button {
+  margin-top: 10px;
+}
+.legal-section ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+.legal-section li + li {
+  margin-top: 4px;
+}
+.legal-section li b {
+  color: var(--text);
+}
+.legal-section a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-section .btn {
+  margin-top: 14px;
+  padding: 8px 18px;
+  font-size: 0.78rem;
+}
+.footer-legal a.textbtn {
+  font-size: inherit;
+}
+

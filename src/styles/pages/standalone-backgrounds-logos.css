@@ -1,0 +1,46 @@
+/* Standalone pages: the first section under the banner uses one shared background (About, Services, Products, FAQ, Privacy, Cookies).
+   The landing page keeps its own section backgrounds. */
+main.inner .about-story,
+main.inner .services,
+main.inner .work,
+main.inner .faq,
+main.inner .legal-page {
+  background:
+    radial-gradient(50% 70% at 0% 0%, rgba(110, 70, 230, 0.2), transparent 70%),
+    radial-gradient(40% 60% at 100% 100%, rgba(var(--accent-rgb), 0.08), transparent 70%),
+    #1b1263;
+}
+/* Standalone page banners: the tag, heading and intro fade up one after another when the page opens */
+.page-hero-inner > * {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.page-hero-inner > :nth-child(1) {
+  animation-delay: 0.05s;
+}
+.page-hero-inner > :nth-child(2) {
+  animation-delay: 0.2s;
+}
+.page-hero-inner > :nth-child(3) {
+  animation-delay: 0.35s;
+}
+/* Logo cards: solid white, not dimmed against the dark background */
+.logo-chip:has(img) {
+  background: #fff;
+  opacity: 1;
+}
+/* Logo rows: the edge fade is a middle ground, a bit darker than before */
+.marquee {
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), #000 8%, #000 92%, rgba(0, 0, 0, 0.2));
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), #000 8%, #000 92%, rgba(0, 0, 0, 0.2));
+}
+/* The logo rows must not grow with the endless strip inside them. Without this the edge fade stretched across the whole strip,
+   which left a dark tint on the left and none on the right. */
+.logo-rows > * {
+  min-width: 0;
+}
+@media (hover: hover) {
+  .logo-chip:has(img):hover {
+    background: #fff;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,113 @@
+/* Products */
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.product {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: linear-gradient(160deg, rgba(var(--accent-rgb), 0.12), var(--glass) 55%);
+}
+.product h3 {
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+}
+.product p {
+  color: var(--muted);
+}
+.product ul {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 12px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.92rem;
+}
+.product li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.product li svg {
+  color: var(--accent);
+  flex: none;
+}
+.product .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+.tag {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
+}
+
+/* Project screenshots */
+.shots {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: end;
+}
+.shot span {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+.shot-frame {
+  border-radius: 14px;
+  border: 1px solid var(--glass-b);
+  background: var(--bg);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.shot.mobile .shot-frame {
+  aspect-ratio: 9 / 16;
+  width: 62%;
+  margin-inline: auto;
+  border-radius: 22px;
+}
+@media (hover: hover) {
+  .shot:hover .shot-frame {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.6);
+    box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+  }
+}
+.shot-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.shot-ph {
+  height: 100%;
+  padding: 12%;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  background: linear-gradient(135deg, #200059, #410066 60%, rgba(var(--accent-rgb), 0.45));
+}
+.shot-ph i {
+  height: 10%;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.shot-ph i:first-child {
+  width: 45%;
+  background: rgba(var(--accent-rgb), 0.6);
+}
+.shot-ph i:last-child {
+  height: 30%;
+}
+

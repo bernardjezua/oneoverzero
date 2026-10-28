@@ -1,0 +1,81 @@
+/* Contact */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: start;
+}
+.contact .lead {
+  margin-top: 18px;
+}
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: grid;
+  gap: 14px;
+  color: var(--muted);
+}
+.contact-list li {
+  display: flex;
+  gap: 12px;
+}
+.contact-list svg {
+  color: var(--accent);
+}
+.form-card {
+  padding: 34px;
+}
+form {
+  display: grid;
+  gap: 18px;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-b);
+  background: var(--glass);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+select option {
+  background: var(--bg);
+  color: var(--text);
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2);
+}
+form .btn {
+  justify-self: start;
+}
+.sent {
+  text-align: center;
+  padding: 48px 0;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  color: var(--accent);
+}
+.sent h3 {
+  color: var(--text);
+}
+

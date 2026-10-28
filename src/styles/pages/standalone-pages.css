@@ -1,0 +1,79 @@
+/* Standalone pages: a shorter banner, and less empty space between its intro text and the first section */
+.page-hero {
+  padding-top: clamp(96px, 11vw, 124px);
+  padding-bottom: clamp(24px, 3.5vw, 36px);
+}
+.page-hero + .section {
+  padding-top: clamp(36px, 5vw, 56px);
+}
+.contact-page {
+  padding-top: clamp(96px, 11vw, 124px);
+}
+
+/* ===== Standalone pages: one even gap between every section =====
+   Only pages whose <main> has the "inner" class (About, Services, Products, FAQ, Contact). The landing page is untouched.
+   Each section contributes half of the gap on each side, so any two neighbours end up exactly --page-gap apart. */
+:root {
+  --page-gap: clamp(64px, 8vw, 96px);
+}
+main.inner .section {
+  padding-block: calc(var(--page-gap) / 2);
+}
+main.inner .page-hero {
+  padding-bottom: calc(var(--page-gap) / 2);
+}
+main.inner .page-hero + .section {
+  padding-top: calc(var(--page-gap) / 2);
+}
+/* The contact page has no banner, so its top spacing clears the fixed header like the banners do */
+main.inner .contact-page {
+  padding-top: clamp(96px, 11vw, 124px);
+}
+/* The footer takes the other half of the gap under the last section */
+main.inner ~ .footer {
+  padding-top: calc(var(--page-gap) / 2);
+}
+
+/* The closing call-to-action sits at the bottom of this section on some pages (About), exactly where the planet floats,
+   so the planet is left out there to keep the text clear. The landing page keeps it. */
+.process:has(.cta-band) .space-planet {
+  display: none;
+}
+/* Contact form: the Send Message button is as wide and as tall as the fields above it, on every screen size */
+.form-card form .btn-send {
+  width: 100%;
+  justify-self: stretch;
+  align-self: stretch;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 0.9rem;
+}
+@media (max-width: 720px) {
+  .form-card form .btn-send {
+    height: 46px;
+    font-size: 0.88rem;
+  }
+}
+/* About: the story paragraphs use the same text size as the intro under the page heading (the stat labels beside them are untouched) */
+.about-grid > :first-child > p {
+  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.02rem);
+  line-height: 1.65;
+}
+/* Phones: section headings and their descriptions are centered (landing page, standalone pages, contact and the About story) */
+@media (max-width: 720px) {
+  .section-head,
+  .page-hero-inner,
+  .contact-grid > :first-child,
+  .about-grid > :first-child {
+    text-align: center;
+  }
+  .section-head p,
+  .page-hero .lead,
+  .contact .lead {
+    margin-inline: auto;
+  }
+  /* The email and office cards under the contact intro keep their own left-aligned layout */
+  .contact-info {
+    text-align: left;
+  }
+}

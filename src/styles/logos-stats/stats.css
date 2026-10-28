@@ -1,0 +1,21 @@
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  height: 100%;
+}
+.stat-num {
+  font-family: var(--display);
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-num span {
+  font-size: 0.6em;
+  margin-left: 2px;
+}
+.stat p {
+  color: var(--muted);
+}
+

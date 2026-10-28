@@ -1,0 +1,46 @@
+/* Cookie banner: slides up and fades in, then fades back out after a choice */
+.banner {
+  animation: banner-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
+}
+.banner.leaving {
+  animation: banner-out 0.3s ease forwards;
+  pointer-events: none;
+}
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes banner-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Hamburger icon: the menu and close icons swap with a quick turn and fade */
+.menu-icon {
+  display: grid;
+  place-items: center;
+  animation: icon-swap 0.28s ease both;
+}
+@keyframes icon-swap {
+  from {
+    opacity: 0;
+    transform: rotate(-70deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+

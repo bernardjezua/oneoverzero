@@ -20,7 +20,7 @@ export const PROCESS_STEPS = [
   { icon: 'plan', title: 'Plan', text: 'We scope the work and send a clear proposal with the approach, timeline and cost.' },
   { icon: 'code', title: 'Build', text: 'Our team designs and develops your solution, sharing progress along the way so there are no surprises.' },
   { icon: 'rocket', title: 'Launch', text: 'We test, deploy and hand everything over, with training so your team is ready on day one.' },
-  { icon: 'headset', title: 'Support', text: 'After go-live we stay on for maintenance, monitoring and improvements as your needs grow.' },
+  { icon: 'headset', title: 'Support', text: 'Once your project is live, we keep it running, fix issues quickly and add improvements as your needs grow.' },
 ]
 
 // Kept in faqData.js so the build can read it too (see src/seo.js)

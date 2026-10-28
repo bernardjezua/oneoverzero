@@ -1,0 +1,22 @@
+/* What We Offer: descriptive panels */
+.panel-intro p {
+  line-height: 1.65;
+}
+.panel-intro .count {
+  margin-top: auto;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.card p {
+  margin: 10px 0 0;
+  line-height: 1.6;
+}
+.bento .card:only-child {
+  grid-column: 1 / -1;
+}
+.bento {
+  align-content: start;
+}
+

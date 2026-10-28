@@ -1,0 +1,72 @@
+/* Tablet: the logo takes the first row, Explore and Contact share the second */
+@media (max-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+/* Mobile: single centered footer column, compact popups */
+@media (max-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+  .footer-links ul {
+    justify-content: center;
+  }
+  .footer-brand {
+    justify-items: center;
+  }
+  .footer-brand .logo {
+    justify-content: center;
+  }
+  .footer-contact ul,
+  .footer-links ul {
+    justify-items: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .footer-legal {
+    justify-content: center;
+  }
+  .modal {
+    width: min(340px, 100% - 48px);
+    max-height: 60svh;
+    border-radius: 18px;
+  }
+  .modal-head {
+    padding: 14px 16px;
+  }
+  .modal-head h3 {
+    font-size: 1rem;
+  }
+  .modal-body {
+    padding: 4px 16px 18px;
+    max-height: calc(60svh - 54px);
+    gap: 8px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .modal-body h4 {
+    margin-top: 6px;
+    font-size: 0.9rem;
+  }
+  .modal .toggle small {
+    font-size: 0.75rem;
+  }
+  .modal .cta-row {
+    gap: 8px;
+  }
+  .modal .btn {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+}
+

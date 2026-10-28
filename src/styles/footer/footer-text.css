@@ -1,0 +1,32 @@
+/* Footer: one text size for every link and the copyright line (the size of Privacy Policy and Cookie Settings) */
+.footer {
+  --footer-text: 0.8rem;
+}
+.footer-links a,
+.footer-contact a,
+.footer-bottom small,
+.footer-bottom .textbtn {
+  font-size: var(--footer-text);
+}
+
+/* 404 page: smaller text and buttons, in line with the other standalone pages */
+.notfound-code {
+  font-size: clamp(3.2rem, 10vw, 6rem);
+}
+.notfound h1 {
+  font-size: clamp(1.1rem, 0.95rem + 1vw, 1.6rem);
+  line-height: 1.25;
+  margin: 6px 0 10px;
+}
+.notfound .lead {
+  font-size: clamp(0.88rem, 0.84rem + 0.2vw, 0.98rem);
+  line-height: 1.6;
+}
+.notfound .cta-row {
+  margin-top: 22px;
+}
+.notfound .btn {
+  padding: 9px 18px;
+  font-size: 0.82rem;
+}
+

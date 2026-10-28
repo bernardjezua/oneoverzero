@@ -1,7 +1,7 @@
 import { useId, useState } from 'react'
-import PageHero from '../components/PageHero.jsx'
-import Reveal from '../components/Reveal.jsx'
-import CtaBand from '../components/CtaBand.jsx'
+import PageHero from '../components/common/PageHero.jsx'
+import Reveal from '../components/common/Reveal.jsx'
+import CtaBand from '../components/cta/CtaBand.jsx'
 import { FAQS } from '../data.js'
 
 function FaqItem({ q, a, delay, open, onToggle }) {
