@@ -407,9 +407,12 @@ export const PROJECTS = [
   },
 ]
 
-// PLACEHOLDER: replace with real, approved client quotes
+// PLACEHOLDER (preview site only): every quote and name below is made up. Replace with real, approved client quotes before going live.
 export const TESTIMONIALS = [
-  { quote: 'They delivered ahead of schedule and the platform has scaled without a hitch.', name: 'Client Name', role: 'CTO, Company' },
-  { quote: 'Security reviews used to be a fire drill. Now we have continuous visibility.', name: 'Client Name', role: 'IT Director, Company' },
-  { quote: 'One team handled our cabling, cloud and applications. That simplicity is rare.', name: 'Client Name', role: 'Founder, Company' },
+  { quote: 'They delivered ahead of schedule and the platform has scaled without a hitch.', name: 'Client Name', role: 'CTO', company: 'Company Name' },
+  { quote: 'Security reviews used to be a fire drill. Now we have continuous visibility.', name: 'Client Name', role: 'IT Director', company: 'Company Name' },
+  { quote: 'One team handled our cabling, cloud and applications. That simplicity is rare.', name: 'Client Name', role: 'Founder', company: 'Company Name' },
+  { quote: 'I have worked with the One Over Zero team on two projects now, and both times they were easy to work with, clear and always on time.', name: 'Maria Santos', role: 'IT Manager', company: 'Bayanihan Logistics Corp.' },
+  { quote: 'Our old system kept breaking. They rebuilt it on open-source tools and it has run smoothly ever since. Truly amazing work.', name: 'Juan Dela Cruz', role: 'Operations Head', company: 'Luzon Health Partners' },
+  { quote: 'They explained everything in plain language and never made us feel lost. Even after launch, they still answer us within the day.', name: 'Angelica Reyes', role: 'Project Director', company: 'Pinoy Insure Group' },
 ]

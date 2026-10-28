@@ -2,10 +2,10 @@
 .page-hero .hero-canvas {
   opacity: 0.7;
 }
-/* About: the space below the scrolling client logos matches the space above them (the section's own padding supplies the rest) */
+/* About: a little more room below the scrolling client logos than above them (the section's own padding supplies the rest) */
 main.inner .about-story .logo-rows {
   margin-top: calc(var(--page-gap) * 0.5);
-  margin-bottom: 0;
+  margin-bottom: calc(var(--page-gap) * 0.25);
 }
 /* Closing call to action on the standalone pages: a tighter gap above it */
 main.inner .cta-band {

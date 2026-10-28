@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ROUTES, applyPageMeta, currentRoute, routeOf } from './routes.js'
 
 export function useReveal() {
   const ref = useRef(null)
@@ -85,4 +86,47 @@ export function useScrollProgress() {
     }
   }, [])
   return p
+}
+
+// Moves between the site's own pages without reloading them. Every page is still its own HTML file (for search engines and link previews),
+// but clicking a link inside the site swaps the page in place, so the cursor, the cookie banner and the scroll bar are not reset by a reload.
+// Links that open elsewhere (new tab, other sites, downloads, unknown addresses, keys held down) are left to the browser.
+export function useRoute() {
+  const [route, setRoute] = useState(() => currentRoute())
+
+  useEffect(() => {
+    const onPop = () => setRoute(currentRoute())
+
+    const onClick = (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+      const a = e.target instanceof Element ? e.target.closest('a[href]') : null
+      if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return
+      const url = new URL(a.href, window.location.href)
+      if (url.origin !== window.location.origin) return
+      const next = routeOf(url.pathname)
+      if (!ROUTES.includes(next)) return
+      const samePage = next === currentRoute()
+      if (samePage && url.hash) return // a jump to a spot on this page: the browser already does that
+      e.preventDefault()
+      if (!samePage) {
+        window.history.pushState(null, '', url.pathname + url.search + url.hash)
+        setRoute(next)
+        applyPageMeta(next)
+      }
+      window.requestAnimationFrame(() => {
+        const target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null
+        if (target) target.scrollIntoView()
+        else window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      })
+    }
+
+    window.addEventListener('popstate', onPop)
+    document.addEventListener('click', onClick)
+    return () => {
+      window.removeEventListener('popstate', onPop)
+      document.removeEventListener('click', onClick)
+    }
+  }, [])
+
+  return route
 }

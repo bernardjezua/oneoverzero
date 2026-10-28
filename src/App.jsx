@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Header from './components/header/Header.jsx'
 import Footer from './components/footer/Footer.jsx'
+import ClickRipple from './components/common/ClickRipple.jsx'
+import HoverRing from './components/common/HoverRing.jsx'
 import { CookieBanner, CookieDialog } from './components/legal/Legal.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
@@ -11,11 +13,11 @@ import ContactPage from './pages/ContactPage.jsx'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
 import CookiePolicyPage from './pages/CookiePolicyPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
-import { readConsent, saveConsent, useScrollProgress } from './hooks.js'
-import { ROUTES, currentRoute } from './routes.js'
+import { readConsent, saveConsent, useRoute, useScrollProgress } from './hooks.js'
+import { ROUTES } from './routes.js'
 
 export default function App() {
-  const route = currentRoute()
+  const route = useRoute()
   const progress = useScrollProgress()
   const [cookiesOpen, setCookiesOpen] = useState(false)
   const [consent, setConsent] = useState(() => readConsent())
@@ -47,6 +49,8 @@ export default function App() {
 
   return (
     <>
+      <ClickRipple />
+      <HoverRing />
       <div className="progress" style={{ '--p': progress }} aria-hidden="true" />
       <Header route={route} />
       {/* The standalone pages share one section spacing (see "inner" in index.css); the landing page keeps its own */}

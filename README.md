@@ -2,7 +2,7 @@
 
 This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Makati, Philippines, founded in 2017. It presents the company's services, products, clients and process, and has a contact form for project inquiries.
 
-It is a React 19 + Vite 8 site with a single stylesheet, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
+It is a React 19 + Vite 8 site with plain CSS split into small files, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
 
 ## Contents
 
@@ -42,7 +42,7 @@ The header links to Home, About, Services, Products, Contact and FAQ, plus a "Bo
 ## Tech stack
 
 - **React 19** for the interface, **Vite 8** for development and builds, **ESLint 10** for linting.
-- **Plain CSS** in one file, `src/index.css`, themed with CSS variables. There is no CSS framework.
+- **Plain CSS** in `src/styles/`, themed with CSS variables. There is no CSS framework.
 - **Fonts** from Google Fonts: Orbitron (headings), Exo 2 and Montserrat (body).
 - **Hosting:** Vercel, with clean URLs and no trailing slashes.
 - No router, state library or backend. The page shown is chosen from the address in the browser (see below).
@@ -131,11 +131,15 @@ oneoverzero/
     ├── data.js             Services, products, projects, stats, clients, reviews, nav links, social links
     ├── faqData.js          The FAQ questions and answers
     ├── hooks.js            useReveal, useCountUp, useScrollProgress, readConsent, saveConsent
+    ├── legalInfo.js        Company name, email, address and "last updated" date used by the legal pages
     ├── validateInquiry.js  Contact form validation rules
     ├── submitInquiry.js    Sends the contact form
-    ├── index.css           All styles
-    ├── components/         Reusable sections and widgets (Header, Footer, Hero, Services, Contact, ...)
-    └── pages/              Page-level components (AboutPage, FaqPage, LegalPages, NotFoundPage)
+    ├── index.css           Only @imports of the files in styles/, in cascade order
+    ├── styles/             CSS grouped by area (base, header, footer, hero, services, work, contact, ...)
+    ├── components/         Grouped by area: common, header, footer, hero, services, work, reviews,
+    │                       logos-stats, contact, how-we-work, cta, legal
+    └── pages/              One file per page (HomePage, AboutPage, ServicesPage, ProductsPage,
+                            ContactPage, FaqPage, PrivacyPolicyPage, CookiePolicyPage, NotFoundPage)
 ```
 
 ## How the pages are built
@@ -155,8 +159,8 @@ The standalone pages get `class="inner"` on `<main>`. That class gives them one 
 ### Adding a new page
 
 1. Add an entry to `PAGES` in `src/pageMeta.js` (`path`, `name`, `title`, `description`, and `share` if you want a link preview).
-2. Create the page component in `src/pages/` (use `PageHero` for the banner at the top).
-3. Add a line in `App.jsx`: `{route === '/your-page' && <YourPage />}`.
+2. Create `YourPage.jsx` in `src/pages/` (use `PageHero` for the banner at the top).
+3. Import it in `App.jsx` and add a line: `{route === '/your-page' && <YourPage />}`.
 4. Link to it from `NAV_LINKS` in `src/data.js` (header and footer) or from wherever it belongs.
 
 The route list, the generated HTML file and the sitemap entry follow automatically. Nothing else needs editing.
@@ -177,15 +181,15 @@ Most copy lives in data files, so you rarely need to touch components.
 | LinkedIn link                                 | `SOCIAL` in `src/data.js` (the footer shows it only when it is set)      |
 | FAQ                                           | `src/faqData.js`                                                        |
 | Page titles, descriptions, link previews      | `src/pageMeta.js`                                                       |
-| Privacy Policy and Cookie Policy text         | `src/pages/LegalPages.jsx` (update the `UPDATED` date when you change them) |
-| Company address and email                     | `ORG` in `src/pageMeta.js`, the contact section and the footer, and `LegalPages.jsx` |
+| Privacy Policy and Cookie Policy text         | `src/pages/PrivacyPolicyPage.jsx` and `CookiePolicyPage.jsx`; update `UPDATED` in `src/legalInfo.js` when you change them |
+| Company address and email                     | `ORG` in `src/pageMeta.js`, the contact section and the footer, and `src/legalInfo.js` |
 | Link preview image                            | Replace `public/og-image.png` (1200 x 630 works best)                    |
 
 ## Styling
 
-All styles are in `src/index.css`, organised as a base layer followed by blocks added for each feature. Later blocks intentionally override earlier ones, so when a rule does not seem to apply, search for a later rule with the same selector.
+Styles live in `src/styles/`, in one folder per area (for example `header/`, `hero/`, `contact/`) that matches the folders in `components/`. `src/index.css` only lists them with `@import`, and **the order of those lines is the cascade order**: later files override earlier ones, so keep the order when you move or add files. When a rule does not seem to apply, search for a later rule with the same selector.
 
-- **Theme:** colors are CSS variables at the top of the file (`--bg`, `--bg-2`, `--text`, `--muted`, `--accent`, `--accent-2`, ...). Change them there.
+- **Theme:** colors are CSS variables in `styles/base/base.css` (`--bg`, `--bg-2`, `--text`, `--muted`, `--accent`, `--accent-2`, ...). Change them there.
 - **Fonts:** `--display` (Orbitron) for headings, `--head` (Exo 2) and `--body` (Montserrat).
 - **Glass:** the `.glass` class gives the frosted-card look used across the site.
 - **Gradient text:** wrap words in `<span className="grad">` for the animated gradient.
@@ -270,5 +274,5 @@ Pushing to `main` deploys to production. Other branches get preview deployments,
 - **A new page returns 404 on Vercel:** make sure it has an entry in `PAGES` in `src/pageMeta.js`; the HTML file is generated from that list.
 - **The build warns about text length:** shorten the title, description or share text named in the warning.
 - **A hover effect does nothing on a phone:** that is intended; hover styles only apply on devices that can hover.
-- **A style change has no effect:** a later block in `src/index.css` probably overrides it. Search for the selector and edit the last match.
+- **A style change has no effect:** a later file in `src/styles/` probably overrides it. Search for the selector and edit the last match.
 - **`pnpm dev` or `build` is very slow on Windows:** move the project into the WSL file system (see Getting started).

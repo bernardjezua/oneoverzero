@@ -41,7 +41,8 @@ export default function Reviews() {
               <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption>
                 <b>{t.name}</b>
-                {t.role}
+                <span>{t.role}</span>
+                <span>{t.company}</span>
               </figcaption>
             </figure>
           ))}
