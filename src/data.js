@@ -26,42 +26,6 @@ export const PROCESS_STEPS = [
 // Kept in faqData.js so the build can read it too (see src/seo.js)
 export { FAQS } from './faqData.js'
 
-const logo = (file) => `${import.meta.env.BASE_URL}logos/${file}`
-export const CLIENT_LOGOS = [
-  { name: 'Ayala Enterprise Circle', src: logo('ayala-enterprise-circle.png') },
-  { name: 'Manila Doctors Hospital', src: logo('manila-doctors-hospital.png') },
-  { name: 'DICT', src: logo('dict.png') },
-  { name: 'UP Fighting Maroons', src: logo('fighting-maroons.png') },
-  { name: '30th SEA Games 2019', src: logo('sea-games-2019.png') },
-  { name: 'Municipality of Catarman', src: logo('catarman.png') },
-  { name: 'Meralco', src: logo('meralco.png') },
-  { name: 'Asia Select', src: logo('asia-select.png') },
-  { name: 'Pacific Union Insurance', src: logo('pacific-union.png') },
-  { name: 'Artkipelago', src: logo('artkipelago.png') },
-  { name: 'Philippine Basketball Association', src: logo('pba.png') },
-  { name: 'Inter-Ed', src: logo('inter-ed.png') },
-  { name: 'Asia Peopleworks', src: logo('asia-peopleworks.png') },
-  { name: 'Bughaw Digital', src: logo('bughaw-digital.png') },
-  { name: 'Beebeelee', src: logo('beebeelee.png') },
-  { name: '4th Wall', src: logo('4th-wall.png') },
-  { name: 'myanteroom', src: logo('myanteroom.png') },
-  { name: 'TNT Katropa', src: logo('tnt-katropa.png') },
-  { name: 'Bacoor City Strikers', src: logo('bacoor-strikers.png') },
-  { name: 'ZMG Ward Howell', src: logo('zmg-ward-howell.png') },
-  { name: 'Outbound Asia', src: logo('outbound-asia.png') },
-  { name: '11th Asian Age Group Championships', src: logo('new-clark-city.png') },
-  { name: 'Live Philippines', src: logo('live-philippines.png') },
-  { name: 'Vertere', src: logo('vertere.png') },
-  { name: 'Vibal Group', src: logo('vibal.png') },
-  { name: 'Phirst Park Homes', src: logo('phirst-park-homes.png') },
-  { name: 'Phirst Editions', src: logo('phirst-editions.png') },
-  { name: 'Phirst Centrale', src: logo('phirst-centrale.png') },
-  { name: 'Phirst Sights', src: logo('phirst-sights.png') },
-  { name: 'Shoot360 Philippines', src: logo('shoot360.png') },
-  { name: 'A7 Recruitment', src: logo('a7-recruitment.png') },
-  { name: 'Philcox Philippines', src: logo('philcox.png') },
-]
-
 
 export const STATS = [
   { value: 60, suffix: '+', label: 'Companies and Organizations Served' },
