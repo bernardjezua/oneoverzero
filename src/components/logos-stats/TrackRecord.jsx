@@ -1,4 +1,4 @@
-import ClientLogos from './ClientLogos.jsx'
+import IndustryRows from './IndustryRows.jsx'
 import Reveal from '../common/Reveal.jsx'
 import SectionHead from '../common/SectionHead.jsx'
 import Stat from './Stat.jsx'
@@ -10,11 +10,11 @@ export default function TrackRecord() {
       <div className="wrap">
         <SectionHead eyebrow="Proven Track Record" title={
             <>
-              Trusted by 30+ <span className="grad">Industry-Leading Companies</span> &amp; Growing Brands
+              Trusted by clients across <span className="grad">different industries</span>
             </>
           } />
       </div>
-      <ClientLogos />
+      <IndustryRows />
       <div className="wrap stats">
         {STATS.map((s, i) => (
           <Reveal key={s.label} delay={i * 80}>

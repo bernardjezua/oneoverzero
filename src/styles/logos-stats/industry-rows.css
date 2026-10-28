@@ -1,0 +1,35 @@
+/* Industry rows: pill-shaped chips that scroll like the old client logos (rows, spacing and the edge fade come from the logo-rows styles) */
+.industry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--glass-b);
+  border-radius: 999px;
+  background: var(--glass);
+  font-family: var(--head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text);
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.industry-chip svg {
+  flex: none;
+  color: var(--accent);
+}
+@media (hover: hover) {
+  .industry-chip:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 24px -6px rgba(var(--accent-rgb), 0.6);
+  }
+}
+@media (max-width: 720px) {
+  .industry-chip {
+    padding: 11px 18px;
+    font-size: 0.85rem;
+  }
+}

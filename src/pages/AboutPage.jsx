@@ -3,7 +3,7 @@ import Reveal from '../components/common/Reveal.jsx'
 import Stat from '../components/logos-stats/Stat.jsx'
 import HowWeWork from '../components/how-we-work/HowWeWork.jsx'
 import CtaBand from '../components/cta/CtaBand.jsx'
-import ClientLogos from '../components/logos-stats/ClientLogos.jsx'
+import IndustryRows from '../components/logos-stats/IndustryRows.jsx'
 import { STATS } from '../data.js'
 
 export default function AboutPage() {
@@ -35,7 +35,7 @@ export default function AboutPage() {
               flexibility, control and room to grow.
             </p>
             <p>
-              Today we work with more than 30 clients across government,
+              Today we work with more than 60 clients across government,
               healthcare, sports, insurance, publishing and more. We build
               websites, apps and platforms, set up the infrastructure and
               security behind them, and stay on to maintain and support what we
@@ -54,7 +54,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-        <ClientLogos />
+        <IndustryRows />
       </section>
 
       <HowWeWork>

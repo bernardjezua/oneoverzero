@@ -64,7 +64,7 @@ export const CLIENT_LOGOS = [
 
 
 export const STATS = [
-  { value: 30, suffix: '+', label: 'Direct Clients Across Industries' },
+  { value: 60, suffix: '+', label: 'Companies and Organizations Served' },
   { value: 90, suffix: '%', label: 'Client Retention' },
   { value: 10, suffix: '+', label: 'Years of Experience' },
   { value: 24, suffix: '/7', label: 'System Maintenance and Support' },

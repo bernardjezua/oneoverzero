@@ -27,8 +27,8 @@ It is a React 19 + Vite 8 site with plain CSS split into small files, no UI fram
 
 | Address           | Page           | What it shows                                                                                                  |
 | ----------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
-| `/`               | Home           | Hero, track record (stats and client logos), services, how we work, products, reviews and the contact section. |
-| `/about-us`       | About          | Company story, stats, scrolling client logos, how we work and a closing call to action.                        |
+| `/`               | Home           | Hero, track record (stats and scrolling industries), services, how we work, products, reviews and the contact section. |
+| `/about-us`       | About          | Company story, stats, scrolling industries, how we work and a closing call to action.                        |
 | `/services`       | Services       | Every service the company offers, as cards with details.                                                       |
 | `/products`       | Products       | Products and projects built by the team, with a show more / show less button.                                  |
 | `/contact`        | Contact        | The inquiry form, a map and the contact details.                                                               |
@@ -118,10 +118,9 @@ oneoverzero/
 ├── vite.config.js          Vite config plus the plugin that generates one HTML file per page
 ├── vercel.json             Clean URLs, no trailing slash
 ├── eslint.config.js
-├── public/                 Copied as-is: favicon, og-image.png, client logos, project images
-│   ├── logos/              Client logos (PNG)
+├── public/                 Copied as-is: favicon, og-image.png, project images
 │   └── projects/           Product / project screenshots
-├── archive/                Old assets kept for reference, not used by the site
+├── archive/                Old assets kept for reference, not used by the site (archive/logos/ holds the client logos: direct-clients/ and subcon-clients/)
 └── src/
     ├── main.jsx            Entry point
     ├── App.jsx             Chooses the page, owns cookie-consent state and the cookie banner
@@ -149,7 +148,7 @@ This is a **multi-page static site generated from one template**, not a single-p
 1. `index.html` is a template. It contains tokens such as the page title, description and share text.
 2. `src/pageMeta.js` lists every page with its own metadata.
 3. A small plugin in `vite.config.js` runs at build time and writes **one HTML file per page** (`index.html`, `about-us.html`, `services.html`, `404.html`, and so on) with that page's title, description, canonical link, social preview tags and structured data filled in.
-4. In the browser, `src/routes.js` reads `window.location.pathname` and `App.jsx` renders the matching page. Because each page is its own file, search engines and link previews see the correct metadata without running JavaScript.
+4. In the browser, `src/routes.js` reads `window.location.pathname` and `App.jsx` renders the matching page. Links inside the site switch pages without reloading (`useRoute` in `src/hooks.js`); a direct visit or refresh loads the page's own HTML file. Because each page is its own file, search engines and link previews see the correct metadata without running JavaScript.
 5. Vercel serves `/about-us` from `about-us.html` (`cleanUrls`) and serves `404.html` with a real 404 status for unknown addresses.
 
 In dev mode the same plugin answers every address with the template, so all pages work locally.
@@ -173,8 +172,8 @@ Most copy lives in data files, so you rarely need to touch components.
 | --------------------------------------------- | ----------------------------------------------------------------------- |
 | Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`                                             |
 | Products and projects                         | `PRODUCTS` and `PROJECTS` in `src/data.js`; images go in `public/projects/` |
-| Stats (30+ clients, 90% retention, ...)       | `STATS` in `src/data.js`                                                |
-| Client logos                                  | Add the PNG to `public/logos/`, then add an entry to `CLIENT_LOGOS` in `src/data.js` |
+| Stats (60+ companies and organizations, 90% retention, ...)       | `STATS` in `src/data.js`                                                |
+| Industries (the scrolling chips under the clients heading) | `INDUSTRIES` in `src/components/logos-stats/IndustryRows.jsx`. The old client logos are in `archive/logos/`; to bring them back, move the folder to `public/logos/` and use `ClientLogos` instead of `IndustryRows` |
 | Reviews                                       | `TESTIMONIALS` in `src/data.js`                                         |
 | How We Work steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
 | Header / footer links                         | `NAV_LINKS` in `src/data.js`                                            |
@@ -202,8 +201,9 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 - **Scroll reveal:** `Reveal` and `useReveal` fade sections in as they enter the viewport.
 - **Counters:** `useCountUp` animates the stat numbers.
 - **Scroll progress bar** at the top of the page (`useScrollProgress`).
+- **Cursor:** a custom cyan arrowhead (set inline in `index.html` so it is there from the first moment of every load). Over links and buttons it is brighter and a ring pops in around its tip (`HoverRing`); a left-click sends out a ripple (`ClickRipple`). Mouse only. Styles are in `styles/base/cursor.css`.
 - **Header** hides while scrolling down and returns when scrolling up. An open mobile menu keeps it on screen.
-- **Client logos** scroll in two endless rows, opposite directions. Reviews loop continuously.
+- **Industry chips** scroll in two endless rows, opposite directions. Reviews loop continuously.
 - **How We Work** has a space scene (stars, planet, rocket, comet).
 - **Cookie banner** slides up and fades in, then fades out after a choice. The hamburger icon turns as it swaps.
 - Animations do **not** depend on `prefers-reduced-motion`.
