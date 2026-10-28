@@ -9,9 +9,11 @@ import { validateField, validateInquiry } from '../../validateInquiry.js'
 const TIMEFRAMES = ['As soon as possible', 'Within 1 month', '1 to 3 months', '3 to 6 months', 'Just exploring']
 const SOURCES = ['Google search', 'Social media', 'Referral', 'Event or conference', 'Existing client', 'Other']
 
-// Building name plus street number (172 Salcedo Street): without the number Google pins the building next door.
-// The floor is left out because it also matches every '4th Floor' listing nearby.
-const MAP_QUERY = 'PhilCox Building, 172 Salcedo Street, Legazpi Village, Makati City, Metro Manila, Philippines'
+// The exact Google Maps listing for the building (from Share > Embed a map), so the pin is labelled PhilCox Building
+const MAP_EMBED =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.7276942153558!2d121.01293117589645!3d14.55755837812748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90c3cc2c0b7%3A0x6401322771d34782!2sPhilCox%20Building%2C%20Makati%20City%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1793157868971!5m2!1sen!2sph'
+// Used for the "Get directions" link
+const MAP_QUERY = 'PhilCox Building, Makati City, Metro Manila'
 
 const DIRECTIONS_URL = `https://www.google.com/maps/dir//${encodeURIComponent(MAP_QUERY).replace(/%20/g, '+')}`
 
@@ -152,7 +154,7 @@ export default function Contact({ page = false }) {
               <div className="map">
                 <iframe
                   title="Map showing the One Over Zero office in Legazpi Village, Makati"
-                  src={`https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=17&output=embed`}
+                  src={MAP_EMBED}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen

@@ -2,6 +2,7 @@ import Icon from '../common/Icon.jsx'
 import Reveal from '../common/Reveal.jsx'
 
 // The kinds of organizations we work with. Stands in for the client logos and scrolls the same way, in two rows going opposite ways.
+// Each row needs enough different chips to be wider than the widest screen, or the same chip shows twice at once (about 12 per row).
 const INDUSTRIES = [
   { label: 'Government', icon: 'plan' },
   { label: 'Healthcare', icon: 'shield' },
@@ -17,6 +18,20 @@ const INDUSTRIES = [
   { label: 'Recruitment', icon: 'face' },
   { label: 'Events', icon: 'rocket' },
   { label: 'Technology', icon: 'code' },
+  { label: 'Pharmaceuticals', icon: 'bug' },
+  { label: 'Food & Beverage', icon: 'sun' },
+  { label: 'Retail & E-commerce', icon: 'cart' },
+  { label: 'Oil & Gas', icon: 'container' },
+  { label: 'Fintech & Payments', icon: 'plug' },
+  { label: 'Beauty & Personal Care', icon: 'face' },
+  { label: 'Nonprofit & Community', icon: 'link' },
+  { label: 'Media & Entertainment', icon: 'play' },
+  { label: 'Logistics', icon: 'container' },
+  { label: 'Manufacturing', icon: 'wrench' },
+  { label: 'Hospitality & Travel', icon: 'pin' },
+  { label: 'Legal & Professional Services', icon: 'chat' },
+  { label: 'Cloud & IT Services', icon: 'cloud' },
+  { label: 'Security', icon: 'server' },
 ]
 
 function Row({ items, reverse }) {
