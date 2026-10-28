@@ -113,6 +113,9 @@ form .fine .textbtn {
   row-gap: 10px;
   align-items: start;
   padding: 18px 20px;
+  /* Mostly solid, so the moving lines and glow behind the contact section do not show through the text */
+  background: rgba(18, 10, 72, 0.88);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 .info-card .ico {
   width: 44px;
@@ -218,3 +221,15 @@ form select option[disabled] {
   max-width: 52ch;
 }
 
+/* Contact column reveal: the text fades in, but the info cards only slide up. Fading the whole column made the cards see-through
+   for a moment, so the moving lines behind showed through them. They now look the same all the way through. */
+.reveal.reveal-solid {
+  opacity: 1;
+  transition: transform 0.7s ease var(--d, 0ms);
+}
+.reveal-solid > * {
+  transition: opacity 0.7s ease var(--d, 0ms);
+}
+.reveal-solid:not(.in) > :not(.contact-info) {
+  opacity: 0;
+}

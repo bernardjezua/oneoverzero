@@ -118,7 +118,7 @@ export default function Contact({ page = false }) {
       <HeroCanvas />
       <div className="hero-glow" aria-hidden="true" />
       <div className="wrap contact-grid">
-        <Reveal>
+        <Reveal className="reveal-solid">
           <span className="eyebrow">Get in Touch</span>
           <Heading>
             Have an idea? Let&rsquo;s <span className="grad">make it real.</span>
