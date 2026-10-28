@@ -10,7 +10,6 @@
 // The build prints a warning if a title, description or share text is outside those lengths.
 
 export const SITE_NAME = 'One Over Zero Innovations'
-const BRAND = 'One Over Zero'
 
 // Tells search engines not to list the site. Set to false when you are ready to launch:
 // the build then also publishes sitemap.xml and robots.txt, and drops the noindex tag.
@@ -43,15 +42,15 @@ export const PAGES = [
   {
     path: '/about-us',
     name: 'About',
-    title: `About ${BRAND} | Technology Company in the Philippines`,
+    title: `About Us | ${SITE_NAME}`,
     description:
-      'Meet One Over Zero, a Philippines-based technology company founded in 2017. We build open-source and enterprise software, and support what we deliver.',
-    share: 'A technology company in the Philippines that builds software and supports the systems behind it.',
+      'One Over Zero is a technology company in the Philippines founded in 2017. We build open-source and enterprise software, and support what we deliver.',
+    share: 'One Over Zero is a technology company in the Philippines that builds software and supports the systems behind it.',
   },
   {
     path: '/services',
     name: 'Services',
-    title: `Software, Cloud, Security & IT Services | ${BRAND}`,
+    title: `Services | ${SITE_NAME}`,
     description:
       'Software development, CMS, cloud, data centers, networking, cybersecurity, digital marketing and ongoing IT support from one Philippine team.',
     share: 'Software, infrastructure, security and ongoing support from one team.',
@@ -59,7 +58,7 @@ export const PAGES = [
   {
     path: '/products',
     name: 'Products',
-    title: `Our Products: HRIS, POS, Booking & AR Games | ${BRAND}`,
+    title: `Our Products | ${SITE_NAME}`,
     description:
       'Explore products built by One Over Zero: an HRIS and payroll system, a POS, a booking platform, AR and mobile games, and a 3D avatar lounge.',
     share: 'A look at the apps, games and platforms we have built.',
@@ -67,7 +66,7 @@ export const PAGES = [
   {
     path: '/contact',
     name: 'Contact',
-    title: `Contact ${BRAND} | Book a Consultation in Makati`,
+    title: `Contact Us | ${SITE_NAME}`,
     description:
       'Tell us about your project. Contact One Over Zero in Legazpi Village, Makati, by form or at support@oneoverzero.com.ph to book a consultation.',
     share: 'Tell us about your project and our team will get back to you shortly.',
@@ -75,7 +74,7 @@ export const PAGES = [
   {
     path: '/faq',
     name: 'FAQ',
-    title: `FAQ: Timelines, Pricing & Support | ${BRAND}`,
+    title: `Frequently Asked Questions | ${SITE_NAME}`,
     description:
       'Answers about getting started, project timelines, pricing, support after launch and working with your existing systems at One Over Zero.',
     share: 'Answers to common questions about getting started, timelines, pricing and support.',
@@ -97,7 +96,7 @@ export const PAGES = [
   {
     path: '/404',
     name: 'Page not found',
-    title: `Page not found | ${SITE_NAME}`,
+    title: `Page Not Found | ${SITE_NAME}`,
     description: "This page can't be found.",
     notFound: true,
   },
