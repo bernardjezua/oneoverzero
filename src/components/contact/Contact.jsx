@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Icon from '../common/Icon.jsx'
 import HeroCanvas from '../hero/HeroCanvas.jsx'
+import Constellation from './Constellation.jsx'
 import Reveal from '../common/Reveal.jsx'
 import { SERVICES } from '../../data.js'
 import { submitInquiry } from '../../submitInquiry.js'
@@ -121,13 +122,13 @@ export default function Contact({ page = false }) {
       <div className="hero-glow" aria-hidden="true" />
       <div className="wrap contact-grid">
         <Reveal className="reveal-solid">
-          <span className="eyebrow">Get in Touch</span>
+          <Constellation />
+          <span className="eyebrow">Get In Touch</span>
           <Heading>
-            Have an idea? Let&rsquo;s <span className="grad">make it real.</span>
+            One conversation. <span className="grad">Infinite possibilities.</span>
           </Heading>
           <p className="lead">
-            Whether it&rsquo;s a new platform, a design review or an infrastructure upgrade, share what you&rsquo;re working on and
-            our team will get back to you shortly.
+            Every project on this page started with a single conversation. Book a consultation, request a product demo, or simply tell us what you need, and we&rsquo;ll take it from there.
           </p>
           <div className="contact-info">
             <a className="info-card glass lift" href="mailto:support@oneoverzero.com.ph">

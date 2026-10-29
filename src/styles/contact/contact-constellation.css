@@ -1,0 +1,99 @@
+/* Contact: Ursa Minor made of our products, ending in "Your project" */
+.constellation {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  margin: 0 0 20px;
+  overflow: visible;
+}
+.constellation-line {
+  fill: none;
+  stroke: rgba(183, 244, 238, 0.3);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+.constellation-star {
+  fill: var(--accent-2);
+  animation: constellation-twinkle 3.2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+.constellation-glow {
+  fill: rgba(var(--accent-rgb), 0.22);
+  animation: constellation-pulse 3.6s ease-in-out infinite;
+}
+.constellation-label {
+  fill: var(--muted);
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 500;
+}
+.constellation-label.strong {
+  fill: var(--accent);
+  font-weight: 700;
+}
+@keyframes constellation-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes constellation-pulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* Hover: each star glows (halo, brighter star, brighter label), and "Your project" glows with the One Over Zero mark */
+.node-hit {
+  fill: transparent;
+}
+.node-halo {
+  fill: rgba(var(--accent-rgb), 0.4);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.constellation-star,
+.constellation-label {
+  transition: fill 0.3s, filter 0.3s;
+}
+.constellation-glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s, fill 0.3s;
+}
+.node-mark {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s, filter 0.3s;
+}
+@media (hover: hover) {
+  .constellation-node:hover .node-halo {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .constellation-node:hover .constellation-star {
+    fill: #fff;
+    filter: drop-shadow(0 0 5px rgba(var(--accent-rgb), 1));
+  }
+  .constellation-node:hover .constellation-label {
+    fill: var(--accent-2);
+  }
+  .constellation-node.polaris:hover .constellation-glow {
+    fill: rgba(var(--accent-rgb), 0.5);
+    transform: scale(1.35);
+  }
+  .constellation-node.polaris:hover .node-mark {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 6px rgba(183, 244, 238, 0.95));
+  }
+}

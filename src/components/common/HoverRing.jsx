@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 // Anything the visitor can click (the same things that get the brighter arrowhead in styles/base/cursor.css)
 const CLICKABLE =
-  'a[href], button, [role="button"], summary, label, select, input[type="checkbox"], input[type="radio"], input[type="submit"], .btn'
+  'a[href], button, [role="button"], summary, label, select, input[type="checkbox"], input[type="radio"], input[type="submit"], .btn, .constellation-node'
 
 // A cyan ring that follows the mouse and pops in around the cursor tip over links and buttons. A cursor image can't animate,
 // so the ring is a page element moved with the pointer. Mouse only, and it never blocks a click.

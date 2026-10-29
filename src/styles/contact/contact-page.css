@@ -15,7 +15,7 @@
   }
 }
 
-/* About: set "Our story" apart from "How we work" with its own tone (no outline) */
+/* About: set "Our story" apart from "How we deliver" with its own tone (no outline) */
 .about-story {
   background:
     radial-gradient(50% 70% at 0% 0%, rgba(110, 70, 230, 0.2), transparent 70%),
@@ -31,7 +31,7 @@
   line-height: 1.2;
 }
 .contact-page .lead {
-  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.02rem);
+  font-size: var(--desc-size-sm);
   line-height: 1.65;
 }
 

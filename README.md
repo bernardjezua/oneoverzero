@@ -1,6 +1,6 @@
 # One Over Zero Innovations: Company Website
 
-This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Makati, Philippines, founded in 2017. It presents the company's services, products, clients and process, and has a contact form for project inquiries.
+This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Makati, Philippines, founded in 2017. It presents the company's services, products, the industries it serves, client reviews and how it delivers, and has a contact form for project inquiries.
 
 It is a React 19 + Vite 8 site with plain CSS split into small files, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
 
@@ -27,17 +27,17 @@ It is a React 19 + Vite 8 site with plain CSS split into small files, no UI fram
 
 | Address           | Page           | What it shows                                                                                                  |
 | ----------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
-| `/`               | Home           | Hero, track record (stats and scrolling industries), services, how we work, products, reviews and the contact section. |
-| `/about-us`       | About          | Company story, stats, scrolling industries, how we work and a closing call to action.                        |
-| `/services`       | Services       | Every service the company offers, as cards with details.                                                       |
-| `/products`       | Products       | Products and projects built by the team, with a show more / show less button.                                  |
+| `/`               | Home           | Hero, About, "Why Choose 1/0" (industries and stats), services (flip cards), how we deliver, products, reviews (slider), FAQ and the contact section. |
+| `/about`          | About          | Company story, stats, scrolling industries, how we deliver and a closing call to action (formerly `/about-us`, which redirects here). |
+| `/services`       | Services       | Every service as a card that flips: click a card to see when the service is ideal, with an example.            |
+| `/work`           | Products       | Every product and project built by the team (formerly `/products`, which redirects here).                       |
 | `/contact`        | Contact        | The inquiry form, a map and the contact details.                                                               |
 | `/faq`            | FAQ            | Two-column accordion of common questions.                                                                      |
 | `/privacy-policy` | Privacy Policy | Written for the Philippine Data Privacy Act of 2012 (RA 10173).                                                |
 | `/cookie-policy`  | Cookie Policy  | The cookies used, consent, and a button that opens Cookie Settings.                                            |
 | `/404`            | Not found      | Shown for any unknown address (a real 404 response on Vercel).                                                 |
 
-The header links to Home, About, Services, Products, Contact and FAQ, plus a "Book a Consultation" button. The legal pages are linked from the footer, the cookie banner and the contact form.
+The header links to Home, About, Services, Products and FAQ, plus a "Contact Us" button that goes to `/contact` (the footer links to every page, including Contact). On the home page the hero buttons go to `/services` and `/work`, and the "Book a Consultation" button under the products description goes to `/contact`. The legal pages are linked from the footer, the cookie banner and the contact form.
 
 ## Tech stack
 
@@ -116,7 +116,7 @@ pnpm build
 oneoverzero/
 ├── index.html              Template for every page (tokens are filled in at build time)
 ├── vite.config.js          Vite config plus the plugin that generates one HTML file per page
-├── vercel.json             Clean URLs, no trailing slash
+├── vercel.json             Clean URLs, no trailing slash, and redirects from old addresses (/products to /work, /about-us to /about)
 ├── eslint.config.js
 ├── public/                 Copied as-is: favicon, og-image.png, project images
 │   └── projects/           Product / project screenshots
@@ -127,7 +127,7 @@ oneoverzero/
     ├── routes.js           Reads the current address and lists the valid routes
     ├── pageMeta.js         Every page's address, title, description and share text (SEO)
     ├── seo.js              Structured data (JSON-LD) for search engines
-    ├── data.js             Services, products, projects, stats, clients, reviews, nav links, social links
+    ├── data.js             Services, projects, stats, reviews, nav links, social links
     ├── faqData.js          The FAQ questions and answers
     ├── hooks.js            useReveal, useCountUp, useScrollProgress, readConsent, saveConsent
     ├── legalInfo.js        Company name, email, address and "last updated" date used by the legal pages
@@ -136,8 +136,8 @@ oneoverzero/
     ├── index.css           Only @imports of the files in styles/, in cascade order
     ├── styles/             CSS grouped by area (base, header, footer, hero, services, work, contact, ...)
     ├── components/         Grouped by area: common, header, footer, hero, services, work, reviews,
-    │                       logos-stats, contact, how-we-work, cta, legal
-    └── pages/              One file per page (HomePage, AboutPage, ServicesPage, ProductsPage,
+    │                       logos-stats, contact, how-we-deliver, about, faq, cta, legal
+    └── pages/              One file per page (HomePage, AboutPage, ServicesPage, WorkPage,
                             ContactPage, FaqPage, PrivacyPolicyPage, CookiePolicyPage, NotFoundPage)
 ```
 
@@ -147,9 +147,9 @@ This is a **multi-page static site generated from one template**, not a single-p
 
 1. `index.html` is a template. It contains tokens such as the page title, description and share text.
 2. `src/pageMeta.js` lists every page with its own metadata.
-3. A small plugin in `vite.config.js` runs at build time and writes **one HTML file per page** (`index.html`, `about-us.html`, `services.html`, `404.html`, and so on) with that page's title, description, canonical link, social preview tags and structured data filled in.
+3. A small plugin in `vite.config.js` runs at build time and writes **one HTML file per page** (`index.html`, `about.html`, `services.html`, `404.html`, and so on) with that page's title, description, canonical link, social preview tags and structured data filled in.
 4. In the browser, `src/routes.js` reads `window.location.pathname` and `App.jsx` renders the matching page. Links inside the site switch pages without reloading (`useRoute` in `src/hooks.js`); a direct visit or refresh loads the page's own HTML file. Because each page is its own file, search engines and link previews see the correct metadata without running JavaScript.
-5. Vercel serves `/about-us` from `about-us.html` (`cleanUrls`) and serves `404.html` with a real 404 status for unknown addresses.
+5. Vercel serves `/about` from `about.html` (`cleanUrls`) and serves `404.html` with a real 404 status for unknown addresses. The old addresses `/products` and `/about-us` are redirected by `vercel.json` (this works on Vercel, not in `pnpm preview`, which only serves the `.html` files).
 
 In dev mode the same plugin answers every address with the template, so all pages work locally.
 
@@ -170,13 +170,15 @@ Most copy lives in data files, so you rarely need to touch components.
 
 | To change...                                  | Edit                                                                    |
 | --------------------------------------------- | ----------------------------------------------------------------------- |
-| Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`                                             |
-| Products and projects                         | `PRODUCTS` and `PROJECTS` in `src/data.js`; images go in `public/projects/` |
-| Stats (60+ companies and organizations, 90% retention, ...)       | `STATS` in `src/data.js`                                                |
-| Industries (the scrolling chips under the clients heading) | `INDUSTRIES` in `src/components/logos-stats/IndustryRows.jsx`. The old client logos are in `archive/logos/`; to bring them back, move the folder to `public/logos/` and use `ClientLogos` instead of `IndustryRows` |
-| Reviews                                       | `TESTIMONIALS` in `src/data.js`                                         |
-| How We Work steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
-| Header / footer links                         | `NAV_LINKS` in `src/data.js`                                            |
+| Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`: `summary` is the front of the card, `ideal` and `example` are the back |
+| Products and projects (the cards)             | `PROJECTS` in `src/data.js`; images go in `public/projects/`. (`PRODUCTS` in the same file is an older list that no page uses.) |
+| Stats (60+ companies and organizations, 93% retention, ...)       | `STATS` in `src/data.js`                                                |
+| Industries (the scrolling chips under the "Why Choose 1/0" heading) | `INDUSTRIES` in `src/components/logos-stats/IndustryRows.jsx`. The old client logos are in `archive/logos/`. To bring them back: move the folder to `public/logos/`, restore the `CLIENT_LOGOS` list in `src/data.js` (it was removed, see the git history), and use `ClientLogos` instead of `IndustryRows` |
+| Reviews                                       | `TESTIMONIALS` in `src/data.js`. They show 3 at a time on desktop, 2 on tablets and 1 on phones; the arrows move a whole page. **All current quotes are placeholders.** |
+| How We Deliver steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
+| Header / footer links                         | `NAV_LINKS` in `src/data.js` (the header leaves out Contact, because it has the "Contact Us" button) |
+| The three "what we stand for" cards in About  | `PILLARS` in `src/components/about/AboutSection.jsx`                    |
+| The constellation above the contact form      | `STARS` and `POLARIS` in `src/components/contact/Constellation.jsx`     |
 | LinkedIn link                                 | `SOCIAL` in `src/data.js` (the footer shows it only when it is set)      |
 | FAQ                                           | `src/faqData.js`                                                        |
 | Page titles, descriptions, link previews      | `src/pageMeta.js`                                                       |
@@ -190,9 +192,11 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 
 - **Theme:** colors are CSS variables in `styles/base/base.css` (`--bg`, `--bg-2`, `--text`, `--muted`, `--accent`, `--accent-2`, ...). Change them there.
 - **Fonts:** `--display` (Orbitron) for headings, `--head` (Exo 2) and `--body` (Montserrat).
+- **Text sizes:** description text uses one shared size, `--desc-size` (hero paragraph, section subtitles, page intros, card descriptions, FAQ answers, legal text). `--desc-size-sm` is a step smaller, for dense cards (How we deliver steps, product cards) and the contact intro. Change them in `styles/base/base.css` and the whole site follows. Paragraph color is `--muted`.
 - **Glass:** the `.glass` class gives the frosted-card look used across the site.
 - **Gradient text:** wrap words in `<span className="grad">` for the animated gradient.
-- **Responsive:** the main breakpoints are 1000px, 860px and 720px, with smaller tweaks near 400px.
+- **Section backgrounds:** the landing page sections each have their own tone (`base/section-backgrounds-final.css`, plus `work/products-background.css` for products). The standalone pages (About, Services, Products, FAQ and the legal pages) share one indigo, set in one rule in `pages/standalone-backgrounds-logos.css`.
+- **Responsive:** the main breakpoints are 1000px, 860px and 720px, with smaller tweaks near 400px. The "What we offer" cards are 3 across, then 2, and stay 2 across on phones (1 below 360px).
 - **Hover effects** are wrapped in `@media (hover: hover)` so touch screens never get a hover state stuck after a tap. Touch devices get a short press effect (`:active`) instead.
 
 ## Animations and interactions
@@ -203,8 +207,13 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 - **Scroll progress bar** at the top of the page (`useScrollProgress`).
 - **Cursor:** a custom cyan arrowhead (set inline in `index.html` so it is there from the first moment of every load). Over links and buttons it is brighter and a ring pops in around its tip (`HoverRing`); a left-click sends out a ripple (`ClickRipple`). Mouse only. Styles are in `styles/base/cursor.css`.
 - **Header** hides while scrolling down and returns when scrolling up. An open mobile menu keeps it on screen.
-- **Industry chips** scroll in two endless rows, opposite directions. Reviews loop continuously.
-- **How We Work** has a space scene (stars, planet, rocket, comet).
+- **Industry chips** scroll in two endless rows, opposite directions.
+- **Reviews** are a slider: 3 cards at a time on desktop, 2 on tablets, 1 on phones. The arrows move a whole page and are disabled at either end, the dots jump to a page, and a swipe works on touch screens.
+- **Flip cards (What we offer):** click or tap anywhere on a card, or press Enter or Space on it, and it turns over to show when the service is ideal and an example. The turned-away face is `visibility: hidden`, so only the visible one can be reached by keyboard or screen reader. The flipped state lives on an inner element because `Reveal` adds its own class to the outer one.
+- **About (landing page)** has a logo that sits in slowly turning rings and glows when hovered, twinkling stars with an occasional shooting star, and cards with a light sweeping across their top edge.
+- **Constellation (contact section):** Ursa Minor drawn from our products, ending in "Your project" with the logo as Polaris. Each star glows on hover, and the stars use the site's cursor and ring (`.constellation-node` is in the clickable list in `HoverRing.jsx` and `cursor.css`).
+- **Jumping to a section:** `scroll-padding-top` is `0`, because the header slides away when the page scrolls down. A jump puts the section's top edge at the very top of the screen.
+- **How We Deliver** has a space scene (stars, planet, rocket, comet), and each step's icon tilts a little on hover.
 - **Cookie banner** slides up and fades in, then fades out after a choice. The hamburger icon turns as it swaps.
 - Animations do **not** depend on `prefers-reduced-motion`.
 
@@ -251,7 +260,7 @@ The site is deployed on Vercel from the `main` branch.
 
 - **Build command:** `pnpm build`
 - **Output directory:** `dist`
-- **`vercel.json`:** `cleanUrls: true` and `trailingSlash: false`, so `/about-us.html` redirects to `/about-us`.
+- **`vercel.json`:** `cleanUrls: true` and `trailingSlash: false`, so `/about.html` redirects to `/about`. It also redirects the old addresses `/products` to `/work` and `/about-us` to `/about` (permanent redirects). If you rename a page again, add a redirect for its old address here.
 
 Pushing to `main` deploys to production. Other branches get preview deployments, which are also useful for checking link previews.
 
@@ -262,16 +271,19 @@ Pushing to `main` deploys to production. Other branches get preview deployments,
 - [ ] Set `NOINDEX = false` in `src/pageMeta.js`.
 - [ ] Confirm the LinkedIn URL in `ORG` (`src/pageMeta.js`) and `SOCIAL` (`src/data.js`). It is a temporary, unconfirmed link.
 - [ ] Shorten the home page `share` text to 200 characters or fewer (the build warns it is 241).
+- [ ] Replace the placeholder reviews (`TESTIMONIALS` in `src/data.js`) with real, approved client quotes. Most are generic "Client Name / Company Name" entries.
 - [ ] Have the Privacy Policy and Cookie Policy reviewed, and update their dates.
 - [ ] Add the analytics scripts behind the consent check, or remove Google Analytics from the policies if unused.
 - [ ] Check every page on a real phone (iPhone Safari and Android Chrome) and in dark and light device settings.
 - [ ] Check link previews on Discord, Facebook and LinkedIn after the final domain is live.
+- [ ] Open `/products` and `/about-us` on the deployed site and check they redirect to `/work` and `/about`.
 - [ ] Run `pnpm lint` and `pnpm build` with no errors.
 
 ## Troubleshooting
 
 - **A page shows the wrong title in a link preview:** previews are cached by Discord, Facebook and LinkedIn. Use their debugger tools to refresh, or wait.
 - **A new page returns 404 on Vercel:** make sure it has an entry in `PAGES` in `src/pageMeta.js`; the HTML file is generated from that list.
+- **`/products` or `/about-us` shows the 404 page locally:** the redirects are in `vercel.json` and only run on Vercel. Locally, use `/work` and `/about`.
 - **The build warns about text length:** shorten the title, description or share text named in the warning.
 - **A hover effect does nothing on a phone:** that is intended; hover styles only apply on devices that can hover.
 - **A style change has no effect:** a later file in `src/styles/` probably overrides it. Search for the selector and edit the last match.

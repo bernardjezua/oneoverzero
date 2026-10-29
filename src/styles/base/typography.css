@@ -10,7 +10,7 @@ li {
   text-wrap: pretty;
 }
 .hero h1 {
-  font-size: clamp(1.75rem, 1rem + 3.4vw, 3.5rem);
+  font-size: clamp(1.5rem, 0.9rem + 2.7vw, 2.8rem);
   line-height: 1.12;
 }
 .section-head h2,
@@ -28,13 +28,13 @@ li {
 }
 .section-head p,
 .panel-intro p,
-.card p,
-.quote blockquote {
+.card p {
   font-size: clamp(0.9rem, 0.86rem + 0.2vw, 1rem);
   line-height: 1.6;
 }
 .section-head p {
   max-width: 60ch;
+  font-size: var(--desc-size);
 }
 .tabs button {
   font-size: clamp(0.8rem, 0.76rem + 0.2vw, 0.88rem);

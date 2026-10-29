@@ -86,8 +86,16 @@
   box-shadow: none;
 }
 
-/* Smaller hero description */
+/* Hero description: the same size as the other intro text on the site (section subtitles, page banners, the contact intro) */
 .hero .lead {
-  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  font-size: var(--desc-size);
 }
 
+
+/* Hero: the tag sits above the headline */
+.hero-inner .eyebrow {
+  margin-bottom: 0;
+}
+.hero-inner .eyebrow + h1 {
+  margin-top: 16px;
+}

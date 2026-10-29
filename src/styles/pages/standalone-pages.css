@@ -56,7 +56,7 @@ main.inner ~ .footer {
 }
 /* About: the story paragraphs use the same text size as the intro under the page heading (the stat labels beside them are untouched) */
 .about-grid > :first-child > p {
-  font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.02rem);
+  font-size: var(--desc-size);
   line-height: 1.65;
 }
 /* Phones: section headings and their descriptions are centered (landing page, standalone pages, contact and the About story) */

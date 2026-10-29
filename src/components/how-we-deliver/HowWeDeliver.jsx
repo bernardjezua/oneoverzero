@@ -4,13 +4,13 @@ import SectionHead from '../common/SectionHead.jsx'
 import SpaceBackdrop from './SpaceBackdrop.jsx'
 import { PROCESS_STEPS } from '../../data.js'
 
-export default function HowWeWork({ children }) {
+export default function HowWeDeliver({ children }) {
   return (
     <section className="section process" id="process">
       <SpaceBackdrop />
       <div className="wrap">
         <SectionHead
-          eyebrow="How We Work"
+          eyebrow="How We Deliver"
           title={
             <>
               From first idea to <span className="grad">launch and beyond</span>

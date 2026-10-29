@@ -1,5 +1,4 @@
 import HeroCanvas from '../components/hero/HeroCanvas.jsx'
-import Icon from '../components/common/Icon.jsx'
 
 export default function NotFoundPage() {
   return (
@@ -14,10 +13,10 @@ export default function NotFoundPage() {
         <p className="lead">The page you are looking for may have moved, or the link may be mistyped.</p>
         <div className="cta-row">
           <a className="btn btn-primary" href="/">
-            Back to home <Icon name="arrow" size={16} />
+            Back to Home
           </a>
           <a className="btn btn-glass" href="/contact">
-            Contact us
+            Contact Us
           </a>
         </div>
       </div>

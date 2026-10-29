@@ -27,3 +27,75 @@
   z-index: 1;
 }
 
+/* Landing page: About is the first section under the hero (its own violet tone, so it does not blend into the clients section after it); the FAQ sits just above contact */
+.about-home {
+  background:
+    radial-gradient(55% 80% at 100% 0%, rgba(130, 90, 245, 0.32), transparent 70%),
+    radial-gradient(40% 60% at 0% 100%, rgba(var(--accent-rgb), 0.1), transparent 70%),
+    linear-gradient(180deg, #170e56, #130b4c);
+}
+.about-home .section-head {
+  max-width: 760px;
+  margin-bottom: 0;
+}
+.faq {
+  /* The same indigo as the standalone Services and FAQ pages */
+  background:
+    radial-gradient(50% 70% at 0% 0%, rgba(110, 70, 230, 0.2), transparent 70%),
+    radial-gradient(40% 60% at 100% 100%, rgba(var(--accent-rgb), 0.08), transparent 70%),
+    #1b1263;
+}
+/* About (landing page): the One Over Zero mark beside the text */
+.about-home-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(32px, 8vw, 96px);
+}
+.about-home-mark {
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 860px) {
+  .about-home-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-home-mark {
+    order: -1;
+    justify-self: center;
+  }
+}
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.about-pillar {
+  padding: 26px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+.about-pillar h3 {
+  font-size: clamp(1.02rem, 0.95rem + 0.4vw, 1.2rem);
+}
+.about-pillar p {
+  color: var(--muted);
+  font-size: var(--desc-size);
+  line-height: 1.6;
+}
+@media (max-width: 860px) {
+  .about-pillars {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .about-pillar {
+    padding: 20px;
+  }
+}
+/* The three About cards are centered: icon, title and text */
+.about-pillar {
+  justify-items: center;
+  text-align: center;
+}

@@ -1,7 +1,7 @@
 import PageHero from '../components/common/PageHero.jsx'
 import Reveal from '../components/common/Reveal.jsx'
 import Stat from '../components/logos-stats/Stat.jsx'
-import HowWeWork from '../components/how-we-work/HowWeWork.jsx'
+import HowWeDeliver from '../components/how-we-deliver/HowWeDeliver.jsx'
 import CtaBand from '../components/cta/CtaBand.jsx'
 import IndustryRows from '../components/logos-stats/IndustryRows.jsx'
 import { STATS } from '../data.js'
@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About"
+        eyebrow="About Us"
         title={
           <>
             Defining infinite possibilities through <span className="grad">intelligent tech</span>
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <section className="section about-story">
         <div className="wrap about-grid">
           <Reveal>
-            <span className="eyebrow">Our Story</span>
+            <span className="eyebrow">Our History</span>
             <h2>
               Built on <span className="grad">open-source technology</span>, since 2017
             </h2>
@@ -57,9 +57,9 @@ export default function AboutPage() {
         <IndustryRows />
       </section>
 
-      <HowWeWork>
+      <HowWeDeliver>
         <CtaBand />
-      </HowWeWork>
+      </HowWeDeliver>
     </>
   );
 }

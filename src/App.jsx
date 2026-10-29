@@ -6,7 +6,7 @@ import HoverRing from './components/common/HoverRing.jsx'
 import { CookieBanner, CookieDialog } from './components/legal/Legal.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
-import ProductsPage from './pages/ProductsPage.jsx'
+import WorkPage from './pages/WorkPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
@@ -57,8 +57,8 @@ export default function App() {
       <main className={route !== '/' && ROUTES.includes(route) ? 'inner' : undefined}>
         {route === '/' && <HomePage />}
         {route === '/services' && <ServicesPage />}
-        {route === '/products' && <ProductsPage />}
-        {route === '/about-us' && <AboutPage />}
+        {route === '/work' && <WorkPage />}
+        {route === '/about' && <AboutPage />}
         {route === '/faq' && <FaqPage />}
         {route === '/contact' && <ContactPage />}
         {route === '/privacy-policy' && <PrivacyPolicyPage />}

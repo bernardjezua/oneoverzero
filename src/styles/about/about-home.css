@@ -1,0 +1,151 @@
+/* About (landing page): motion. The stars sit behind everything; the text, mark and cards stay above them. */
+.about-home {
+  overflow: hidden;
+}
+.about-home > .wrap {
+  position: relative;
+  z-index: 1;
+}
+.about-home .section-head .about-btn {
+  margin-top: 24px;
+}
+/* The same size as the "Explore Our Services" button in the hero */
+@media (max-width: 1000px) {
+  .about-btn {
+    padding: 9px 22px;
+  }
+}
+
+/* The mark at the centre of turning rings */
+.about-home-mark {
+  background: none;
+  padding: 0;
+}
+.about-orbit {
+  display: block;
+  width: clamp(220px, 28vw, 320px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 28px rgba(var(--accent-rgb), 0.3));
+}
+.about-ring {
+  fill: none;
+  stroke: rgba(183, 244, 238, 0.22);
+  stroke-width: 1;
+}
+.about-ring.r1 {
+  stroke-dasharray: 3 9;
+  transform-origin: 150px 150px;
+  animation: about-turn 60s linear infinite;
+}
+.about-ring.r2 {
+  stroke: rgba(183, 244, 238, 0.16);
+}
+.about-ring.r3 {
+  stroke: rgba(var(--accent-rgb), 0.3);
+  transform-origin: 150px 150px;
+  animation: about-breathe 4s ease-in-out infinite;
+}
+.about-spin {
+  transform-origin: 150px 150px;
+  animation: about-turn 24s linear infinite;
+}
+.about-spin.rev {
+  animation-duration: 32s;
+  animation-direction: reverse;
+}
+.about-mark {
+  transform-origin: 150px 150px;
+  animation: about-float 6s ease-in-out infinite;
+}
+@keyframes about-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes about-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+@keyframes about-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+
+/* Cards: a light sweeps across the top edge, the icon glows, and it tilts a little on hover */
+.about-pillar {
+  position: relative;
+  overflow: hidden;
+}
+.about-pillar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: about-sweep 5s ease-in-out infinite;
+}
+.about-pillar:nth-child(2)::before {
+  animation-delay: 1.6s;
+}
+.about-pillar:nth-child(3)::before {
+  animation-delay: 3.2s;
+}
+@keyframes about-sweep {
+  0% {
+    left: -40%;
+  }
+  60%,
+  100% {
+    left: 100%;
+  }
+}
+.about-pillar .ico {
+  transition: transform 0.35s;
+}
+@media (hover: hover) {
+  .about-pillar:hover .ico {
+    transform: translateY(-3px) scale(1.1) rotate(-6deg);
+  }
+}
+@media (max-width: 860px) {
+  .about-orbit {
+    width: 180px;
+  }
+}
+
+/* Hovering the mark makes it glow: the halo grows, the rings brighten and it swells slightly */
+.about-orbit {
+  transition: filter 0.4s, transform 0.4s;
+}
+.about-ring,
+.about-mark {
+  transition: stroke 0.4s, filter 0.4s;
+}
+@media (hover: hover) {
+  .about-home-mark:hover .about-orbit {
+    filter: drop-shadow(0 0 16px rgba(var(--accent-rgb), 0.85)) drop-shadow(0 0 48px rgba(var(--accent-rgb), 0.55));
+    transform: scale(1.05);
+  }
+  .about-home-mark:hover .about-ring {
+    stroke: rgba(183, 244, 238, 0.5);
+  }
+  .about-home-mark:hover .about-mark {
+    filter: drop-shadow(0 0 8px rgba(183, 244, 238, 0.9));
+  }
+}

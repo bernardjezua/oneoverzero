@@ -48,25 +48,24 @@ export default function Hero() {
         ))}
       </div>
       <div className="wrap hero-inner">
+        <span className="eyebrow">Defining Infinite Possibilities</span>
         <h1>
-          Defining Infinite <span className="grad">Possibilities</span>
+          One team. Zero hassle. <span className="grad">Software and systems that deliver.</span>
         </h1>
         <p className="lead">
-          Founded in 2017, One Over Zero provides software development and
-          system integration services built around open-source technologies and
-          enterprise solutions, helping organizations achieve operational
-          efficiency.
+          From custom applications to cloud infrastructure and cybersecurity, we design, build and maintain the
+          technology that helps organizations across industries operate more efficiently.
         </p>
         <div className="cta-row">
-          <a className="btn btn-primary" href="#services">
+          <a className="btn btn-primary" href="/services">
             Explore Our Services
           </a>
-          <a className="btn btn-glass" href="#work">
+          <a className="btn btn-glass" href="/work">
             See What We&rsquo;ve Built
           </a>
         </div>
       </div>
-      <a className="scroll-cue" href="#clients" aria-label="Scroll down">
+      <a className="scroll-cue" href="#about" aria-label="Scroll down">
         <span className="mouse" aria-hidden="true" />
         <span>Scroll</span>
       </a>

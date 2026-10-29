@@ -3,6 +3,9 @@ import Icon from '../common/Icon.jsx'
 import Logo from '../common/Logo.jsx'
 import { NAV_LINKS } from '../../data.js'
 
+// The "Contact Us" button goes to the same page as the Contact link, so the header only needs the button (the footer keeps the link)
+const HEADER_LINKS = NAV_LINKS.filter((l) => l.href !== '/contact')
+
 export default function Header({ route = '/' }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -34,7 +37,7 @@ export default function Header({ route = '/' }) {
       <div className="wrap header-inner">
         <Logo href="/" />
         <nav className={`nav ${open ? 'open' : ''}`} aria-label="Primary">
-          {NAV_LINKS.map((l) => (
+          {HEADER_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -46,7 +49,7 @@ export default function Header({ route = '/' }) {
             </a>
           ))}
           <a className="btn btn-glow nav-cta" href="/contact" onClick={() => setOpen(false)}>
-            Book a Consultation
+            Contact Us
           </a>
         </nav>
         <button className="icon-btn menu-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label="Toggle menu">

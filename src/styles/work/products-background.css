@@ -1,10 +1,4 @@
-/* Products: distinct background */
-.work {
-  background:
-    radial-gradient(55% 45% at 12% 0%, rgba(130, 60, 220, 0.38), transparent 70%),
-    radial-gradient(45% 45% at 92% 100%, rgba(var(--accent-rgb), 0.16), transparent 70%),
-    linear-gradient(180deg, #1b0b5e, #0f0647);
-}
+/* Products: distinct background (set at the bottom of this file) */
 .work .shots {
   margin-top: clamp(40px, 6vw, 72px);
 }
@@ -45,7 +39,7 @@
 }
 .project-body p {
   color: var(--muted);
-  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.95rem);
+  font-size: var(--desc-size-sm);
   line-height: 1.6;
 }
 .project-body .chips {
@@ -62,3 +56,30 @@
   }
 }
 
+
+/* Products on the landing page: dark indigo with a soft glow, and slightly lighter cards (the standalone /products page uses the shared indigo, see standalone-backgrounds-logos.css) */
+.work {
+  background:
+    radial-gradient(55% 50% at 8% 0%, rgba(120, 85, 235, 0.32), transparent 70%),
+    radial-gradient(50% 50% at 95% 100%, rgba(var(--accent-rgb), 0.16), transparent 70%),
+    #171435;
+}
+:where(.work) .project {
+  background: #211d4a;
+  border-color: #38336b;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.work .project-frame {
+  border-bottom-color: #38336b;
+}
+
+/* The "Book a Consultation" button under the section description */
+.section-head .section-btn {
+  margin-top: 22px;
+}
+@media (max-width: 1000px) {
+  .section-head .section-btn {
+    padding: 9px 22px;
+  }
+}

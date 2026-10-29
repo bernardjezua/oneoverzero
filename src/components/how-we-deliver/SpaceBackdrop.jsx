@@ -1,4 +1,4 @@
-// Decorative space scene behind the "How we work" cards: a rocket, a ringed planet, a moon, a passing comet and twinkling stars.
+// Decorative space scene behind the "How we deliver" cards: a rocket, a ringed planet, a moon, a passing comet and twinkling stars.
 // Purely visual (hidden from assistive tech, ignores the pointer) and positioned by the .space-* styles in index.css.
 
 // Fixed pseudo-random star positions, so the sky looks the same on every render and every visit

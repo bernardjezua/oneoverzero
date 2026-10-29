@@ -40,7 +40,7 @@ export const PAGES = [
     share: 'One Over Zero Innovations is a company in the Philippines, that provides development and system integration services that revolves around open-source technologies and enterprise solutions to help organizations achieve operational efficiency. ',
   },
   {
-    path: '/about-us',
+    path: '/about',
     name: 'About',
     title: `About Us | ${SITE_NAME}`,
     description:
@@ -56,7 +56,7 @@ export const PAGES = [
     share: 'Software, infrastructure, security and ongoing support from one team.',
   },
   {
-    path: '/products',
+    path: '/work',
     name: 'Products',
     title: `Our Products | ${SITE_NAME}`,
     description:

@@ -216,7 +216,7 @@ form select option[disabled] {
 
 /* Contact intro: smaller, fluid */
 .contact .lead {
-  font-size: clamp(0.88rem, 0.82rem + 0.3vw, 1rem);
+  font-size: var(--desc-size-sm);
   line-height: 1.6;
   max-width: 52ch;
 }

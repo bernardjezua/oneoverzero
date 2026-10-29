@@ -1,4 +1,4 @@
-/* ===== How we work ===== */
+/* ===== How we deliver ===== */
 .process-steps {
   list-style: none;
   margin: 0;
@@ -44,7 +44,7 @@
 .step p {
   margin: 0;
   color: var(--muted);
-  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.95rem);
+  font-size: var(--desc-size-sm);
   line-height: 1.6;
 }
 @media (max-width: 1100px) {
@@ -62,3 +62,13 @@
   }
 }
 
+
+/* Hovering a step tilts its icon box a little, like the About cards */
+.step .ico {
+  transition: transform 0.35s;
+}
+@media (hover: hover) {
+  .step:hover .ico {
+    transform: translateY(-3px) scale(1.1) rotate(-6deg);
+  }
+}

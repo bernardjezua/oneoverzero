@@ -8,9 +8,9 @@ export default function TrackRecord() {
   return (
     <section className="section clients" id="clients">
       <div className="wrap">
-        <SectionHead eyebrow="Proven Track Record" title={
+        <SectionHead eyebrow="Why Choose 1/0" title={
             <>
-              Trusted by clients across <span className="grad">different industries</span>
+              Trusted by <span className="grad">60+</span> clients across <span className="grad">different industries</span>
             </>
           } />
       </div>
