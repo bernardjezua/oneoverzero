@@ -41,7 +41,6 @@ export default function Hero() {
           <circle className="halo" cx="200" cy="200" r="150" fill="url(#hero-halo)" />
           <circle className="ring r3" cx="200" cy="200" r="195" />
           <circle className="ring r1" cx="200" cy="200" r="150" />
-          <circle className="ring r2" cx="200" cy="200" r="105" />
           <g className="orbit">
             <circle cx="200" cy="5" r="5" fill="var(--accent)" />
             <circle cx="200" cy="395" r="3" fill="var(--accent-2)" />
