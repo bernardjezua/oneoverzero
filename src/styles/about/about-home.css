@@ -167,6 +167,11 @@
   gap: 22px;
   margin-top: clamp(36px, 5vw, 56px);
 }
+@media (min-width: 861px) {
+  .mv {
+    margin-top: clamp(18px, 2.5vw, 28px);
+  }
+}
 .mv-card {
   position: relative;
   overflow: hidden;
@@ -306,6 +311,10 @@
     grid-template-columns: 1fr;
     gap: 14px;
   }
+  /* Landing page: the cards sit closer under the Learn More button */
+  .about-home .mv {
+    margin-top: 20px;
+  }
   .mv-card {
     border-radius: 20px;
   }
@@ -337,4 +346,55 @@
   .mv + .about-pillars {
     margin-top: 14px;
   }
+}
+
+/* Aurora borealis: slow glowing ribbons behind the About content. Only transform moves (cheap); the edges fade out so the lines never end abruptly. */
+.about-home .aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+.aurora-line {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 160px;
+  fill: none;
+  overflow: visible;
+  animation: aurora-slide var(--dur, 40s) linear var(--delay, 0s) infinite;
+}
+.aurora-line path {
+  stroke: rgb(var(--c));
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.aurora-line path.aurora-curtain {
+  stroke: none;
+}
+.aurora-core {
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+.aurora-line.rev {
+  animation-direction: reverse;
+}
+@keyframes aurora-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.about-home.is-offscreen .aurora-line {
+  animation-play-state: paused;
+}
+@media (max-width: 860px) {
+  .aurora-line {
+    height: 110px;
+  }
+}
+
+/* Landing page: a bit more room under the row of three cards before the section ends */
+.about-home {
+  padding-bottom: clamp(72px, 9vw, 112px);
 }

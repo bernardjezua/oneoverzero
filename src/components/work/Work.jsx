@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import AuroraBackdrop from '../common/AuroraBackdrop.jsx'
 import PageHero from '../common/PageHero.jsx'
 import Reveal from '../common/Reveal.jsx'
 import SectionHead from '../common/SectionHead.jsx'
@@ -52,7 +53,8 @@ export default function Work({ page = false, children }) {
           {SUB}
         </PageHero>
       )}
-      <section className="section work" id="work">
+      <section className={`section work${page ? '' : ' has-aurora'}`} id="work">
+        {!page && <AuroraBackdrop variant="rays" />}
         <div className="wrap">
           {!page && (
             <SectionHead eyebrow={EYEBROW} title={TITLE} sub={SUB}>

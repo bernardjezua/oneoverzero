@@ -113,10 +113,20 @@
   visibility: visible;
   transition-delay: 0s;
 }
+/* The front is a solid indigo (with a faint sheen), not see-through glass, so the aurora lines behind it do not show through */
+.offer-front {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)), #1b1363;
+}
 .offer-back {
   transform: rotateY(180deg);
   background: rgba(24, 16, 90, 0.92);
   border-color: rgba(var(--accent-rgb), 0.45);
+}
+/* A short lift when hovered. It goes on the outer element: the inner one is busy turning over. (Once revealed, the reveal styles already make the move quick.) */
+@media (hover: hover) {
+  .offer-flip.revealed:hover {
+    transform: translateY(-5px);
+  }
 }
 @media (hover: hover) {
   .offer-flip:hover .offer-face {

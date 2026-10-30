@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
+import AuroraBackdrop from '../common/AuroraBackdrop.jsx'
 import Icon from '../common/Icon.jsx'
 import PageHero from '../common/PageHero.jsx'
 import Reveal from '../common/Reveal.jsx'
@@ -106,7 +107,8 @@ export default function Services({ page = false, children }) {
           {SUB}
         </PageHero>
       )}
-      <section className="section services" id="services">
+      <section className={`section services${page ? '' : ' has-aurora'}`} id="services">
+        {!page && <AuroraBackdrop variant="arcs" />}
         <div className="wrap">
           {!page && <SectionHead eyebrow={EYEBROW} title={TITLE} sub={SUB} />}
           <div className="offer-grid">

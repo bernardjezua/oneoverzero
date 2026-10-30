@@ -54,6 +54,7 @@
 @media (max-width: 860px) {
   .about-home-grid {
     grid-template-columns: 1fr;
+    gap: 4px;
   }
   .about-home-mark {
     order: -1;
