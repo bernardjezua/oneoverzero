@@ -77,6 +77,19 @@
   }
 }
 @media (max-width: 860px) {
+  /* Phones: smaller rings, sized from the screen width (vmax would follow the tall screen height) */
+  .aurora-bg .arc-set {
+    width: 80vw;
+    height: 80vw;
+  }
+  .aurora-bg .arc-set.tr {
+    top: -40vw;
+    right: -40vw;
+  }
+  .aurora-bg .arc-set.bl {
+    bottom: -40vw;
+    left: -40vw;
+  }
   .aurora-bg .ray:nth-child(n + 3) {
     display: none;
   }

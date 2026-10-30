@@ -341,8 +341,8 @@ export const PROJECTS = [
     name: 'Just Be You',
     type: 'web',
     src: `${import.meta.env.BASE_URL}projects/just-be-you.png`,
-    desc: 'An AI interviewer that runs practice interviews and gives you feedback on your answers.',
-    tags: ['AI', 'Interview', 'Web app'],
+    desc: 'An AI interviewer that helps companies find the right candidates faster by optimizing their candidate searches.',
+    tags: ['AI', 'Talent search', 'Recruitment'],
   },
   {
     name: '10 Hours: HRIS',
