@@ -40,7 +40,7 @@ export const SERVICES = [
     title: "Software Development",
     icon: "code",
     summary: "Websites, web apps, mobile apps and e-commerce stores.",
-    ideal: "You need a tool or online store built around how your business works.",
+    ideal: "You need a software tool built around how your business works.",
     example: "A distributor replaces its order spreadsheets with a web app the sales team uses on their phones.",
     items: [
       {

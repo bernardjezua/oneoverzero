@@ -63,12 +63,23 @@
 }
 
 
-/* Hovering a step tilts its icon box a little, like the About cards */
+/* Hovering a step tilts its icon box a little and lifts the card, like the About cards */
+.step {
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+}
 .step .ico {
-  transition: transform 0.35s;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
 }
 @media (hover: hover) {
+  .step:hover,
+  .reveal.in.step:hover {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    box-shadow: var(--shadow), 0 0 30px -10px rgba(var(--accent-rgb), 0.5);
+    transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+  }
   .step:hover .ico {
     transform: translateY(-3px) scale(1.1) rotate(-6deg);
+    transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
   }
 }

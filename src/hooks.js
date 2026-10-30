@@ -7,7 +7,8 @@ export function useReveal() {
     const el = ref.current
     if (!el) return
     if (!('IntersectionObserver' in window)) {
-      el.classList.add('in')
+      el.classList.add('in', 'revealed')
+      el.style.removeProperty('--d')
       return
     }
     const io = new IntersectionObserver(
@@ -15,6 +16,14 @@ export function useReveal() {
         if (e.isIntersecting) {
           el.classList.add('in')
           io.disconnect()
+          const delayStr = el.style.getPropertyValue('--d') || '0ms'
+          const delayMs = parseFloat(delayStr) || 0
+          setTimeout(() => {
+            if (el) {
+              el.classList.add('revealed')
+              el.style.removeProperty('--d')
+            }
+          }, delayMs + 700)
         }
       },
       { threshold: 0.12 },

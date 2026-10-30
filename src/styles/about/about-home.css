@@ -89,6 +89,7 @@
 .about-pillar {
   position: relative;
   overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), border-color 0.22s ease, box-shadow 0.22s ease;
 }
 .about-pillar::before {
   content: "";
@@ -116,11 +117,19 @@
   }
 }
 .about-pillar .ico {
-  transition: transform 0.35s;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
 }
 @media (hover: hover) {
+  .about-pillar:hover,
+  .reveal.in.about-pillar:hover {
+    transform: translateY(-6px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    box-shadow: var(--shadow), 0 0 32px -10px rgba(var(--accent-rgb), 0.5);
+    transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+  }
   .about-pillar:hover .ico {
     transform: translateY(-3px) scale(1.1) rotate(-6deg);
+    transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
   }
 }
 @media (max-width: 860px) {
