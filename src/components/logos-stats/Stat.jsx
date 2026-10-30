@@ -6,7 +6,7 @@ export default function Stat({ value, suffix, label, decimals = 0 }) {
     <div className="glass stat" ref={ref}>
       <div className="stat-num">
         {shown}
-        <span>{suffix}</span>
+        <span className={suffix.startsWith('/') ? 'tight' : undefined}>{suffix}</span>
       </div>
       <p>{label}</p>
     </div>

@@ -5,7 +5,7 @@ const PILLARS = [
   {
     icon: 'code',
     title: 'Open-source first',
-    text: 'Our work is built around open-source technologies and enterprise solutions, so you keep flexibility, control and room to grow.',
+    text: 'Our work is built around relevant technologies and enterprise solutions, so you keep flexibility, control and room to grow.',
   },
   {
     icon: 'cube',

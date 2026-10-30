@@ -28,10 +28,10 @@ export { FAQS } from './faqData.js'
 
 
 export const STATS = [
-  { value: 60, suffix: '+', label: 'Companies and Organizations Served' },
+  { value: 100, suffix: '+', label: 'Companies and Organizations Served' },
   { value: 93, suffix: '%', label: 'Client Retention' },
   { value: 10, suffix: '+', label: 'Years of Experience' },
-  { value: 24, suffix: '/7', label: 'System Maintenance and Support' },
+  { value: 24, suffix: '/7', label: 'Managed Service' },
 ]
 
 export const SERVICES = [
@@ -338,6 +338,13 @@ export const PRODUCTS = [
 
 export const PROJECTS = [
   {
+    name: 'Just Be You',
+    type: 'web',
+    src: `${import.meta.env.BASE_URL}projects/just-be-you.png`,
+    desc: 'An AI interviewer that runs practice interviews and gives you feedback on your answers.',
+    tags: ['AI', 'Interview', 'Web app'],
+  },
+  {
     name: '10 Hours: HRIS',
     type: 'web',
     src: `${import.meta.env.BASE_URL}projects/hris.jpg`,
@@ -366,61 +373,9 @@ export const PROJECTS = [
     tags: ['3D', 'Avatars', 'Virtual events'],
   },
   {
-    name: 'AR Games: Number Touch',
+    name: 'Games Management System',
     type: 'web',
-    src: `${import.meta.env.BASE_URL}projects/number-touch.jpg`,
-    desc: 'A web-based AR game that tracks your movements and rewards quick, accurate touches.',
-    tags: ['AR', 'Web game'],
-  },
-  {
-    name: 'AR Games: Coin Catch',
-    type: 'web',
-    src: `${import.meta.env.BASE_URL}projects/coin-catch.jpg`,
-    desc: 'A web-based AR game about catching coins in the air with your hands.',
-    tags: ['AR', 'Web game'],
-  },
-  {
-    name: '2D/3D Games',
-    type: 'web',
-    src: `${import.meta.env.BASE_URL}projects/game-candy.jpg`,
-    desc: 'Casual mobile and web games, from bubble shooters to puzzle and platformers.',
-    tags: ['2D', '3D', 'Mobile games'],
-  },
-  {
-    name: 'NFT Concept Design',
-    type: 'web',
-    src: `${import.meta.env.BASE_URL}projects/nft-kaiju.jpg`,
-    desc: 'Character and environment concept art for NFT collections, created by Dave Yap.',
-    tags: ['NFT', 'Concept art', '3D models'],
+    desc: 'A platform for organizing games, schedules and results in one place.',
+    tags: ['Management', 'Games', 'Web app'],
   },
 ]
-
-// PLACEHOLDER (preview site only): every quote and name below is made up. Replace with real, approved client quotes before going live.
-// Shown in a slider, three at a time (two on tablets, one on phones); the arrows move a whole page. Nine fills three pages on desktop. `caseStudy` (a link) is optional: without it there is no "Read the case study" link.
-export const TESTIMONIALS = [
-  {
-    quote: 'Our old system kept breaking. They rebuilt it on open-source tools and it has run smoothly ever since. Truly amazing work.',
-    name: 'Juan Dela Cruz',
-    role: 'Operations Head',
-    company: 'Luzon Health Partners',
-  },
-  {
-    quote: 'I have worked with the One Over Zero team on two projects now, and both times they were easy to work with, clear and always on time.',
-    name: 'Maria Santos',
-    role: 'IT Manager',
-    company: 'Bayanihan Logistics Corp.',
-  },
-  {
-    quote: 'They explained everything in plain language and never made us feel lost. Even after launch, they still answer us within the day.',
-    name: 'Angelica Reyes',
-    role: 'Project Director',
-    company: 'Pinoy Insure Group',
-  },
-  { quote: 'They delivered ahead of schedule and the platform has scaled without a hitch.', name: 'Client Name', role: 'CTO', company: 'Company Name' },
-  { quote: 'Security reviews used to be a fire drill. Now we have continuous visibility.', name: 'Client Name', role: 'IT Director', company: 'Company Name' },
-  { quote: 'One team handled our cabling, cloud and applications. That simplicity is rare.', name: 'Client Name', role: 'Founder', company: 'Company Name' },
-  { quote: 'Their team understood our systems from day one, and the handover was smooth.', name: 'Client Name', role: 'Head of IT', company: 'Company Name' },
-  { quote: 'We moved our infrastructure to the cloud with almost no downtime.', name: 'Client Name', role: 'Operations Manager', company: 'Company Name' },
-  { quote: 'Support is quick, and they fix the root cause, not just the symptom.', name: 'Client Name', role: 'Systems Administrator', company: 'Company Name' },
-]
-

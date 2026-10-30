@@ -157,3 +157,64 @@
 }
 
 
+
+/* Hero logo, 1/0: copies of the mark grow outward from the centre without end, an infinity sign is traced behind it,
+   and the logo keeps its own slow float. Each copy starts a little after the last (--i), so it loops seamlessly. */
+.hero-visual .echo {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  opacity: 0;
+  animation: echo-out 9s cubic-bezier(0.55, 0, 0.85, 0.5) calc(var(--i) * -1.8s) infinite;
+}
+.hero-visual .echo path {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.hero-visual .echo-cyan {
+  stroke: var(--accent);
+}
+.hero-visual .echo-white {
+  stroke: rgba(255, 255, 255, 0.75);
+}
+@keyframes echo-out {
+  0% {
+    transform: scale(0.03);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.hero-visual .infinity,
+.hero-visual .infinity-run {
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.hero-visual .infinity {
+  stroke: rgba(var(--accent-rgb), 0.16);
+  stroke-width: 1;
+}
+.hero-visual .infinity-run {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 9 91;
+  animation: trace 7s linear infinite;
+}
+@keyframes trace {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Scrolled past the hero: pause everything in it */
+.hero.is-offscreen *,
+.hero.is-offscreen::after {
+  animation-play-state: paused !important;
+}

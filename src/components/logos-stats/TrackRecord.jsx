@@ -10,7 +10,7 @@ export default function TrackRecord() {
       <div className="wrap">
         <SectionHead eyebrow="Why Choose 1/0" title={
             <>
-              Trusted by <span className="grad">60+</span> clients across <span className="grad">different industries</span>
+              Trusted by <span className="grad">100+</span> clients across <span className="grad">different industries</span>
             </>
           } />
       </div>

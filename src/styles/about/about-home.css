@@ -309,8 +309,15 @@
   .mv-card {
     border-radius: 20px;
   }
+  .mv-card {
+    text-align: center;
+  }
   .mv-head {
+    justify-content: center;
     margin-bottom: 16px;
+  }
+  .mv-card h3::after {
+    margin-inline: auto;
   }
   .mv-card .ico {
     width: 44px;

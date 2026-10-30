@@ -22,10 +22,7 @@ export const ORG = {
   foundingYear: 2017,
   linkedin: 'https://www.linkedin.com/company/one-over-zero-technologies-inc/', // temporary: confirm this is the right company page
   address: {
-    street: '4th Floor PhilCox Building, 172 Salcedo Street, Legazpi Village',
-    city: 'Makati',
     region: 'Metro Manila',
-    postalCode: '1229',
     country: 'PH',
   },
 }
@@ -37,14 +34,14 @@ export const PAGES = [
     title: `${SITE_NAME} | Defining Infinite Possibilities`,
     description:
       'One Over Zero builds software and handles system integration, cloud, security and IT support for organizations in the Philippines. Talk to our team.',
-    share: 'One Over Zero Innovations is a company in the Philippines, that provides development and system integration services that revolves around open-source technologies and enterprise solutions to help organizations achieve operational efficiency. ',
+    share: 'One Over Zero Innovations is a company in the Philippines that provides software development and system integration services to help organizations achieve operational efficiency.',
   },
   {
     path: '/about',
     name: 'About',
     title: `About Us | ${SITE_NAME}`,
     description:
-      'One Over Zero is a technology company in the Philippines founded in 2017. We build open-source and enterprise software, and support what we deliver.',
+      'One Over Zero is a technology company in the Philippines founded in 2017. We build software and support what we deliver.',
     share: 'One Over Zero is a technology company in the Philippines that builds software and supports the systems behind it.',
   },
   {
@@ -68,7 +65,7 @@ export const PAGES = [
     name: 'Contact',
     title: `Contact Us | ${SITE_NAME}`,
     description:
-      'Tell us about your project. Contact One Over Zero in Legazpi Village, Makati, by form or at support@oneoverzero.com.ph to book a consultation.',
+      'Tell us about your project. Contact One Over Zero in Metro Manila, by form or at support@oneoverzero.com.ph to book a consultation.',
     share: 'Tell us about your project and our team will get back to you shortly.',
   },
   {

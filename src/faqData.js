@@ -3,7 +3,7 @@
 export const FAQS = [
   {
     q: 'What does One Over Zero do?',
-    a: 'We provide software development and system integration services built around open-source technologies and enterprise solutions. That covers websites and apps, content management systems, infrastructure and networking, data centers, cloud, security, and ongoing maintenance and support.',
+    a: 'We provide software development and system integration services for organizations. That covers websites and apps, content management systems, infrastructure and networking, data centers, cloud, security, and ongoing maintenance and support.',
   },
   {
     q: 'How do I get started?',
@@ -30,8 +30,8 @@ export const FAQS = [
     a: 'Yes. System integration is a core part of what we do. We can build on, connect to or modernize the systems you already have.',
   },
   {
-    q: 'Do you work with organizations outside Makati?',
-    a: 'Our office is in Makati, Metro Manila, and we work with clients across industries. If you are elsewhere, send us a message and we will work out the best way to collaborate.',
+    q: 'Do you work with organizations outside Metro Manila?',
+    a: 'We are based in Metro Manila, and we work with clients across industries. If you are elsewhere, send us a message and we will work out the best way to collaborate.',
   },
   {
     q: 'Are you currently hiring developers?',

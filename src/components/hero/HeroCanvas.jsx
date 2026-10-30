@@ -15,11 +15,19 @@ export default function HeroCanvas() {
     let raf = 0
     let visible = true
 
-    const color = () => getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '102,204,198'
+    // Read once (and again on resize), not every frame: asking the browser for a computed style forces it to recalculate styles
+    let c = '102,204,198'
+    const readColor = () => {
+      c = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || c
+    }
+    // Lines are drawn in a few opacity steps, one stroke per step, instead of one stroke per line
+    const STEPS = 4
+    let LINK = 130
 
     const resize = () => {
       const r = canvas.getBoundingClientRect()
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      readColor()
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
       const pw = w
       const ph = h
       w = r.width
@@ -35,7 +43,10 @@ export default function HeroCanvas() {
           n.y *= h / ph
         }
       }
-      const count = Math.round(Math.min(Math.max((w * h) / 9000, 28), 90))
+      // Phones: fewer dots and shorter links, so the network stays sparse
+      LINK = w < 700 ? 90 : 130
+      const count = Math.round(Math.min(Math.max((w * h) / 9000, 28), w < 700 ? 20 : 90))
+      if (nodes.length > count) nodes.length = count
       while (nodes.length < count) {
         nodes.push({
           x: Math.random() * w,
@@ -47,7 +58,6 @@ export default function HeroCanvas() {
     }
 
     const draw = () => {
-      const c = color()
       ctx.clearRect(0, 0, w, h)
       for (const n of nodes) {
         if (!still) {
@@ -65,25 +75,33 @@ export default function HeroCanvas() {
           }
         }
       }
+      const paths = Array.from({ length: STEPS }, () => new Path2D())
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i]
         for (let j = i + 1; j < nodes.length; j++) {
           const b = nodes[j]
-          const d = Math.hypot(a.x - b.x, a.y - b.y)
-          if (d < 130) {
-            ctx.strokeStyle = `rgba(${c},${(1 - d / 130) * 0.35})`
-            ctx.lineWidth = 1
-            ctx.beginPath()
-            ctx.moveTo(a.x, a.y)
-            ctx.lineTo(b.x, b.y)
-            ctx.stroke()
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const d2 = dx * dx + dy * dy
+          if (d2 < LINK * LINK) {
+            const p = paths[Math.min(STEPS - 1, Math.floor((1 - Math.sqrt(d2) / LINK) * STEPS))]
+            p.moveTo(a.x, a.y)
+            p.lineTo(b.x, b.y)
           }
         }
-        ctx.fillStyle = `rgba(${c},0.8)`
-        ctx.beginPath()
-        ctx.arc(a.x, a.y, 1.8, 0, Math.PI * 2)
-        ctx.fill()
       }
+      ctx.lineWidth = 1
+      for (let k = 0; k < STEPS; k++) {
+        ctx.strokeStyle = `rgba(${c},${(((k + 0.5) / STEPS) * (w < 700 ? 0.25 : 0.35)).toFixed(3)})`
+        ctx.stroke(paths[k])
+      }
+      const dots = new Path2D()
+      for (const n of nodes) {
+        dots.moveTo(n.x + 1.8, n.y)
+        dots.arc(n.x, n.y, 1.8, 0, Math.PI * 2)
+      }
+      ctx.fillStyle = `rgba(${c},0.8)`
+      ctx.fill(dots)
     }
 
     const loop = () => {

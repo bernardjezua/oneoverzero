@@ -59,10 +59,8 @@ export default function AboutSection() {
             About <span className="grad">One Over Zero</span>
           </h2>
           <p>
-            Founded in 2017, One Over Zero Innovations provides software development and system integration services built around
-            open-source technologies and enterprise solutions, helping organizations achieve operational efficiency.
+            Founded in 2017, One Over Zero Innovations provides software development and system integration services that help organizations achieve operational efficiency.
           </p>
-          <p>Based in Makati, we partner with organizations across a wide range of industries.</p>
           <a className="btn btn-primary about-btn" href="/about">
             Learn More
           </a>

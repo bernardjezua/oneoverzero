@@ -15,6 +15,10 @@
   font-size: 0.6em;
   margin-left: 2px;
 }
+.stat-num span.tight {
+  letter-spacing: 0.12em;
+  margin-left: 0;
+}
 .stat p {
   color: var(--muted);
 }

@@ -20,10 +20,7 @@ export function structuredData(page, site) {
       areaServed: ORG.address.country,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: ORG.address.street,
-        addressLocality: ORG.address.city,
         addressRegion: ORG.address.region,
-        postalCode: ORG.address.postalCode,
         addressCountry: ORG.address.country,
       },
       contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: ORG.email },

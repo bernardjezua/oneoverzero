@@ -1,6 +1,6 @@
 # One Over Zero Innovations: Company Website
 
-This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Makati, Philippines, founded in 2017. It presents the company's services, products, the industries it serves, client reviews and how it delivers, and has a contact form for project inquiries.
+This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Metro Manila, Philippines, founded in 2017. It presents the company's services, products, the industries it serves, and how it delivers, and has a contact form for project inquiries.
 
 It is a React 19 + Vite 8 site with plain CSS split into small files, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
 
@@ -27,7 +27,7 @@ It is a React 19 + Vite 8 site with plain CSS split into small files, no UI fram
 
 | Address           | Page           | What it shows                                                                                                  |
 | ----------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
-| `/`               | Home           | Hero, About, "Why Choose 1/0" (industries and stats), services (flip cards), how we deliver, products, reviews (slider), FAQ and the contact section. |
+| `/`               | Home           | Hero, About, "Why Choose 1/0" (industries and stats), services (flip cards), how we deliver, products, FAQ and the contact section. |
 | `/about`          | About          | Company story, stats, scrolling industries, how we deliver and a closing call to action (formerly `/about-us`, which redirects here). |
 | `/services`       | Services       | Every service as a card that flips: click a card to see when the service is ideal, with an example.            |
 | `/work`           | Products       | Every product and project built by the team (formerly `/products`, which redirects here).                       |
@@ -127,7 +127,7 @@ oneoverzero/
     ├── routes.js           Reads the current address and lists the valid routes
     ├── pageMeta.js         Every page's address, title, description and share text (SEO)
     ├── seo.js              Structured data (JSON-LD) for search engines
-    ├── data.js             Services, projects, stats, reviews, nav links, social links
+    ├── data.js             Services, projects, stats, nav links, social links
     ├── faqData.js          The FAQ questions and answers
     ├── hooks.js            useReveal, useCountUp, useScrollProgress, readConsent, saveConsent
     ├── legalInfo.js        Company name, email, address and "last updated" date used by the legal pages
@@ -135,7 +135,7 @@ oneoverzero/
     ├── submitInquiry.js    Sends the contact form
     ├── index.css           Only @imports of the files in styles/, in cascade order
     ├── styles/             CSS grouped by area (base, header, footer, hero, services, work, contact, ...)
-    ├── components/         Grouped by area: common, header, footer, hero, services, work, reviews,
+    ├── components/         Grouped by area: common, header, footer, hero, services, work,
     │                       logos-stats, contact, how-we-deliver, about, faq, cta, legal
     └── pages/              One file per page (HomePage, AboutPage, ServicesPage, WorkPage,
                             ContactPage, FaqPage, PrivacyPolicyPage, CookiePolicyPage, NotFoundPage)
@@ -172,9 +172,8 @@ Most copy lives in data files, so you rarely need to touch components.
 | --------------------------------------------- | ----------------------------------------------------------------------- |
 | Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`: `summary` is the front of the card, `ideal` and `example` are the back |
 | Products and projects (the cards)             | `PROJECTS` in `src/data.js`; images go in `public/projects/`. (`PRODUCTS` in the same file is an older list that no page uses.) |
-| Stats (60+ companies and organizations, 93% retention, ...)       | `STATS` in `src/data.js`                                                |
+| Stats (100+ companies and organizations, 93% retention, ...)       | `STATS` in `src/data.js`                                                |
 | Industries (the scrolling chips under the "Why Choose 1/0" heading) | `INDUSTRIES` in `src/components/logos-stats/IndustryRows.jsx`. The old client logos are in `archive/logos/`. To bring them back: move the folder to `public/logos/`, restore the `CLIENT_LOGOS` list in `src/data.js` (it was removed, see the git history), and use `ClientLogos` instead of `IndustryRows` |
-| Reviews                                       | `TESTIMONIALS` in `src/data.js`. They show 3 at a time on desktop, 2 on tablets and 1 on phones; the arrows move a whole page. **All current quotes are placeholders.** |
 | How We Deliver steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
 | Header / footer links                         | `NAV_LINKS` in `src/data.js` (the header leaves out Contact, because it has the "Contact Us" button) |
 | The three "what we stand for" cards in About  | `PILLARS` in `src/components/about/Pillars.jsx`                         |
@@ -208,7 +207,7 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 - **Cursor:** a custom cyan arrowhead (set inline in `index.html` so it is there from the first moment of every load). Over links and buttons it is brighter and a ring pops in around its tip (`HoverRing`); a left-click sends out a ripple (`ClickRipple`). Mouse only. Styles are in `styles/base/cursor.css`.
 - **Header** hides while scrolling down and returns when scrolling up. An open mobile menu keeps it on screen.
 - **Industry chips** scroll in two endless rows, opposite directions.
-- **Reviews** are a slider: 3 cards at a time on desktop, 2 on tablets, 1 on phones. The arrows move a whole page and are disabled at either end, the dots jump to a page, and a swipe works on touch screens.
+- **Installable app (PWA):** browsers offer to install the site as an app. `public/manifest.webmanifest` sets its name, colors and icons, and `public/sw.js` (registered in `src/main.jsx`, production builds only) keeps pages it has loaded so they still open offline. Cross-site requests, such as the contact form and map, are never cached. The icons are `public/icon-192.png`, `icon-512.png`, `icon-maskable-512.png` and `apple-touch-icon.png`; if you edit the logo, redraw them to match. After changing `sw.js`, bump `CACHE` in it.
 - **Flip cards (What we offer):** click or tap anywhere on a card, or press Enter or Space on it, and it turns over to show when the service is ideal and an example. The turned-away face is `visibility: hidden`, so only the visible one can be reached by keyboard or screen reader. The flipped state lives on an inner element because `Reveal` adds its own class to the outer one.
 - **About (landing page)** has a logo that sits in slowly turning rings and glows when hovered, twinkling stars with an occasional shooting star, and cards with a light sweeping across their top edge.
 - **Constellation (contact section):** Ursa Minor drawn from our products, ending in "Your project" with the logo as Polaris. Each star glows on hover, and the stars use the site's cursor and ring (`.constellation-node` is in the clickable list in `HoverRing.jsx` and `cursor.css`).
@@ -270,8 +269,7 @@ Pushing to `main` deploys to production. Other branches get preview deployments,
 - [ ] Set `SITE_URL` to the final domain.
 - [ ] Set `NOINDEX = false` in `src/pageMeta.js`.
 - [ ] Confirm the LinkedIn URL in `ORG` (`src/pageMeta.js`) and `SOCIAL` (`src/data.js`). It is a temporary, unconfirmed link.
-- [ ] Shorten the home page `share` text to 200 characters or fewer (the build warns it is 241).
-- [ ] Replace the placeholder reviews (`TESTIMONIALS` in `src/data.js`) with real, approved client quotes. Most are generic "Client Name / Company Name" entries.
+- [ ] Install the site as an app on a phone and on desktop Chrome or Edge, and check it opens offline.
 - [ ] Have the Privacy Policy and Cookie Policy reviewed, and update their dates.
 - [ ] Add the analytics scripts behind the consent check, or remove Google Analytics from the policies if unused.
 - [ ] Check every page on a real phone (iPhone Safari and Android Chrome) and in dark and light device settings.

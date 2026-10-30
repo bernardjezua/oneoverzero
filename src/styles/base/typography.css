@@ -13,6 +13,9 @@ li {
   font-size: clamp(1.5rem, 0.9rem + 2.7vw, 2.8rem);
   line-height: 1.12;
 }
+.hero h1 .hero-line {
+  white-space: nowrap;
+}
 .section-head h2,
 .contact h2 {
   font-size: clamp(1.45rem, 1rem + 1.7vw, 2.3rem);

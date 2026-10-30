@@ -59,9 +59,15 @@
 }
 
 /* Hero logo: gentle motion as one piece (both arrows move together): a slow float with a tiny sway.
-   It keeps moving even with "reduce motion" on, like the other animations on this site. */
+   It keeps moving even with "reduce motion" on, like the other animations on this site.
+   Its glow is a fixed shadow plus a halo behind it whose opacity pulses (cheap to animate; animating a filter is not). */
+.hero-visual .float {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: logo-float 6s ease-in-out infinite;
+}
 .hero-visual .core {
-  animation: logo-float 6s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 18px rgba(var(--accent-rgb), 0.6));
 }
 @keyframes logo-float {
   0%,
@@ -70,6 +76,17 @@
   }
   50% {
     transform: translateY(-9px) rotate(1.5deg);
+  }
+}
+.hero-visual .halo {
+  animation: halo 3s ease-in-out infinite alternate;
+}
+@keyframes halo {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
   }
 }
 

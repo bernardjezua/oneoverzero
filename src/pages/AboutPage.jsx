@@ -28,16 +28,14 @@ export default function AboutPage() {
           <Reveal>
             <span className="eyebrow">Our History</span>
             <h2>
-              Built on <span className="grad">open-source technology</span>, since 2017
+              Built on <span className="grad">trust</span>, since 2017
             </h2>
             <p>
               We founded One Over Zero in 2017 to help organizations get real
-              value from technology. Our work is built around open-source
-              technologies and enterprise solutions, which gives our clients
-              flexibility, control and room to grow.
+              value from technology. We build software and systems that give our clients flexibility, control and room to grow.
             </p>
             <p>
-              Today we work with more than 60 clients across government,
+              Today we work with more than 100 clients across government,
               healthcare, sports, insurance, publishing and more. We build
               websites, apps and platforms, set up the infrastructure and
               security behind them, and stay on to maintain and support what we
