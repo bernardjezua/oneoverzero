@@ -200,7 +200,7 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 
 ## Animations and interactions
 
-- **Constellation:** `HeroCanvas` draws drifting dots that link when close and react to the pointer. It is used in the landing hero and in every inner-page banner, and pauses when off screen.
+- **Constellation:** `HeroCanvas` draws drifting dots that link when close and react to the pointer. It is used in the landing hero and in every inner-page banner, and pauses when off screen. On phones it is much sparser (at most 20 dots, shorter and fainter links) to keep the screen uncluttered.
 - **Scroll reveal:** `Reveal` and `useReveal` fade sections in as they enter the viewport.
 - **Counters:** `useCountUp` animates the stat numbers.
 - **Scroll progress bar** at the top of the page (`useScrollProgress`).
@@ -210,6 +210,7 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 - **Installable app (PWA):** browsers offer to install the site as an app. `public/manifest.webmanifest` sets its name, colors and icons, and `public/sw.js` (registered in `src/main.jsx`, production builds only) keeps pages it has loaded so they still open offline. Cross-site requests, such as the contact form and map, are never cached. The icons are `public/icon-192.png`, `icon-512.png`, `icon-maskable-512.png` and `apple-touch-icon.png`; if you edit the logo, redraw them to match. After changing `sw.js`, bump `CACHE` in it.
 - **Flip cards (What we offer):** click or tap anywhere on a card, or press Enter or Space on it, and it turns over to show when the service is ideal and an example. The turned-away face is `visibility: hidden`, so only the visible one can be reached by keyboard or screen reader. The flipped state lives on an inner element because `Reveal` adds its own class to the outer one.
 - **About (landing page)** has a logo that sits in slowly turning rings and glows when hovered, twinkling stars with an occasional shooting star, and cards with a light sweeping across their top edge.
+- **Hero logo (1/0):** the logo floats and sways slowly, with its own glow. Around it, outlines of the logo grow outward from the centre without end (1 over a number shrinking to zero) and an infinity sign is traced, all floating together with the logo, inside dashed rings that turn. They are in `Hero.jsx` and `styles/hero/hero-animation.css`. All hero animations pause once the hero is scrolled out of view, and the glow pulses a halo's opacity instead of a filter, to avoid lag.
 - **Constellation (contact section):** Ursa Minor drawn from our products, ending in "Your project" with the logo as Polaris. Each star glows on hover, and the stars use the site's cursor and ring (`.constellation-node` is in the clickable list in `HoverRing.jsx` and `cursor.css`).
 - **Jumping to a section:** `scroll-padding-top` is `0`, because the header slides away when the page scrolls down. A jump puts the section's top edge at the very top of the screen.
 - **How We Deliver** has a space scene (stars, planet, rocket, comet), and each step's icon tilts a little on hover.
