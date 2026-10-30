@@ -192,7 +192,7 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 
 - **Theme:** colors are CSS variables in `styles/base/base.css` (`--bg`, `--bg-2`, `--text`, `--muted`, `--accent`, `--accent-2`, ...). Change them there.
 - **Fonts:** `--display` (Orbitron) for headings, `--head` (Exo 2) and `--body` (Montserrat).
-- **Text sizes:** description text uses one shared size, `--desc-size` (hero paragraph, section subtitles, page intros, card descriptions, FAQ answers, legal text). `--desc-size-sm` is a step smaller, for dense cards (How we deliver steps, product cards) and the contact intro. Change them in `styles/base/base.css` and the whole site follows. Paragraph color is `--muted`.
+- **Text sizes:** description text uses two shared sizes. `--desc-size` is for running text: the hero paragraph, section subtitles, page intros and legal text. `--desc-size-sm` is a step smaller and is used for every card description (About cards, stat labels, What we offer, How we deliver steps, product cards), the FAQ answers and the contact intro. Change them in `styles/base/base.css` and the whole site follows. Paragraph color is `--muted`.
 - **Glass:** the `.glass` class gives the frosted-card look used across the site.
 - **Gradient text:** wrap words in `<span className="grad">` for the animated gradient.
 - **Section backgrounds:** the landing page sections each have their own tone (`base/section-backgrounds-final.css`, plus `work/products-background.css` for products). The standalone pages (About, Services, Products, FAQ and the legal pages) share one indigo, set in one rule in `pages/standalone-backgrounds-logos.css`.

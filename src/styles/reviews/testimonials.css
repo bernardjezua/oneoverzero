@@ -145,3 +145,17 @@
     padding: 28px 22px;
   }
 }
+
+/* Smoother slide: the cards leaving and entering fade as the row moves, instead of being chopped off at the edges of the slider.
+   (Off-screen cards are inert, see Reviews.jsx.) No backdrop blur on moving cards: it flickers while animating. */
+.review-track {
+  will-change: transform;
+}
+.review-card {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: opacity 0.5s ease;
+}
+.review-card[inert] {
+  opacity: 0;
+}

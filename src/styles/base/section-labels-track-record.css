@@ -44,7 +44,7 @@
   font-size: clamp(1.6rem, 2.6vw, 2.2rem);
 }
 .stat p {
-  font-size: 0.84rem;
+  font-size: var(--desc-size-sm);
   margin-top: 4px;
 }
 @media (max-width: 720px) {
@@ -68,7 +68,7 @@
     font-size: 1.5rem;
   }
   .stat p {
-    font-size: 0.78rem;
+    font-size: var(--desc-size-sm);
   }
 }
 /* On the About page the logos have their own spacing */

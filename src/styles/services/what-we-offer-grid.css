@@ -135,7 +135,7 @@
 }
 .offer-front p {
   color: var(--muted);
-  font-size: var(--desc-size);
+  font-size: var(--desc-size-sm);
   line-height: 1.6;
   margin-bottom: 16px;
 }
@@ -211,7 +211,7 @@
     line-height: 1.25;
   }
   .offer-front p {
-    font-size: var(--desc-size);
+    font-size: var(--desc-size-sm);
     line-height: 1.45;
   }
   .offer-back dl {
