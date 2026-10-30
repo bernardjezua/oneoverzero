@@ -4,6 +4,8 @@ import Stat from '../components/logos-stats/Stat.jsx'
 import HowWeDeliver from '../components/how-we-deliver/HowWeDeliver.jsx'
 import CtaBand from '../components/cta/CtaBand.jsx'
 import IndustryRows from '../components/logos-stats/IndustryRows.jsx'
+import MissionVision from '../components/about/MissionVision.jsx'
+import Pillars from '../components/about/Pillars.jsx'
 import { STATS } from '../data.js'
 
 export default function AboutPage() {
@@ -54,6 +56,8 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        <MissionVision />
+        <Pillars />
         <IndustryRows />
       </section>
 

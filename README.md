@@ -177,7 +177,7 @@ Most copy lives in data files, so you rarely need to touch components.
 | Reviews                                       | `TESTIMONIALS` in `src/data.js`. They show 3 at a time on desktop, 2 on tablets and 1 on phones; the arrows move a whole page. **All current quotes are placeholders.** |
 | How We Deliver steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
 | Header / footer links                         | `NAV_LINKS` in `src/data.js` (the header leaves out Contact, because it has the "Contact Us" button) |
-| The three "what we stand for" cards in About  | `PILLARS` in `src/components/about/AboutSection.jsx`                    |
+| The three "what we stand for" cards in About  | `PILLARS` in `src/components/about/Pillars.jsx`                         |
 | The constellation above the contact form      | `STARS` and `POLARIS` in `src/components/contact/Constellation.jsx`     |
 | LinkedIn link                                 | `SOCIAL` in `src/data.js` (the footer shows it only when it is set)      |
 | FAQ                                           | `src/faqData.js`                                                        |

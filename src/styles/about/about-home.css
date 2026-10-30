@@ -149,3 +149,176 @@
     filter: drop-shadow(0 0 8px rgba(183, 244, 238, 0.9));
   }
 }
+
+/* Mission and Vision: two feature cards. Each has a big faint icon in the corner that drifts slowly, a gradient edge that lights up on hover,
+   a light that sweeps across the top, and the key phrases picked out in cyan. */
+.mv {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.mv-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 3.4vw, 42px);
+  border-radius: 24px;
+  isolation: isolate;
+}
+/* Each card has its own tint, so the pair reads as two different things */
+.mv-card.mission {
+  background: linear-gradient(150deg, rgba(var(--accent-rgb), 0.16), rgba(255, 255, 255, 0.04) 55%);
+}
+.mv-card.vision {
+  background: linear-gradient(150deg, rgba(130, 90, 245, 0.2), rgba(255, 255, 255, 0.04) 55%);
+}
+/* Soft light in the corner behind the text */
+.mv-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 70%;
+  aspect-ratio: 1;
+  right: -22%;
+  bottom: -38%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(var(--accent-rgb), 0.22), transparent);
+  transition: opacity 0.4s, transform 0.6s;
+  opacity: 0.7;
+}
+.mv-card.vision::after {
+  background: radial-gradient(closest-side, rgba(150, 110, 255, 0.28), transparent);
+}
+/* The light sweeping across the top edge, like the About cards */
+.mv-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -45%;
+  width: 45%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: about-sweep 6s ease-in-out infinite;
+}
+.mv-card.vision::before {
+  animation-delay: 2.4s;
+}
+.mv-mark {
+  position: absolute;
+  z-index: -1;
+  right: -28px;
+  bottom: -34px;
+  color: var(--accent);
+  opacity: 0.07;
+  pointer-events: none;
+  animation: mv-drift 9s ease-in-out infinite;
+}
+.mv-card.vision .mv-mark {
+  color: #b9a4ff;
+  animation-delay: -4s;
+}
+@keyframes mv-drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+}
+.mv-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.mv-card .ico {
+  width: 52px;
+  height: 52px;
+  transition: transform 0.35s;
+}
+.mv-kicker {
+  font-family: var(--display);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.35);
+}
+.mv-card h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+  margin-bottom: 14px;
+}
+/* A short accent line under the heading */
+.mv-card h3::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 12px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.4s;
+}
+.mv-card p {
+  color: var(--muted);
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
+  line-height: 1.8;
+}
+.mv-card p b {
+  color: var(--accent-2);
+  font-weight: 600;
+}
+.mv-card.vision p b {
+  color: #d6c9ff;
+}
+@media (hover: hover) {
+  .mv-card {
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  }
+  .mv-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    box-shadow: var(--shadow), 0 0 34px -10px rgba(var(--accent-rgb), 0.5);
+  }
+  .mv-card:hover::after {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  .mv-card:hover h3::after {
+    width: 76px;
+  }
+  .mv-card:hover .ico {
+    transform: translateY(-3px) scale(1.1) rotate(-6deg);
+  }
+}
+@media (max-width: 860px) {
+  .mv {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .mv-card {
+    border-radius: 20px;
+  }
+  .mv-head {
+    margin-bottom: 16px;
+  }
+  .mv-card .ico {
+    width: 44px;
+    height: 44px;
+  }
+  .mv-mark svg {
+    width: 190px;
+    height: 190px;
+  }
+}
+
+/* The three cards sit close under Mission and Vision, with the same gap as between the cards themselves */
+.mv + .about-pillars {
+  margin-top: 22px;
+}
+@media (max-width: 860px) {
+  .mv + .about-pillars {
+    margin-top: 14px;
+  }
+}

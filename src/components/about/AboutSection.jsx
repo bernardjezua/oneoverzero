@@ -1,23 +1,6 @@
-import Icon from '../common/Icon.jsx'
+import MissionVision from './MissionVision.jsx'
+import Pillars from './Pillars.jsx'
 import Reveal from '../common/Reveal.jsx'
-
-const PILLARS = [
-  {
-    icon: 'code',
-    title: 'Open-source first',
-    text: 'Our work is built around open-source technologies and enterprise solutions, so you keep flexibility, control and room to grow.',
-  },
-  {
-    icon: 'cube',
-    title: 'One team, end to end',
-    text: 'From websites and apps to infrastructure and security, the team that designs your solution is the one that builds and maintains it.',
-  },
-  {
-    icon: 'headset',
-    title: 'Support that stays',
-    text: 'We stay on after launch to fix issues, keep systems running around the clock and add improvements as your needs change.',
-  },
-]
 
 // Fixed pseudo-random star positions, so the sky looks the same on every render and every visit (same idea as the How We Deliver backdrop)
 const STARS = Array.from({ length: 22 }, (_, i) => {
@@ -88,17 +71,8 @@ export default function AboutSection() {
           <Orbit />
         </Reveal>
       </div>
-      <div className="wrap about-pillars">
-        {PILLARS.map((p, i) => (
-          <Reveal key={p.title} delay={i * 120} className="glass about-pillar lift">
-            <span className="ico">
-              <Icon name={p.icon} size={22} />
-            </span>
-            <h3>{p.title}</h3>
-            <p>{p.text}</p>
-          </Reveal>
-        ))}
-      </div>
+      <MissionVision />
+      <Pillars />
     </section>
   )
 }
