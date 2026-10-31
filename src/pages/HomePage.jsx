@@ -1,6 +1,7 @@
 import Hero from '../components/hero/Hero.jsx'
 import TrackRecord from '../components/logos-stats/TrackRecord.jsx'
 import Services from '../components/services/Services.jsx'
+import EGov from '../components/egov/EGov.jsx'
 import HowWeDeliver from '../components/how-we-deliver/HowWeDeliver.jsx'
 import Work from '../components/work/Work.jsx'
 import Faq from '../components/faq/Faq.jsx'
@@ -14,6 +15,7 @@ export default function HomePage() {
       <AboutSection />
       <TrackRecord />
       <Services />
+      <EGov />
       <HowWeDeliver />
       <Work />
       <Faq />

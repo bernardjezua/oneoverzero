@@ -1,8 +1,54 @@
-# One Over Zero Innovations: Company Website
+<div align="center">
 
-This is the official website of **One Over Zero Innovations, Inc.**, a technology company based in Metro Manila, Philippines, founded in 2017. It presents the company's services, products, the industries it serves, and how it delivers, and has a contact form for project inquiries.
+<img src="docs/banner.svg" alt="One Over Zero Innovations: Defining Infinite Possibilities" width="100%" />
 
-It is a React 19 + Vite 8 site with plain CSS split into small files, no UI framework and no backend. It is built into plain static files and hosted on Vercel.
+<br />
+
+<img alt="React" src="https://img.shields.io/badge/React-19-66ccc6?style=for-the-badge&labelColor=0a0630" />
+<img alt="Vite" src="https://img.shields.io/badge/Vite-8-66ccc6?style=for-the-badge&labelColor=0a0630" />
+<img alt="Styling" src="https://img.shields.io/badge/Styling-Plain%20CSS-66ccc6?style=for-the-badge&labelColor=0a0630" />
+<img alt="Hosted on" src="https://img.shields.io/badge/Hosted%20on-Vercel-66ccc6?style=for-the-badge&labelColor=0a0630" />
+
+<br />
+
+**The official website of One Over Zero Innovations, Inc.**
+A technology company in Metro Manila, Philippines, founded in 2017.
+
+[Pages](#pages) &nbsp;·&nbsp; [Getting started](#getting-started) &nbsp;·&nbsp; [Editing content](#editing-content) &nbsp;·&nbsp; [SEO and AI](#seo-search-and-ai-assistants) &nbsp;·&nbsp; [Deployment](#deployment) &nbsp;·&nbsp; [Launch checklist](#launch-checklist)
+
+<br />
+
+<img src="docs/screenshot.png" alt="The One Over Zero home page: the star mark, 'One team. Zero hassle. Software and systems that deliver.' and a network of nodes on a deep navy grid" width="880" />
+
+</div>
+
+---
+
+## At a glance
+
+It presents the company's services, products, the industries it serves and how to get in touch. It is a React 19 + Vite 8 site with plain CSS split into small files, no UI framework and no backend, built into plain static files and hosted on Vercel.
+
+| | |
+| --- | --- |
+| **What it shows** | Hero, About (mission and vision), services as flip cards, an E-Government Services section, how we deliver, products, FAQ and contact |
+| **Look and feel** | Deep navy and teal, a grid and a drifting node network, soft aurora and space scenes, glass cards that tilt and flip |
+| **Built for** | Fast scrolling (animations pause off screen), phones first, keyboard and screen readers, reduced motion |
+| **Found by** | Linked schema.org data on every page, page text readable without JavaScript, `llms.txt` for AI assistants |
+| **Deployed on** | Vercel, with security headers, clean URLs and a service worker so it installs as an app |
+
+### Brand
+
+| | Colour | Used for |
+| --- | --- | --- |
+| ![#0a0630](https://img.shields.io/badge/-0a0630-0a0630?style=flat-square) | Midnight `#0a0630` | Page background |
+| ![#120847](https://img.shields.io/badge/-120847-120847?style=flat-square) | Deep indigo `#120847` | Section tones, cards |
+| ![#66ccc6](https://img.shields.io/badge/-66ccc6-66ccc6?style=flat-square) | Teal `#66ccc6` | Accent, buttons, links, the star |
+| ![#b7f4ee](https://img.shields.io/badge/-b7f4ee-b7f4ee?style=flat-square) | Mist `#b7f4ee` | Highlights, gradient end |
+| ![#825af5](https://img.shields.io/badge/-825af5-825af5?style=flat-square) | Violet `#825af5` | Aurora and glow tints |
+
+Type: **Orbitron** for the logo and big display text, **Exo 2** for headings, **Montserrat** for body text. All three come from Google Fonts.
+
+---
 
 ## Contents
 
@@ -17,7 +63,8 @@ It is a React 19 + Vite 8 site with plain CSS split into small files, no UI fram
 - [Animations and interactions](#animations-and-interactions)
 - [Contact form](#contact-form)
 - [Privacy, cookies and consent](#privacy-cookies-and-consent)
-- [SEO and link previews](#seo-and-link-previews)
+- [SEO, search and AI assistants](#seo-search-and-ai-assistants)
+- [Security headers and what the browser can see](#security-headers-and-what-the-browser-can-see)
 - [Environment variables](#environment-variables)
 - [Deployment](#deployment)
 - [Launch checklist](#launch-checklist)
@@ -27,9 +74,9 @@ It is a React 19 + Vite 8 site with plain CSS split into small files, no UI fram
 
 | Address           | Page           | What it shows                                                                                                  |
 | ----------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
-| `/`               | Home           | Hero, About, "Why Choose 1/0" (industries and stats), services (flip cards), how we deliver, products, FAQ and the contact section. |
+| `/`               | Home           | Hero, About, "Why Choose 1/0" (industries and stats), services (flip cards), E-Government Services (tabbed list), how we deliver, products, FAQ and the contact section. |
 | `/about`          | About          | Company story, stats, scrolling industries, how we deliver and a closing call to action (formerly `/about-us`, which redirects here). |
-| `/services`       | Services       | Every service as a card that flips: click a card to see when the service is ideal, with an example.            |
+| `/services`       | Services       | Every service as a card that flips (click a card to see what we offer under it), then the E-Government Services section. |
 | `/work`           | Products       | Every product and project built by the team (formerly `/products`, which redirects here).                       |
 | `/contact`        | Contact        | The inquiry form, a map and the contact details.                                                               |
 | `/faq`            | FAQ            | Two-column accordion of common questions.                                                                      |
@@ -116,9 +163,10 @@ pnpm build
 oneoverzero/
 ├── index.html              Template for every page (tokens are filled in at build time)
 ├── vite.config.js          Vite config plus the plugin that generates one HTML file per page
-├── vercel.json             Clean URLs, no trailing slash, and redirects from old addresses (/products to /work, /about-us to /about)
+├── vercel.json             Clean URLs, redirects from old addresses (/products to /work, /about-us to /about), and the security headers
 ├── eslint.config.js
-├── public/                 Copied as-is: favicon, og-image.png, project images
+├── docs/                   README banner and screenshot (not part of the site)
+├── public/                 Copied as-is: favicon, og-image.png, project images, .well-known/security.txt
 │   └── projects/           Product / project screenshots
 ├── archive/                Old assets kept for reference, not used by the site (archive/logos/ holds the client logos: direct-clients/ and subcon-clients/)
 └── src/
@@ -126,8 +174,10 @@ oneoverzero/
     ├── App.jsx             Chooses the page, owns cookie-consent state and the cookie banner
     ├── routes.js           Reads the current address and lists the valid routes
     ├── pageMeta.js         Every page's address, title, description and share text (SEO)
-    ├── seo.js              Structured data (JSON-LD) for search engines
-    ├── data.js             Services, projects, stats, nav links, social links
+    ├── seo.js              Structured data (JSON-LD) for search engines and AI assistants
+    ├── prerender.js        Page text for crawlers without JavaScript, plus llms.txt and llms-full.txt
+    ├── siteData.js         Services, E-Government, steps, mission/vision, projects (plain data the build also reads)
+    ├── data.js             Stats, nav links, social links, and re-exports of siteData.js
     ├── faqData.js          The FAQ questions and answers
     ├── hooks.js            useReveal, useCountUp, useScrollProgress, readConsent, saveConsent
     ├── legalInfo.js        Company name, email, address and "last updated" date used by the legal pages
@@ -136,7 +186,7 @@ oneoverzero/
     ├── index.css           Only @imports of the files in styles/, in cascade order
     ├── styles/             CSS grouped by area (base, header, footer, hero, services, work, contact, ...)
     ├── components/         Grouped by area: common, header, footer, hero, services, work,
-    │                       logos-stats, contact, how-we-deliver, about, faq, cta, legal
+    │                       logos-stats, contact, how-we-deliver, about, egov, faq, cta, legal
     └── pages/              One file per page (HomePage, AboutPage, ServicesPage, WorkPage,
                             ContactPage, FaqPage, PrivacyPolicyPage, CookiePolicyPage, NotFoundPage)
 ```
@@ -170,11 +220,12 @@ Most copy lives in data files, so you rarely need to touch components.
 
 | To change...                                  | Edit                                                                    |
 | --------------------------------------------- | ----------------------------------------------------------------------- |
-| Services (the "What we offer" cards)          | `SERVICES` in `src/data.js`: `summary` is the front of the card, `ideal` and `example` are the back |
-| Products and projects (the cards)             | `PROJECTS` in `src/data.js`; images go in `public/projects/`. (`PRODUCTS` in the same file is an older list that no page uses.) |
+| Services (the "What we offer" cards)          | `SERVICES` in `src/siteData.js`: `summary` is the front of the card, `items` (name and detail) are the back |
+| E-Government Services (the tabbed section)    | `EGOV` in `src/siteData.js`: `summary` is for search engines and AI, `groups` are the three tabs |
+| Products and projects (the cards)             | `PROJECT_LIST` in `src/siteData.js`; images go in `public/projects/`. (`PRODUCTS` in the same file is an older list that no page uses.) |
 | Stats (100+ companies and organizations, 93% retention, ...)       | `STATS` in `src/data.js`                                                |
 | Industries (the scrolling chips under the "Why Choose 1/0" heading) | `INDUSTRIES` in `src/components/logos-stats/IndustryRows.jsx`. The old client logos are in `archive/logos/`. To bring them back: move the folder to `public/logos/`, restore the `CLIENT_LOGOS` list in `src/data.js` (it was removed, see the git history), and use `ClientLogos` instead of `IndustryRows` |
-| How We Deliver steps                             | `PROCESS_STEPS` in `src/data.js`                                        |
+| How We Deliver steps                             | `PROCESS_STEPS` in `src/siteData.js`                                     |
 | Header / footer links                         | `NAV_LINKS` in `src/data.js` (the header leaves out Contact, because it has the "Contact Us" button) |
 | The three "what we stand for" cards in About  | `PILLARS` in `src/components/about/Pillars.jsx`                         |
 | The constellation above the contact form      | `STARS` and `POLARIS` in `src/components/contact/Constellation.jsx`     |
@@ -208,7 +259,7 @@ Styles live in `src/styles/`, in one folder per area (for example `header/`, `he
 - **Header** hides while scrolling down and returns when scrolling up. An open mobile menu keeps it on screen.
 - **Industry chips** scroll in two endless rows, opposite directions.
 - **Installable app (PWA):** browsers offer to install the site as an app. `public/manifest.webmanifest` sets its name, colors and icons, and `public/sw.js` (registered in `src/main.jsx`, production builds only) keeps pages it has loaded so they still open offline. Cross-site requests, such as the contact form and map, are never cached. The icons are `public/icon-192.png`, `icon-512.png`, `icon-maskable-512.png` and `apple-touch-icon.png`; if you edit the logo, redraw them to match. After changing `sw.js`, bump `CACHE` in it.
-- **Flip cards (What we offer):** click or tap anywhere on a card, or press Enter or Space on it, and it turns over to show when the service is ideal and an example. The turned-away face is `visibility: hidden`, so only the visible one can be reached by keyboard or screen reader. The flipped state lives on an inner element because `Reveal` adds its own class to the outer one.
+- **Flip cards (What we offer):** click or tap anywhere on a card, or press Enter or Space on it, and it turns over to list what we offer under that service (each item has a short detail; on phones only the names show). The turned-away face is `visibility: hidden`, so only the visible one can be reached by keyboard or screen reader. The flipped state lives on an inner element because `Reveal` adds its own class to the outer one.
 - **About (landing page)** has a logo that sits in slowly turning rings and glows when hovered, twinkling stars with an occasional shooting star, and cards with a light sweeping across their top edge.
 - **Aurora (landing page About section):** four slow, glowing northern-lights ribbons (a line over a fading curtain) drift behind the content: two along the top edge and two along the bottom edge, moving in opposite directions, with the wavy line as the inner border of each (down-facing at the top, up-facing at the bottom); only transform animates, so it stays light (`AURORA` in `AboutSection.jsx`, styles at the end of `styles/about/about-home.css`). They are only on the landing page, not on `/about`, and pause when scrolled out of view.
 - **Aurora backdrops (landing page only):** What We Offer has thin broken rings in two corners that turn slowly in opposite directions (lines only, so the see-through cards stay clear), and Explore Our Work has four tall thin beams of light that sway and fade (`AuroraBackdrop` in `components/common/`, styles in `styles/base/aurora-backdrop.css`). Only transform and opacity animate, and they pause when the section is off screen. The standalone `/services` and `/work` pages do not have them.
@@ -236,14 +287,32 @@ Any service that accepts a JSON `POST` works, for example Formspree. The form se
 - The Privacy Policy and Cookie Policy are written for RA 10173 and the National Privacy Commission. They are working drafts: have a lawyer or your data protection officer review them before launch.
 - Images cannot be dragged or saved through the right-click menu. This only deters casual copying.
 
-## SEO and link previews
+## SEO, search and AI assistants
 
-- Every page gets its own `<title>`, description, canonical link, Open Graph and Twitter tags, and breadcrumbs.
-- The home page also gets Organization structured data (name, address, email, founding year, LinkedIn).
+- Every page gets its own `<title>`, description, canonical link, `hreflang`, Open Graph and Twitter tags, and breadcrumbs.
+- **Structured data (schema.org JSON-LD):** every page gets one linked graph, built in `src/seo.js` from the same data the site shows (`src/siteData.js`, `src/faqData.js`):
+  - every page: Organization (name, alternate names, slogan, founding year, email, contact points, Philippines service area, what we know about, LinkedIn), WebSite, and the page itself typed for what it is (AboutPage, CollectionPage, ContactPage, FAQPage) with its breadcrumbs
+  - home and Services: an OfferCatalog with every service card and its items, plus the E-Government service with its three groups and the audience it is for
+  - home: HowTo for the five delivery steps
+  - Products: an ItemList of the products as SoftwareApplication entries
+  - FAQ: the questions and answers
+  - About: the mission and vision as the page text
+- **Readable without JavaScript:** the site draws its pages in the browser, so each page's HTML used to be an empty shell for crawlers that don't run scripts (most AI crawlers). The build now writes the page's text (headings, services, e-government, steps, products, FAQ, contact) into the page, visually hidden, from `src/prerender.js`. The site replaces it the moment it starts.
+- **For AI assistants:** when indexing is on, the build also publishes `/llms.txt` (a short summary with links) and `/llms-full.txt` (every service, item, product and answer in Markdown). `robots.txt` names the main search and AI crawlers (Google, Bing, Apple, OpenAI, Anthropic, Perplexity and others) and welcomes them. It is a request, not a lock.
+- The robots tag, once live, asks for full snippets and large previews.
 - The build prints a warning if a title (aim for 60 characters or fewer), description (70 to 160) or share text (20 to 200) is outside the recommended length.
-- **Indexing is switched off for now.** `NOINDEX` in `src/pageMeta.js` is `true`, which adds `<meta name="robots" content="noindex">` to every page and skips `sitemap.xml` and `robots.txt`.
-- Set `NOINDEX = false` at launch. The build then removes the tag and generates `sitemap.xml` and `robots.txt` automatically.
+- **Indexing is switched off for now.** `NOINDEX` in `src/pageMeta.js` is `true`, which adds `<meta name="robots" content="noindex">` to every page and skips `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt`.
+- Set `NOINDEX = false` at launch. The build then removes the tag and generates those four files automatically.
 - Link previews need an absolute image address. The build works it out from `SITE_URL`, then Vercel's production URL, then the deployment URL.
+- After launch, check the pages in Google's Rich Results Test and the Schema Markup Validator (validator.schema.org).
+
+## Security headers and what the browser can see
+
+`vercel.json` sets the security headers for every page: a Content Security Policy (scripts only from this site, no plugins, no framing), HSTS, `nosniff`, `X-Frame-Options`, a strict referrer policy, a locked-down permissions policy (no camera, microphone, location) and `Cross-Origin-Opener-Policy`. It also caches built files for a year and always re-checks the service worker. `/.well-known/security.txt` tells researchers where to report a problem (renew its `Expires` date once a year).
+
+- **No source maps** are published (`build.sourcemap: false`), so the original source is not readable in the browser's developer tools.
+- The Content Security Policy allows exactly three outside things: Google Fonts, the Google Maps embed on the contact page, and the form service. **If you use a form service other than Formspree, change `formspree.io` (twice) in `vercel.json` to its address**, or the contact form will be blocked.
+- **What cannot be hidden:** anything the browser downloads (the scripts, styles, images, fonts and page routes) shows in the Network tab of the developer tools, and always will for any website. What matters is that nothing sensitive is in them: there are no passwords, keys or private addresses in the site, the form address is the only setting and it is meant to be public, and the front end has no admin area to expose.
 
 ## Environment variables
 
@@ -270,7 +339,9 @@ Pushing to `main` deploys to production. Other branches get preview deployments,
 
 - [ ] Set `VITE_FORM_ENDPOINT` and send a real test inquiry.
 - [ ] Set `SITE_URL` to the final domain.
-- [ ] Set `NOINDEX = false` in `src/pageMeta.js`.
+- [ ] Set `NOINDEX = false` in `src/pageMeta.js`, then check `/robots.txt`, `/sitemap.xml`, `/llms.txt` and the schema (Rich Results Test, validator.schema.org).
+- [ ] If the form service is not Formspree, update `connect-src` and `form-action` in `vercel.json`.
+- [ ] Check the deployed site's headers (for example on securityheaders.com) and that the contact map and form still work.
 - [ ] Confirm the LinkedIn URL in `ORG` (`src/pageMeta.js`) and `SOCIAL` (`src/data.js`). It is a temporary, unconfirmed link.
 - [ ] Install the site as an app on a phone and on desktop Chrome or Edge, and check it opens offline.
 - [ ] Have the Privacy Policy and Cookie Policy reviewed, and update their dates.

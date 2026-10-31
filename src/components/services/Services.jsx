@@ -15,19 +15,48 @@ const TITLE = (
 const SUB = (
   <>
     We offer innovative solutions for your business needs, delivered by one team.{' '}
-    <strong className="offer-tip">Click each flip card</strong> to see when it&rsquo;s ideal.
+    <strong className="offer-tip">Click each flip card</strong> to see what we offer.
   </>
 )
 
-// A card that turns over: the front says what the service is, the back says when it fits and gives an example.
+// A card that turns over: the front says what the service is, the back lists what we offer under it.
 // The whole card is the target: click (or press Enter / Space on) anywhere on a face to turn it over.
 // Only the face you can see is reachable by keyboard and screen readers (the other one is visibility:hidden, see what-we-offer-grid.css).
 function ServiceCard({ s, delay }) {
   const [flipped, setFlipped] = useState(false)
+  // Counts the flips: each one mounts a fresh aurora glow, which plays once and fades out
+  const [glow, setGlow] = useState(0)
   const id = useId()
   const frontRef = useRef(null)
   const backRef = useRef(null)
   const moved = useRef(false)
+  const tiltRef = useRef(null)
+  const frame = useRef(0)
+  useEffect(() => () => cancelAnimationFrame(frame.current), [])
+
+  // 3D tilt: with a mouse, the card leans towards the pointer and a light sheen follows it.
+  // The numbers go straight onto the element as CSS variables, once per frame, so React never re-renders while the mouse moves.
+  const onTilt = (e) => {
+    if (e.pointerType !== 'mouse') return
+    const box = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - box.left) / box.width
+    const y = (e.clientY - box.top) / box.height
+    cancelAnimationFrame(frame.current)
+    frame.current = requestAnimationFrame(() => {
+      const el = tiltRef.current
+      if (!el) return
+      el.style.setProperty('--rx', `${((0.5 - y) * 16).toFixed(2)}deg`)
+      el.style.setProperty('--ry', `${((x - 0.5) * 16).toFixed(2)}deg`)
+      el.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`)
+      el.style.setProperty('--my', `${(y * 100).toFixed(1)}%`)
+    })
+  }
+  const onTiltEnd = () => {
+    cancelAnimationFrame(frame.current)
+    const el = tiltRef.current
+    if (!el) return
+    for (const v of ['--rx', '--ry', '--mx', '--my']) el.style.removeProperty(v)
+  }
 
   // After a flip, keep keyboard focus on the face that is now showing
   useEffect(() => {
@@ -38,6 +67,7 @@ function ServiceCard({ s, delay }) {
   const flip = (to) => {
     moved.current = true
     setFlipped(to)
+    setGlow((g) => g + 1)
   }
 
   // Enter or Space on a face turns the card over, like a click
@@ -56,7 +86,9 @@ function ServiceCard({ s, delay }) {
 
   return (
     // The flipped state lives on the inner element: Reveal adds its own class to the outer one, and React would wipe it if that class changed.
-    <Reveal delay={delay} className="offer-flip">
+    <Reveal delay={delay} className="offer-flip" onPointerMove={onTilt} onPointerLeave={onTiltEnd}>
+      {glow > 0 && <span key={glow} className="offer-aurora" aria-hidden="true" />}
+      <div className="offer-tilt" ref={tiltRef}>
       <div className={`flip-inner ${flipped ? 'flipped' : ''}`}>
         <div
           className="glass offer-face offer-front"
@@ -65,7 +97,7 @@ function ServiceCard({ s, delay }) {
           tabIndex={0}
           aria-expanded={flipped}
           aria-controls={`${id}-back`}
-          aria-label={`${s.title}: see when it's ideal`}
+          aria-label={`${s.title}: see what we offer`}
           onClick={() => flip(true)}
           onKeyDown={onFrontKey}
         >
@@ -86,13 +118,16 @@ function ServiceCard({ s, delay }) {
           onKeyDown={onBackKey}
         >
           <h3>{s.title}</h3>
-          <dl>
-            <dt>Ideal when</dt>
-            <dd>{s.ideal}</dd>
-            <dt>For example</dt>
-            <dd>{s.example}</dd>
-          </dl>
+          <ul>
+            {s.items.map((it) => (
+              <li key={it.name}>
+                <strong>{it.name}</strong>
+                <span className="offer-desc">{it.desc}</span>
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
       </div>
     </Reveal>
   )
@@ -113,7 +148,7 @@ export default function Services({ page = false, children }) {
           {!page && <SectionHead eyebrow={EYEBROW} title={TITLE} sub={SUB} />}
           <div className="offer-grid">
             {SERVICES.map((s, i) => (
-              <ServiceCard key={s.id} s={s} delay={(i % 3) * 90} />
+              <ServiceCard key={s.id} s={s} delay={(i % 4) * 90} />
             ))}
           </div>
         </div>

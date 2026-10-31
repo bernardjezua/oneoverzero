@@ -74,12 +74,81 @@
   gap: 6px;
 }
 
-/* What We Offer: flip cards. Each card shows the service on the front and "ideal when / for example" on the back. */
+/* What We Offer: flip cards. Each card shows the service on the front and the list of what we offer on the back.
+   Rows are as tall as their tallest card (the backs differ in length), so one long list does not stretch every row. */
 .offer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
+}
+/* Tablet landscape: three across, on a six-column grid so a short last row (one or two cards) sits centered under the rest */
+@media (min-width: 1001px) and (max-width: 1099px) {
+  .offer-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  .offer-grid > .offer-flip {
+    grid-column: span 2;
+  }
+  .offer-grid > .offer-flip:last-child:nth-child(3n + 1) {
+    grid-column: 3 / span 2;
+  }
+  .offer-grid > .offer-flip:nth-last-child(2):nth-child(3n + 1) {
+    grid-column: 2 / span 2;
+  }
+  .offer-grid > .offer-flip:last-child:nth-child(3n + 2) {
+    grid-column: 4 / span 2;
+  }
+}
+/* Desktop: four across (eight-column grid), the same centering for a short last row. Compact cards: less padding, smaller type. */
+@media (min-width: 1100px) {
+  .offer-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 14px;
+  }
+  .offer-grid > .offer-flip {
+    grid-column: span 2;
+  }
+  .offer-grid > .offer-flip:last-child:nth-child(4n + 1) {
+    grid-column: 4 / span 2;
+  }
+  .offer-grid > .offer-flip:nth-last-child(2):nth-child(4n + 1) {
+    grid-column: 3 / span 2;
+  }
+  .offer-grid > .offer-flip:last-child:nth-child(4n + 2) {
+    grid-column: 5 / span 2;
+  }
+  .offer-grid > .offer-flip:nth-last-child(3):nth-child(4n + 1) {
+    grid-column: 2 / span 2;
+  }
+  .offer-grid > .offer-flip:nth-last-child(2):nth-child(4n + 2) {
+    grid-column: 4 / span 2;
+  }
+  .offer-grid > .offer-flip:last-child:nth-child(4n + 3) {
+    grid-column: 6 / span 2;
+  }
+  .offer-face {
+    gap: 6px;
+    padding: 20px 18px;
+  }
+  .offer-face .ico {
+    width: 44px;
+    height: 44px;
+  }
+  .offer-face h3 {
+    font-size: 1rem;
+  }
+  .offer-back ul {
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+  .offer-back li strong {
+    font-size: 0.78rem;
+  }
+  .offer-desc {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
 }
 .offer-flip {
   perspective: 1200px;
@@ -149,22 +218,26 @@
   line-height: 1.6;
   margin-bottom: 16px;
 }
-.offer-back dl {
-  margin: 4px 0 16px;
+.offer-back ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 8px 0 16px;
+  padding: 0;
+  list-style: none;
 }
-.offer-back dt {
-  margin-top: 12px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
+.offer-back li strong {
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--text);
 }
-.offer-back dd {
-  margin: 4px 0 0;
+.offer-desc {
+  display: block;
+  margin-top: 2px;
   color: var(--muted);
-  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.95rem);
-  line-height: 1.6;
+  font-size: 0.76rem;
+  line-height: 1.5;
 }
 @media (max-width: 1000px) {
   .offer-grid {
@@ -183,28 +256,19 @@
   margin-inline: auto;
 }
 
-/* Smaller back text, and each face's content sits in the middle of the space above the divider (the free space is shared by the auto margins) */
-.offer-back dt {
-  font-size: 0.64rem;
-}
-.offer-back dd {
-  font-size: 0.8rem;
-  line-height: 1.55;
-}
+/* Each face's content sits in the middle of the card (the free space is shared by the auto margins) */
 .offer-front .ico,
 .offer-back h3 {
   margin-top: auto;
 }
 .offer-front p,
-.offer-back dl {
+.offer-back ul {
   margin-bottom: auto;
 }
 
 /* Phones: two cards per row (one on very narrow screens). Same card as on desktop, with smaller type so it fits the narrow column. */
 @media (max-width: 720px) {
   .offer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
     gap: 10px;
   }
   .offer-face {
@@ -224,22 +288,21 @@
     font-size: var(--desc-size-sm);
     line-height: 1.45;
   }
-  .offer-back dl {
-    margin: 0 0 auto;
+  .offer-back ul {
+    gap: 6px;
+    margin: 4px 0 auto;
   }
-  .offer-back dt {
-    margin-top: 6px;
-    font-size: 0.58rem;
+  .offer-back li strong {
+    font-size: 0.72rem;
   }
-  .offer-back dd {
-    font-size: 0.74rem;
-    line-height: 1.45;
+  /* Narrow cards: the names alone, the one-line details would make the cards very tall */
+  .offer-desc {
+    display: none;
   }
 }
 @media (max-width: 359px) {
   .offer-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: auto;
   }
 }
 
@@ -262,6 +325,109 @@
 }
 @media (hover: hover) {
   .offer-flip:hover .offer-front .ico {
-    transform: translateY(-3px) scale(1.1) rotate(-6deg);
+    transform: translateZ(28px) translateY(-3px) scale(1.1) rotate(-6deg);
+  }
+}
+
+/* Aurora glow that washes round the card each time it turns over (mounted fresh by every flip, see ServiceCard).
+   It sits behind the faces and plays once. The blur is only on while it plays, so it costs nothing at rest. */
+.offer-flip {
+  position: relative;
+}
+.flip-inner {
+  position: relative;
+  z-index: 1;
+}
+.offer-aurora {
+  position: absolute;
+  inset: -8px;
+  z-index: 0;
+  border-radius: 28px;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(70, 230, 170, 0.9), rgba(120, 90, 255, 0.9), rgba(90, 210, 240, 0.9), rgba(200, 110, 255, 0.8), rgba(70, 230, 170, 0.9));
+  background-size: 300% 100%;
+  filter: blur(18px);
+  opacity: 0;
+  animation: offer-aurora 1s ease-out;
+}
+@keyframes offer-aurora {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+    background-position: 0% 0;
+  }
+  35% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+    background-position: 100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-aurora {
+    display: none;
+  }
+}
+
+/* 3D: the card leans towards the mouse (--rx / --ry, set by ServiceCard), its content floats above the face, and a sheen follows the pointer.
+   The tilt has its own wrapper so it never fights the flip (inner) or the reveal and lift (outer). Mouse only, and not for reduced motion. */
+.offer-flip {
+  perspective: 900px;
+}
+.offer-tilt {
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* A thicker, deeper shadow, so the card reads as a solid slab */
+.offer-face {
+  transform-style: preserve-3d;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 18px 30px -18px rgba(0, 0, 0, 0.7);
+}
+/* Icon and title float above the face, the list on the back a little less */
+.offer-front .ico,
+.offer-face h3 {
+  transform: translateZ(28px);
+}
+.offer-front p,
+.offer-back ul {
+  transform: translateZ(14px);
+}
+/* The sheen: a soft light that follows the pointer across the face */
+.offer-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.2), transparent 55%);
+  transition: opacity 0.3s;
+}
+.offer-face {
+  position: relative;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .offer-flip:hover .offer-tilt {
+    /* Quick while the mouse is moving, slow to settle (the slow part is the rule above, when the variables are cleared) */
+    transition: transform 0.12s ease-out;
+    will-change: transform;
+  }
+  .offer-flip:hover .offer-face::after {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-tilt {
+    transform: none;
+  }
+  .offer-front .ico,
+  .offer-face h3,
+  .offer-front p,
+  .offer-back ul {
+    transform: none;
   }
 }

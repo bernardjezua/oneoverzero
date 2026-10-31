@@ -79,22 +79,41 @@ export function saveConsent(c) {
   }
 }
 
-export function useScrollProgress() {
-  const [p, setP] = useState(0)
+// Writes the scroll position (0 to 1) straight onto the element as --p, at most once a frame.
+// It is not React state on purpose: state here re-rendered the whole page on every scroll event.
+export function useScrollProgress(ref) {
   useEffect(() => {
-    const on = () => {
+    const el = ref.current
+    if (!el) return
+    let raf = 0
+    const update = () => {
+      raf = 0
       const max = document.documentElement.scrollHeight - window.innerHeight
-      setP(max > 0 ? Math.min(window.scrollY / max, 1) : 0)
+      el.style.setProperty('--p', max > 0 ? Math.min(window.scrollY / max, 1) : 0)
     }
-    on()
-    window.addEventListener("scroll", on, { passive: true })
-    window.addEventListener("resize", on)
+    const on = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', on, { passive: true })
+    window.addEventListener('resize', on)
     return () => {
-      window.removeEventListener("scroll", on)
-      window.removeEventListener("resize", on)
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', on)
+      window.removeEventListener('resize', on)
     }
-  }, [])
-  return p
+  }, [ref])
+}
+
+// Marks a section `is-offscreen` while it is scrolled out of view, so its looping animations can pause (see the .is-offscreen rules in the styles).
+export function useOffscreenPause(ref) {
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => el.classList.toggle('is-offscreen', !e.isIntersecting))
+    io.observe(el)
+    return () => io.disconnect()
+  }, [ref])
 }
 
 // Moves between the site's own pages without reloading them. Every page is still its own HTML file (for search engines and link previews),

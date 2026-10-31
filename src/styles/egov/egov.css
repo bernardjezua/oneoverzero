@@ -1,0 +1,181 @@
+/* E-Government section: a calm, dark band with a small network of nodes in the corner. Tabs on top, a plain list below. */
+.egov {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(45% 55% at 100% 0%, rgba(var(--accent-rgb), 0.1), transparent 70%),
+    radial-gradient(40% 50% at 0% 100%, rgba(120, 90, 255, 0.16), transparent 70%),
+    linear-gradient(180deg, #0c0838, #0a0630);
+}
+.egov > .wrap {
+  position: relative;
+  z-index: 1;
+}
+.egov .section-head {
+  max-width: 760px;
+}
+
+/* The network: thin lines and a few soft, twinkling nodes. Opacity only, and it stands still when off screen. */
+.egov-net {
+  position: absolute;
+  top: 24px;
+  right: 3%;
+  width: min(46vw, 520px);
+  pointer-events: none;
+  opacity: 0.55;
+  fill: var(--accent-2);
+  stroke: rgba(var(--accent-rgb), 0.28);
+  stroke-width: 1;
+}
+.egov-net line {
+  vector-effect: non-scaling-stroke;
+}
+.egov-net circle {
+  stroke: none;
+  animation: egov-twinkle 4s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes egov-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.egov.is-offscreen .egov-net circle {
+  animation-play-state: paused;
+}
+
+/* Tabs */
+.egov-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.egov-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--glass-b);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+@media (hover: hover) {
+  .egov-tabs button:hover {
+    border-color: var(--accent);
+  }
+}
+.egov-tabs button.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.egov-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.72rem;
+  text-align: center;
+}
+.egov-tabs button.on .egov-count {
+  background: rgba(10, 6, 48, 0.18);
+}
+
+/* The list. Each item is typeset like the About Us cards (.about-pillar): the heading font for the title, muted small text under it. Everything in a card is centered. */
+.egov-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.egov-grid li {
+  display: grid;
+  align-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid var(--glass-b);
+  border-radius: 20px;
+  background: rgba(27, 19, 99, 0.55);
+  animation: egov-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+  transition: border-color 0.25s, background 0.25s;
+}
+@media (hover: hover) {
+  .egov-grid li:hover {
+    border-color: rgba(var(--accent-rgb), 0.55);
+    background: rgba(27, 19, 99, 0.85);
+  }
+}
+@keyframes egov-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.egov-grid h3 {
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1rem);
+}
+.egov-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--desc-size-sm);
+  line-height: 1.6;
+}
+
+@media (max-width: 1000px) {
+  .egov-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .egov-net {
+    width: 80vw;
+    opacity: 0.35;
+  }
+  .egov-tabs {
+    justify-content: center;
+    gap: 8px;
+  }
+  .egov-tabs button {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+  /* Two cards per row to save space, so smaller type and padding */
+  .egov-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .egov-grid li {
+    gap: 6px;
+    padding: 14px 12px;
+    border-radius: 16px;
+  }
+  .egov-grid h3 {
+    font-size: 0.88rem;
+    line-height: 1.25;
+  }
+  .egov-grid p {
+    font-size: 0.74rem;
+    line-height: 1.45;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .egov-grid li,
+  .egov-net circle {
+    animation: none;
+  }
+}

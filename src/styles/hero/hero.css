@@ -1,7 +1,10 @@
 /* Hero */
 .hero {
   position: relative;
+  /* Each line is a fallback for browsers that do not know the next. dvh follows the visible screen as the phone's address bar slides away; svh (the smallest screen) left a gap at the bottom on Samsung phones. */
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   display: grid;
   align-items: center;
   padding: 120px 0 80px;

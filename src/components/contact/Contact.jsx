@@ -3,7 +3,10 @@ import Icon from '../common/Icon.jsx'
 import HeroCanvas from '../hero/HeroCanvas.jsx'
 import Constellation from './Constellation.jsx'
 import Reveal from '../common/Reveal.jsx'
-import { SERVICES } from '../../data.js'
+import { EGOV, SERVICES } from '../../data.js'
+
+// The cards on the Services page, plus E-Government (which has its own section instead of a card)
+const SERVICE_OPTIONS = [...SERVICES, EGOV]
 import { submitInquiry } from '../../submitInquiry.js'
 import { validateField, validateInquiry } from '../../validateInquiry.js'
 
@@ -79,7 +82,7 @@ export default function Contact({ page = false }) {
         name: data.name.trim(),
         company: data.company.trim(),
         email: data.email.trim(),
-        service: SERVICES.find((s) => s.id === data.service)?.title ?? 'Something else',
+        service: SERVICE_OPTIONS.find((s) => s.id === data.service)?.title ?? 'Something else',
         message: data.message.trim(),
         timeframe: data.timeframe,
         source: data.source,
@@ -197,7 +200,7 @@ export default function Contact({ page = false }) {
                   <option value="" disabled>
                     Select a service
                   </option>
-                  {SERVICES.map((s) => (
+                  {SERVICE_OPTIONS.map((s) => (
                     <option key={s.id} value={s.id}>
                       {s.title}
                     </option>

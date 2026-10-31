@@ -18,14 +18,16 @@ import { ROUTES } from './routes.js'
 
 export default function App() {
   const route = useRoute()
-  const progress = useScrollProgress()
+  const progressRef = useRef(null)
+  useScrollProgress(progressRef)
   const [cookiesOpen, setCookiesOpen] = useState(false)
   const [consent, setConsent] = useState(() => readConsent())
 
-  // Discourage saving images: block the right-click menu and dragging on pictures. This only deters casual copying.
+  // Discourage saving images: block the right-click menu and dragging on pictures, drawings (the constellation, logo, hero art) and canvases.
+  // This only deters casual copying: anyone can still use the browser's developer tools.
   useEffect(() => {
     const block = (e) => {
-      if (e.target instanceof HTMLImageElement) e.preventDefault()
+      if (e.target instanceof Element && e.target.closest('img, picture, svg, canvas, video')) e.preventDefault()
     }
     document.addEventListener('contextmenu', block)
     document.addEventListener('dragstart', block)
@@ -51,7 +53,7 @@ export default function App() {
     <>
       <ClickRipple />
       <HoverRing />
-      <div className="progress" style={{ '--p': progress }} aria-hidden="true" />
+      <div className="progress" ref={progressRef} aria-hidden="true" />
       <Header route={route} />
       {/* The standalone pages share one section spacing (see "inner" in index.css); the landing page keeps its own */}
       <main className={route !== '/' && ROUTES.includes(route) ? 'inner' : undefined}>

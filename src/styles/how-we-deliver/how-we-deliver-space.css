@@ -148,6 +148,12 @@
     transform: scaleY(1.12) scaleX(1.05);
   }
 }
+/* Scrolled out of view: the whole scene (stars, planets, rocket, comets, step streaks) stands still */
+.process.is-offscreen *,
+.process.is-offscreen *::before,
+.process.is-offscreen *::after {
+  animation-play-state: paused !important;
+}
 @media (max-width: 720px) {
   .space-star:nth-child(n + 20) {
     display: none;

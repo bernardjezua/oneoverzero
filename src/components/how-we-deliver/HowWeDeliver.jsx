@@ -1,12 +1,16 @@
+import { useRef } from 'react'
 import Icon from '../common/Icon.jsx'
 import Reveal from '../common/Reveal.jsx'
 import SectionHead from '../common/SectionHead.jsx'
 import SpaceBackdrop from './SpaceBackdrop.jsx'
 import { PROCESS_STEPS } from '../../data.js'
+import { useOffscreenPause } from '../../hooks.js'
 
 export default function HowWeDeliver({ children }) {
+  const ref = useRef(null)
+  useOffscreenPause(ref)
   return (
-    <section className="section process" id="process">
+    <section className="section process" id="process" ref={ref}>
       <SpaceBackdrop />
       <div className="wrap">
         <SectionHead

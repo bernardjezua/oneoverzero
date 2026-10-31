@@ -179,12 +179,12 @@
   border-radius: 24px;
   isolation: isolate;
 }
-/* Each card has its own tint, so the pair reads as two different things */
+/* Each card has its own tint, so the pair reads as two different things. The tint sits on a solid color, so the stars behind the section do not show through. */
 .mv-card.mission {
-  background: linear-gradient(150deg, rgba(var(--accent-rgb), 0.16), rgba(255, 255, 255, 0.04) 55%);
+  background: linear-gradient(150deg, rgba(var(--accent-rgb), 0.16), rgba(255, 255, 255, 0.04) 55%), #14105c;
 }
 .mv-card.vision {
-  background: linear-gradient(150deg, rgba(130, 90, 245, 0.2), rgba(255, 255, 255, 0.04) 55%);
+  background: linear-gradient(150deg, rgba(130, 90, 245, 0.2), rgba(255, 255, 255, 0.04) 55%), #18105f;
 }
 /* Soft light in the corner behind the text */
 .mv-card::after {
@@ -385,8 +385,10 @@
     transform: translateX(-50%);
   }
 }
-.about-home.is-offscreen .aurora-line {
-  animation-play-state: paused;
+.about-home.is-offscreen *,
+.about-home.is-offscreen *::before,
+.about-home.is-offscreen *::after {
+  animation-play-state: paused !important;
 }
 @media (max-width: 860px) {
   .aurora-line {

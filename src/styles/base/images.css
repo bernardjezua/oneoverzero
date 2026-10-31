@@ -1,5 +1,7 @@
 /* Images: no dragging, long-press saving or text-style selection */
-img {
+img,
+svg,
+canvas {
   -webkit-user-drag: none;
   user-select: none;
   -webkit-user-select: none;

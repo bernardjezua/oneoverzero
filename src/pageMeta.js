@@ -20,6 +20,21 @@ export const ORG = {
   name: SITE_NAME,
   email: 'support@oneoverzero.com.ph',
   foundingYear: 2017,
+  alternateNames: ['One Over Zero', '1/0'],
+  slogan: 'Defining Infinite Possibilities',
+  // What the company is an authority on: lets search engines and AI assistants connect it to these topics
+  knowsAbout: [
+    'Software development',
+    'System integration',
+    'E-government systems',
+    'Cybersecurity',
+    'Cloud infrastructure',
+    'Data center fit-out',
+    'Networking',
+    'Managed hosting',
+    'Digital marketing and analytics',
+    'IT maintenance and support',
+  ],
   linkedin: 'https://www.linkedin.com/company/one-over-zero-technologies-inc/', // temporary: confirm this is the right company page
   address: {
     region: 'Metro Manila',
@@ -49,7 +64,7 @@ export const PAGES = [
     name: 'Services',
     title: `Services | ${SITE_NAME}`,
     description:
-      'Software development, CMS, cloud, data centers, networking, cybersecurity, digital marketing and ongoing IT support from one Philippine team.',
+      'Software development, e-government systems, cloud, data centers, networking, cybersecurity, managed hosting and IT support from one Philippine team.',
     share: 'Software, infrastructure, security and ongoing support from one team.',
   },
   {

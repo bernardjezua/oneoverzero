@@ -31,6 +31,10 @@
   background: var(--glass);
   border: 1px solid var(--glass-b);
   border-radius: 20px;
+}
+/* Only what floats over the page keeps the blur. Blurring every card makes the browser re-blur everything behind it on each scrolled frame, which made scrolling lag. */
+.modal.glass,
+.banner.glass {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
