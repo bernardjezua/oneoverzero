@@ -106,7 +106,6 @@ export default function Hero() {
       </div>
       <a className="scroll-cue" href="#about" aria-label="Scroll down">
         <span className="mouse" aria-hidden="true" />
-        <span>Scroll</span>
       </a>
     </section>
   )

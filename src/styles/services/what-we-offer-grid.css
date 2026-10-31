@@ -12,13 +12,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  font-size: 0.55rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: #fff;
+  opacity: 0.85;
   z-index: 2;
-  animation: cue-blink 1.4s ease-in-out infinite;
 }
 @media (hover: hover) {
   .scroll-cue:hover {
@@ -42,25 +38,18 @@
   margin-left: -1px;
   border-radius: 2px;
   background: currentColor;
-  animation: cue-wheel 1.6s ease-in-out infinite;
+  animation: cue-wheel 1.8s ease-in-out infinite;
 }
-@keyframes cue-blink {
+/* Only the wheel moves, a short way down (about half the old travel) and back up, fading as it goes. The mouse itself stays still and steady. */
+@keyframes cue-wheel {
   0%,
   100% {
-    opacity: 0.12;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-@keyframes cue-wheel {
-  0% {
     transform: translateY(0);
     opacity: 1;
   }
-  100% {
-    transform: translateY(8px);
-    opacity: 0;
+  50% {
+    transform: translateY(4px);
+    opacity: 0.15;
   }
 }
 @media (max-width: 1000px) {

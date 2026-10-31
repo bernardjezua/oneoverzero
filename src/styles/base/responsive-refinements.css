@@ -19,7 +19,11 @@ html {
 }
 @media (max-width: 860px) {
   .hero {
-    min-height: auto;
+    /* Fills the screen on phones, so the next section starts below the fold (the fallbacks are explained in hero.css).
+       "auto" here left the hero as tall as its content, with the next section showing underneath. */
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
     padding: 112px 0 72px;
   }
   .section-head {
